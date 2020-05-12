@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Restaurante</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="boton_usuario">Usuario</string>
+    <string name="boton_empleado">Empleado</string>
+    <string name="boton_iniciar_sesion">Iniciar</string>
+    <string name="boton_crear_cuenta">Crear Cuenta</string>
+    <string name="text_input_nombre">Nombre de Usuario</string>
+    <string name="text_input_contrasenia">Contraseña</string>
+    <string name="boton_menu_dia">Menu del Día</string>
+    <string name="boton_menu_semanal">Menu Semanal</string>
+    <string name="boton_menu_merienda">Menu Merienda</string>
+    <string name="boton_historial">Historial de Pedidos</string>
+    <string name="boton_pedir">Realizar pedido</string>
+    <string name="boton_notificar">Notificarme</string>
+</resources>
