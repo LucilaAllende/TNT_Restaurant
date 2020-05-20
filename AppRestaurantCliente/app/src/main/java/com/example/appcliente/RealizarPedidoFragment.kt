@@ -1,4 +1,4 @@
-package com.example.restaurante
+package com.example.appcliente
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,14 +9,14 @@ import android.view.ViewGroup
 /**
  * A simple [Fragment] subclass.
  */
-class MeriendaDesayunoFragment : Fragment() {
+class RealizarPedidoFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_merienda_desayuno, container, false)
+        return inflater.inflate(R.layout.fragment_realizar_pedido, container, false)
     }
 
 }

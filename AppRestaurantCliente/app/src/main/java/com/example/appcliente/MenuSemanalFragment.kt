@@ -1,4 +1,4 @@
-package com.example.restaurante
+package com.example.appcliente
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import com.example.restaurante.databinding.FragmentCrearCuentaBinding
+import com.example.appcliente.databinding.FragmentMenuSemanalBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class CrearCuentaFragment : Fragment() {
+class MenuSemanalFragment : Fragment() {
 
-    private var _binding: FragmentCrearCuentaBinding? = null
+    private var _binding: FragmentMenuSemanalBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -24,9 +24,9 @@ class CrearCuentaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCrearCuentaBinding.inflate(inflater, container, false)
+        _binding = FragmentMenuSemanalBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.buttonInicar.setOnClickListener { startClicked() }
+        binding.button5.setOnClickListener { startClicked() }
         return view
     }
 
@@ -40,7 +40,7 @@ class CrearCuentaFragment : Fragment() {
                 popExit = R.anim.slide_out_right
             }
         }
-        findNavController().navigate(R.id.action_crearCuentaFragment_to_inicioUsuarioFragment2, null, options)
+        findNavController().navigate(R.id.action_menuSemanalFragment_to_realizarPedidoFragment, null, options)
 
     }
 
@@ -48,5 +48,4 @@ class CrearCuentaFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

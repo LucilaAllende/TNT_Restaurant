@@ -1,4 +1,4 @@
-package com.example.restaurante
+package com.example.appcliente
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import com.example.restaurante.databinding.FragmentPortadaUsuarioBinding
+import com.example.appcliente.databinding.FragmentCrearCuentaBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class portadaUsuarioFragment : Fragment() {
+class CrearCuentaFragment : Fragment() {
 
-    private var _binding: FragmentPortadaUsuarioBinding? = null
+    private var _binding: FragmentCrearCuentaBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -24,24 +24,12 @@ class portadaUsuarioFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPortadaUsuarioBinding.inflate(inflater, container, false)
+        _binding = FragmentCrearCuentaBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.buttonIniciarSesion.setOnClickListener { startClicked() }
-        binding.buttonCrearCuenta.setOnClickListener { startClicked2() }
+        binding.buttonInicar.setOnClickListener { startClicked() }
         return view
     }
 
-    private fun startClicked2() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-        findNavController().navigate(R.id.action_portadaUsuarioFragment_to_crearCuentaFragment, null, options)
-    }
 
     private fun startClicked() {
         val options = navOptions {
@@ -52,7 +40,7 @@ class portadaUsuarioFragment : Fragment() {
                 popExit = R.anim.slide_out_right
             }
         }
-        findNavController().navigate(R.id.action_portadaUsuarioFragment_to_inicioUsuarioFragment, null, options)
+        findNavController().navigate(R.id.action_crearCuentaFragment_to_inicioUsuarioFragment2, null, options)
 
     }
 

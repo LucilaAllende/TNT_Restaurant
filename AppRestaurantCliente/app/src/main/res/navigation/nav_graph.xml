@@ -6,7 +6,7 @@
     app:startDestination="@id/portadaEleccionFragment">
     <fragment
         android:id="@+id/portadaEleccionFragment"
-        android:name="com.example.restaurante.PortadaEleccionFragment"
+        android:name="com.example.appcliente.PortadaEleccionFragment"
         android:label="fragment_portada_eleccion"
         tools:layout="@layout/fragment_portada_eleccion" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/portadaUsuarioFragment"
-        android:name="com.example.restaurante.portadaUsuarioFragment"
+        android:name="com.example.appcliente.portadaUsuarioFragment"
         android:label="fragment_portada_usuario"
         tools:layout="@layout/fragment_portada_usuario" >
         <action
@@ -30,12 +30,12 @@
     </fragment>
     <fragment
         android:id="@+id/portadaEmpleadoFragment"
-        android:name="com.example.restaurante.PortadaEmpleadoFragment"
+        android:name="com.example.appcliente.PortadaEmpleadoFragment"
         android:label="fragment_portada_empleado"
         tools:layout="@layout/fragment_portada_empleado" />
     <fragment
         android:id="@+id/crearCuentaFragment"
-        android:name="com.example.restaurante.CrearCuentaFragment"
+        android:name="com.example.appcliente.CrearCuentaFragment"
         android:label="fragment_crear_cuenta"
         tools:layout="@layout/fragment_crear_cuenta" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/inicioUsuarioFragment"
-        android:name="com.example.restaurante.InicioUsuarioFragment"
+        android:name="com.example.appcliente.InicioUsuarioFragment"
         android:label="fragment_inicio_usuario"
         tools:layout="@layout/fragment_inicio_usuario" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuDiaFragment"
-        android:name="com.example.restaurante.MenuDiaFragment"
+        android:name="com.example.appcliente.MenuDiaFragment"
         android:label="fragment_menu_dia"
         tools:layout="@layout/fragment_menu_dia" >
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuSemanalFragment"
-        android:name="com.example.restaurante.MenuSemanalFragment"
+        android:name="com.example.appcliente.MenuSemanalFragment"
         android:label="fragment_menu_semanal"
         tools:layout="@layout/fragment_menu_semanal" >
         <action
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/meriendaDesayunoFragment"
-        android:name="com.example.restaurante.MeriendaDesayunoFragment"
+        android:name="com.example.appcliente.MeriendaDesayunoFragment"
         android:label="fragment_merienda_desayuno"
         tools:layout="@layout/fragment_merienda_desayuno" >
         <action
@@ -92,12 +92,12 @@
     </fragment>
     <fragment
         android:id="@+id/historialPedidosFragment"
-        android:name="com.example.restaurante.HistorialPedidosFragment"
+        android:name="com.example.appcliente.HistorialPedidosFragment"
         android:label="fragment_historial_pedidos"
         tools:layout="@layout/fragment_historial_pedidos" />
     <fragment
         android:id="@+id/realizarPedidoFragment"
-        android:name="com.example.restaurante.RealizarPedidoFragment"
+        android:name="com.example.appcliente.RealizarPedidoFragment"
         android:label="fragment_realizar_pedido"
         tools:layout="@layout/fragment_realizar_pedido" />
 </navigation>

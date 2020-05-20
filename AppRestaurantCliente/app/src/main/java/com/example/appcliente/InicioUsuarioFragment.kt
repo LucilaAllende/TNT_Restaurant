@@ -1,4 +1,4 @@
-package com.example.restaurante
+package com.example.appcliente
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import com.example.restaurante.databinding.FragmentInicioUsuarioBinding
+import com.example.appcliente.databinding.FragmentInicioUsuarioBinding
 
 /**
  * A simple [Fragment] subclass.
