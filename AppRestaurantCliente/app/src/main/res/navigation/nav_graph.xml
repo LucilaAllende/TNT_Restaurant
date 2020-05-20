@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_portadaEleccionFragment_to_portadaUsuarioFragment"
             app:destination="@id/portadaUsuarioFragment" />
-        <action
-            android:id="@+id/action_portadaEleccionFragment_to_portadaEmpleadoFragment"
-            app:destination="@id/portadaEmpleadoFragment" />
     </fragment>
     <fragment
         android:id="@+id/portadaUsuarioFragment"
@@ -28,11 +25,6 @@
             android:id="@+id/action_portadaUsuarioFragment_to_inicioUsuarioFragment"
             app:destination="@id/inicioUsuarioFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/portadaEmpleadoFragment"
-        android:name="com.example.appcliente.PortadaEmpleadoFragment"
-        android:label="fragment_portada_empleado"
-        tools:layout="@layout/fragment_portada_empleado" />
     <fragment
         android:id="@+id/crearCuentaFragment"
         android:name="com.example.appcliente.CrearCuentaFragment"

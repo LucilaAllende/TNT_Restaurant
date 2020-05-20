@@ -27,21 +27,9 @@ class PortadaEleccionFragment : Fragment() {
         _binding = FragmentPortadaEleccionBinding.inflate(inflater, container, false)
         val view = binding.root
         binding.buttonUsuario.setOnClickListener { startClicked() }
-        binding.buttonEmpleado.setOnClickListener { startClicked2() }
         return view
     }
 
-    private fun startClicked2() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-        findNavController().navigate(R.id.action_portadaEleccionFragment_to_portadaEmpleadoFragment, null, options)
-    }
 
     private fun startClicked() {
         val options = navOptions {
