@@ -15,12 +15,12 @@
         android:id="@+id/nav_cuenta"
         android:name="com.example.appcliente.ui.cuenta.CuentaFragment"
         android:label="@string/menu_cuenta"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_cuenta" />
 
     <fragment
         android:id="@+id/nav_historial"
         android:name="com.example.appcliente.ui.historial.HistorialFragment"
         android:label="@string/menu_historial"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_historial" />
 
 </navigation>
