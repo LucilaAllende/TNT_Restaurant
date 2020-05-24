@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.appcliente.R
+import com.google.android.material.tabs.TabLayout
 
 class CuentaFragment : Fragment() {
 
@@ -26,6 +27,8 @@ class CuentaFragment : Fragment() {
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs() // remove all the tabs from the action bar and deselect the current tab
         return root
     }
 }

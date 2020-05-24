@@ -70,12 +70,10 @@ open class HomeFragment : Fragment() {
                 pestanas!!.setupWithViewPager(viewPager)
             }
             pestanas!!.tabGravity = TabLayout.GRAVITY_FILL
+            activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
         } else {
             rotacion = 1
         }
-
-        activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
-
 
         return vista;
     }
