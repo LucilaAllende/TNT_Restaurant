@@ -74,6 +74,9 @@ open class HomeFragment : Fragment() {
             rotacion = 1
         }
 
+        activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
+
+
         return vista;
     }
 

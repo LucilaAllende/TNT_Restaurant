@@ -19,6 +19,16 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@color/accentColor"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabTextColor="@android:color/white" />
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
