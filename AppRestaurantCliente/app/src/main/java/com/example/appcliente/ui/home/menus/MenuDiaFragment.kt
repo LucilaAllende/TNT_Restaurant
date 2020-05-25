@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.appcliente.R
+import com.example.appcliente.ui.home.AdapterMenu
+import com.example.appcliente.ui.home.Menu
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +26,7 @@ class MenuDiaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var vista: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +41,23 @@ class MenuDiaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu_dia, container, false)
+        vista= inflater.inflate(R.layout.fragment_menu_dia, container, false)
+
+        val recyclerView: RecyclerView? = activity?.findViewById(R.id.recyclear)
+        if (recyclerView != null) {
+            recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        }
+        val series= ArrayList<Menu>()
+
+        series.add(Menu("Atypical", 3, R.drawable.serie1))
+        series.add(Menu("You", 2, R.drawable.serie2))
+        series.add(Menu("Stranger Things", 3, R.drawable.serie3))
+        series.add(Menu("Riverdale", 3, R.drawable.serie4))
+
+        val adapter = AdapterMenu(series)
+        recyclerView?.adapter=adapter
+
+        return vista
     }
 
     companion object {
