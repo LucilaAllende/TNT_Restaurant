@@ -49,5 +49,16 @@
             android:contentDescription="@string/descripcionOpciones"
             android:src="@drawable/ic_more_vert_black_24dp" />
 
+        <Button
+            android:id="@+id/action_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTitle"
+            android:layout_alignRight="@id/txtTemporadas"
+            android:layout_marginTop="1dp"
+            android:text="Ver Detalles"
+            android:textColor="?attr/colorPrimary" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
