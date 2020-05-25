@@ -12,71 +12,30 @@ import com.example.appcliente.R
 import com.example.appcliente.ui.home.AdapterMenu
 import com.example.appcliente.ui.home.Menu
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MenuDiaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MenuDiaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     var vista: View? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_menu_dia, container, false)
+        return vista
+    }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView? = activity?.findViewById(R.id.recyclear)
         if (recyclerView != null) {
             recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
         val series= ArrayList<Menu>()
-
         series.add(Menu("Atypical", 3, R.drawable.serie1))
         series.add(Menu("You", 2, R.drawable.serie2))
         series.add(Menu("Stranger Things", 3, R.drawable.serie3))
         series.add(Menu("Riverdale", 3, R.drawable.serie4))
-
-        val adapter = AdapterMenu(series)
-        recyclerView?.adapter=adapter
-
-        return vista
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MenuDiaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuDiaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        recyclerView?.adapter=AdapterMenu(series)
     }
 }
