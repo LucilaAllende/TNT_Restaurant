@@ -13,14 +13,29 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.appcliente.databinding.ActivityMainBinding
+//import com.google.firebase.database.IgnoreExtraProperties
+
+import com.google.firebase.database.*
+
 
 class MainActivity : AppCompatActivity() {
+    @IgnoreExtraProperties
+    data class User(
+        var nombre: String? = ""
+    )
+    private lateinit var vista: ActivityMainBinding
+    private lateinit var database: DatabaseReference
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+// TODO matias [1] Ver cual de las dos formas de setcontentview va.
+        //vista = ActivityMainBinding.inflate(layoutInflater)
+        //setContentView(vista.root)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

@@ -1,0 +1,51 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/fragmentPortada">
+
+    <fragment
+        android:id="@+id/fragmentPortada"
+        android:name="com.example.ejemplofirebase.FragmentPortada"
+        android:label="fragment_portada"
+        tools:layout="@layout/fragment_portada" >
+        <action
+            android:id="@+id/action_fragmentPortada_to_fragmentInicio"
+            app:destination="@id/fragmentInicio" />
+        <action
+            android:id="@+id/action_fragmentPortada_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.ejemplofirebase.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentInicio"
+            app:destination="@id/fragmentInicio" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentSinging"
+            app:destination="@id/fragmentSinging" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSinging"
+        android:name="com.example.ejemplofirebase.FragmentSinging"
+        android:label="fragment_singing"
+        tools:layout="@layout/fragment_singing" >
+        <action
+            android:id="@+id/action_fragmentSinging_to_fragmentInicio"
+            app:destination="@id/fragmentInicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInicio"
+        android:name="com.example.ejemplofirebase.FragmentInicio"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <argument
+            android:name="username"
+            app:argType="string"
+            android:defaultValue="un usuario sin login" />
+    </fragment>
+
+</navigation>
