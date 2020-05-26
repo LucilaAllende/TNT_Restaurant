@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentInicioBinding
-import com.example.appcliente.FragmentInicioArgs
+// TODO descomentar el import de FragmentInicioArgs
+//import com.example.appcliente.FragmentInicioArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 //import com.google.firebase.database.R
@@ -38,8 +39,9 @@ class FragmentInicio : Fragment() {
     ): View? {
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.btnLogout.setOnClickListener { logout() }
-        val safeArgs: FragmentInicioArgs by navArgs()
+        // TODO descomentar el setOnClickListener y la variable safeArgs
+        //binding.btnLogout.setOnClickListener { logout() }
+        //val safeArgs: FragmentInicioArgs by navArgs()
 
 
         dbReference = FirebaseDatabase.getInstance().getReference()

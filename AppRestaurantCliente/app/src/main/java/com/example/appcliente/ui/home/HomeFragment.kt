@@ -11,7 +11,6 @@ import com.example.appcliente.R
 import com.example.appcliente.ui.adapters.SeccionesAdapter
 import com.example.appcliente.ui.home.menus.MenuDiaFragment
 import com.example.appcliente.ui.home.menus.MenuSemanalFragment
-import com.example.appcliente.ui.utils.Utilidades
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 
@@ -70,12 +69,10 @@ open class HomeFragment : Fragment() {
                 pestanas!!.setupWithViewPager(viewPager)
             }
             pestanas!!.tabGravity = TabLayout.GRAVITY_FILL
+            activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
         } else {
             rotacion = 1
         }
-
-        activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
-
 
         return vista;
     }

@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentPortadaBinding
-import com.example.appcliente.FragmentPortadaDirections
+// TODO descomentar el impoert de FragmentPortadaDirections
+//import com.example.appcliente.FragmentPortadaDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.IgnoreExtraProperties
@@ -47,9 +48,10 @@ class FragmentPortada : Fragment() {
         }
         var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (user != null) {
+            // TODO descomentar el action y el findNavController
             var username = user.uid
-            val action =  FragmentPortadaDirections.actionFragmentPortadaToFragmentInicio(username!!)
-            findNavController().navigate(action,options)
+            //val action =  FragmentPortadaDirections.actionFragmentPortadaToFragmentInicio(username!!)
+            //findNavController().navigate(action,options)
         } else {
             findNavController().navigate(R.id.fragmentLogin,null,options)
         }
