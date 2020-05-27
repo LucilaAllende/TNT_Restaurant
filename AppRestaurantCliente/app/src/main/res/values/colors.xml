@@ -15,4 +15,10 @@
     <color name="dark_grey">#424242</color>
     <color name="medium_grey">#9E9E9E</color>
     <color name="button_grey">#757575</color>
+
+    <color name="color_fondo">#BC897B</color>
+
+    <color name="color_vegetariano">#33691E</color>
+    <color name="color_vegano">#1E695E</color>
+    <color name="color_carnico">#C3223A</color>
 </resources>
