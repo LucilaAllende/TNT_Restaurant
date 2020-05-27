@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.menusemanal.MenuSemanalFragment"
-    android:background="@color/design_default_color_error">
+    tools:context=".ui.pedido.PedidoFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MENU SEMANAL" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

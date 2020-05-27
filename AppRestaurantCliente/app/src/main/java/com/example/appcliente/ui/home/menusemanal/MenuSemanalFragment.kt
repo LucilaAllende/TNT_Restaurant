@@ -1,4 +1,4 @@
-package com.example.appcliente.ui.home.menus
+package com.example.appcliente.ui.home.menusemanal
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

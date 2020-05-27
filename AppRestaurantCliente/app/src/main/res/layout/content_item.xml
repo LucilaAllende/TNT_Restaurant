@@ -3,38 +3,41 @@
 <!--Creamos un nuevo diseño-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardElevation="4dp"> <!-- Agrega una sombra al card view en forma de L  -->
 
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:id="@+id/imagen"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
             android:contentDescription="@string/descripcionPortada"
-            android:scaleType="fitXY" />
+
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/txtTitle"
+            android:id="@+id/txtCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/thumbnail"
+            android:layout_below="@id/imagen"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="-5dp"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/txtTemporadas"
+            android:id="@+id/txtNombrePlato"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtTitle"
+            android:layout_below="@id/txtCategoria"
             android:padding="10dp"
             android:textSize="20sp" />
 
@@ -42,7 +45,7 @@
             android:id="@+id/imageopciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/thumbnail"
+            android:layout_below="@id/imagen"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
@@ -50,15 +53,34 @@
             android:src="@drawable/ic_more_vert_black_24dp" />
 
         <Button
-            android:id="@+id/action_button"
+            android:id="@+id/button_ver_detalles"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTitle"
-            android:layout_alignRight="@id/txtTemporadas"
-            android:layout_marginTop="1dp"
-            android:text="Ver Detalles"
-            android:textColor="?attr/colorPrimary" />
+            android:layout_below="@id/txtNombrePlato"
+            android:layout_alignEnd="@id/txtNombrePlato"
+            android:layout_alignRight="@id/txtNombrePlato"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:text="@string/ver_detalles"
+            android:textColor="?attr/colorPrimary"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/button_agregar_pedido"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNombrePlato"
+            android:layout_alignEnd="@id/txtNombrePlato"
+            android:layout_alignRight="@id/button_ver_detalles"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="122dp"
+            android:layout_marginRight="121dp"
+            android:text="Pedir plato"
+            android:textColor="?attr/colorPrimary"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
