@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<!--TODO #6.1: Agregar animaciones -->
+
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <alpha
         android:duration="@android:integer/config_mediumAnimTime"

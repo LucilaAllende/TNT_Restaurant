@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.appcliente.databinding.ActivityMainBinding
 //import com.google.firebase.database.IgnoreExtraProperties
-
 import com.google.firebase.database.*
 
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-// TODO matias [1] Ver cual de las dos formas de setcontentview va.
+// TODO matias [1] Ver cual de las dos formas de setcontentview va, la debajo comentada o la del renglon superior.
         //vista = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(vista.root)
 
