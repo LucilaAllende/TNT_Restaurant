@@ -3,8 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/fragmentPortada">
 
+    <fragment
+        android:id="@+id/fragmentSinging"
+        android:name="com.example.appcliente.FragmentSinging"
+        android:label="fragment_singing"
+        tools:layout="@layout/fragment_singing">
+        <action
+            android:id="@+id/action_fragmentSinging_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.appcliente.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentSinging"
+            app:destination="@id/fragmentSinging" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPortada"
+        android:name="com.example.appcliente.FragmentPortada"
+        android:label="fragment_portada"
+        tools:layout="@layout/fragment_portada">
+        <action
+            android:id="@+id/action_fragmentPortada_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentPortada_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.appcliente.ui.home.HomeFragment"

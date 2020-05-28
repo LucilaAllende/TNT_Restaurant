@@ -31,9 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-// TODO matias [1] Ver cual de las dos formas de setcontentview va, la debajo comentada o la del renglon superior.
-        //vista = ActivityMainBinding.inflate(layoutInflater)
-        //setContentView(vista.root)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

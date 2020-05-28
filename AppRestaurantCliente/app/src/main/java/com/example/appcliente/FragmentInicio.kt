@@ -1,23 +1,18 @@
 package com.example.appcliente
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentInicioBinding
-// TODO descomentar el import de FragmentInicioArgs
-//import com.example.appcliente.FragmentInicioArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-//import com.google.firebase.database.R
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
-
+import com.example.appcliente.FragmentInicioArgs
 @IgnoreExtraProperties
 data class Usuario(
     var nombre: String? = "",
@@ -39,10 +34,8 @@ class FragmentInicio : Fragment() {
     ): View? {
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
         val view = binding.root
-        // TODO descomentar el setOnClickListener y la variable safeArgs
-        //binding.btnLogout.setOnClickListener { logout() }
-        //val safeArgs: FragmentInicioArgs by navArgs()
-
+        binding.btnLogout.setOnClickListener { logout() }
+        val safeArgs: FragmentInicioArgs by navArgs()
 
         dbReference = FirebaseDatabase.getInstance().getReference()
         val user = FirebaseAuth.getInstance().currentUser
