@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentPortadaBinding
 import com.example.appcliente.databinding.FragmentSingingBinding
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
@@ -38,6 +39,9 @@ class FragmentSinging : Fragment() {
         _binding = FragmentSingingBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        appBar!!.setExpanded(false,false)
+        appBar!!.visibility = View.GONE
 
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
@@ -87,7 +91,7 @@ class FragmentSinging : Fragment() {
             }
         }
         FirebaseAuth.getInstance().signOut()
-        findNavController().navigate(R.id.fragmentLogin,null, options)
+        //findNavController().navigate(R.id.fragmentLogin,null, options)
     }
 
     private fun verifyEmail(user: FirebaseUser?){

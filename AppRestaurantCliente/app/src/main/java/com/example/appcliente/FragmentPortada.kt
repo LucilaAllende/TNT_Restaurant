@@ -1,57 +1,64 @@
 package com.example.appcliente
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentPortadaBinding
+import com.google.android.material.appbar.AppBarLayout
 
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.IgnoreExtraProperties
-
-@IgnoreExtraProperties
-data class Ususario(
-    var nombre: String? = "",
-    var email: String = ""
-)
 
 class FragmentPortada : Fragment() {
-
     private var _binding: FragmentPortadaBinding? = null
     private val binding get() = _binding!!
+    val options = navOptions {
+        anim {
+            enter = R.anim.slide_in_right
+            exit = R.anim.slide_out_left
+            popEnter = R.anim.slide_in_left
+            popExit = R.anim.slide_out_right
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         _binding = FragmentPortadaBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.btnIniciar.setOnClickListener { startClicked() }
+
+        /*
+        var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        appBar!!.setExpanded(false,false)
+        appBar!!.visibility = View.GONE
+
+
+        var hide:Boolean = true
+        var lp: ViewGroup.LayoutParams = appBar!!.layoutParams
+        lp.height = if (hide) 0 else lp.height
+        appBar!!.setLayoutParams(lp)
+        appBar!!.setExpanded(!hide, true)*/
+
+
+
+        binding.btnLogin.setOnClickListener { login() }
+        binding.btnRegistrarse.setOnClickListener{ signin() }
         return view
     }
 
-    private fun startClicked() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-        var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            var username = user.uid
-            val action =  FragmentPortadaDirections.actionFragmentPortadaToFragmentInicio(username!!)
-            findNavController().navigate(action,options)
-        } else {
-            findNavController().navigate(R.id.fragmentLogin,null,options)
-        }
+    private fun login(){
+        findNavController().navigate(R.id.action_fragmentPortada_to_fragmentLogin,null,options)
+    }
+
+    private fun signin(){
+        findNavController().navigate(R.id.action_fragmentPortada_to_fragmentSinging,null,options)
     }
 
 }
