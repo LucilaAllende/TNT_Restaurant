@@ -20,6 +20,7 @@ class MenuDiaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         vista= inflater.inflate(R.layout.fragment_menu_dia, container, false)
         return vista
     }
@@ -28,6 +29,7 @@ class MenuDiaFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val recyclerView: RecyclerView? = activity?.findViewById(R.id.recyclear)
+
         if (recyclerView != null) {
             recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
