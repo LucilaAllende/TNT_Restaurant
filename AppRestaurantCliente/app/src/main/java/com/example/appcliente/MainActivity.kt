@@ -4,23 +4,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import com.google.android.material.appbar.AppBarLayout
+import com.example.appcliente.ui.home.menudia.DetallesPlatoFragment
+import com.example.appcliente.ui.home.menudia.MenuDia
+import com.example.appcliente.ui.home.menudia.MenuDiaFragment
+import com.example.appcliente.ui.interfaces.IComunicaFragments
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-
-class MainActivity : AppCompatActivity() {
+//, IComunicaFragments agregar para que implemente esta interface
+class MainActivity() : AppCompatActivity(){
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    var menuFragment: MenuDiaFragment? = null
+    var detalleFragment: DetallesPlatoFragment ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,4 +64,20 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item);
     }
 
+/*    override fun enviarMenuDia(menuDia: MenuDia){
+        detalleFragment = this.supportFragmentManager
+            .findFragmentById(R.id.nav_detalles_plato) as DetallesPlatoFragment?
+        if (detalleFragment != null && findViewById<View?>(R.id.activity_main) == null) {
+            detalleFragment?.asignarInformacion(menuDia)
+        } else {
+            detalleFragment = DetallesPlatoFragment()
+            val bundleEnvio = Bundle()
+            bundleEnvio.putSerializable("objeto", menuDia)
+            detalleFragment!!.arguments = bundleEnvio
+
+            //cargamos el fragment en el Activity
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main, detalleFragment!!).addToBackStack(null).commit()
+        }
+    }*/
 }

@@ -1,19 +1,26 @@
 package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
+import com.example.appcliente.ui.interfaces.IComunicaFragments
 
 
 class MenuDiaFragment : Fragment() {
 
     var vista: View? = null
+
+    var actividad: Activity? = null
+    var interfaceComunicaFragments: IComunicaFragments? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +42,32 @@ class MenuDiaFragment : Fragment() {
         }
 
         val series= ArrayList<MenuDia>()
+        llenarMenu(series)
+
+        recyclerView?.adapter=
+            AdapterMenuDia(series)
+
+/*        recyclerView?.setOnClickListener(View.OnClickListener { view ->
+            Toast.makeText(
+                context, "Seleccion: " +
+                        recyclerView?.getChildAdapterPosition(view)?.let {
+                            series.get(it)
+                                .name
+                        }, Toast.LENGTH_SHORT
+            ).show()
+            interfaceComunicaFragments?.enviarMenuDia(
+                recyclerView?.getChildAdapterPosition(
+                    view
+                )?.let {
+                    series.get(
+                        it
+                    )
+                }
+            )
+        })*/
+    }
+
+    private fun llenarMenu(series: ArrayList<MenuDia>) {
         series.add(
             MenuDia(
                 "Hamburguesas de lenteja y brocoli",
@@ -85,7 +118,13 @@ class MenuDiaFragment : Fragment() {
                 "Carnico"
             )
         )
-        recyclerView?.adapter=
-            AdapterMenuDia(series)
     }
+
+/*    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Activity) {
+            actividad = context
+            interfaceComunicaFragments = actividad as IComunicaFragments?
+        }
+    }*/
 }

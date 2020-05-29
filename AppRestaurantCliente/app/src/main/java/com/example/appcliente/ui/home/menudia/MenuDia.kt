@@ -1,3 +1,5 @@
 package com.example.appcliente.ui.home.menudia
 
-class MenuDia (var name: String, var ingredientes: String, var imagen: Int, var categoria: String)
+import java.io.Serializable
+
+class MenuDia (var name: String, var ingredientes: String, var imagen: Int, var categoria: String) : Serializable

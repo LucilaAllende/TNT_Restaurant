@@ -8,22 +8,25 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appcliente.R
-import kotlin.contracts.contract
 
-class AdapterMenuDia (var list: ArrayList<MenuDia>): RecyclerView.Adapter<AdapterMenuDia.ViewHolder>() {
+
+class AdapterMenuDia(var list: ArrayList<MenuDia>) :
+    RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
+
     //clase para manejar nuestra vista
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){ //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
+    class ViewHolder(view: View) :
+        RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
+
+        //no tiene sentido agregar esto
+        //var listener: View.OnClickListener? = null
 
         //recibimos lo datos que se agregan dentro de nuestra vista
         fun bindItems (data: MenuDia){
+            
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
@@ -39,11 +42,22 @@ class AdapterMenuDia (var list: ArrayList<MenuDia>): RecyclerView.Adapter<Adapte
 
             btnDetalles.setOnClickListener { verDetalles() }
 
+            //no tiene sentido agregar esto
+            //itemView.setOnClickListener(listener);
+
             itemView.setOnClickListener{
                 Toast.makeText(itemView.context, "Ver ${data.name}", Toast.LENGTH_SHORT).show()
             }
 
+
         }
+
+        //no tiene sentido agregar esto
+/*
+        fun setOnClickListener(listener1: View.OnClickListener) {
+            listener = listener1
+        }
+*/
 
         @SuppressLint("ResourceAsColor")
         private fun verificarCategoria(data: MenuDia, title: TextView) = when (data.categoria) {
