@@ -69,12 +69,19 @@ class FragmentSinging : Fragment() {
                         task ->
                     if (task.isComplete){
                         val user: FirebaseUser? = auth.currentUser
-                        verifyEmail(user)
-                        var userBD = dbReference.child(user!!.uid)
-                        userBD.child("nombre").setValue(nombre)
-                        userBD.child("apellido").setValue(apellido)
-                        userBD.child("email").setValue(email)
-                        action()
+                        if (user!=null){
+                            verifyEmail(user)
+                            var userBD = dbReference.child(user!!.uid)
+                            userBD.child("nombre").setValue(nombre)
+                            userBD.child("apellido").setValue(apellido)
+                            userBD.child("email").setValue(email)
+                            action()
+                        }
+                        else{ //TODO: mejorar esto adentro de un try catch!
+                            progressBar.visibility = View.INVISIBLE
+                            Toast.makeText(context, task.exception.toString(), Toast.LENGTH_LONG).show()
+                        }
+
                     }
                 }
 
