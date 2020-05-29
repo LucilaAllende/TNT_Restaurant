@@ -91,7 +91,7 @@ class FragmentSinging : Fragment() {
             }
         }
         FirebaseAuth.getInstance().signOut()
-        //findNavController().navigate(R.id.fragmentLogin,null, options)
+        findNavController().navigate(R.id.fragmentLogin,null, options)
     }
 
     private fun verifyEmail(user: FirebaseUser?){
