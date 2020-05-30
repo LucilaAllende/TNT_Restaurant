@@ -1,6 +1,5 @@
-package com.example.appcliente.ui.home.menudia
+package com.example.appcliente.ui.home.menusemanal
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,62 +12,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appcliente.R
 
-
-class AdapterMenuDia(var list: ArrayList<MenuDia>) :
-    RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
+class AdapterMenuSemanal(var list: ArrayList<MenuSemanal>) :
+    RecyclerView.Adapter<AdapterMenuSemanal.ViewHolder>(){
 
     //clase para manejar nuestra vista
     class ViewHolder(view: View) :
         RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
 
-        //no tiene sentido agregar esto
-        //var listener: View.OnClickListener? = null
-
         //recibimos lo datos que se agregan dentro de nuestra vista
-        fun bindItems (data: MenuDia){
+        fun bindItems (data: MenuSemanal){
 
             //variables para nuestras vistas
-            val title: TextView = itemView.findViewById(R.id.txtCategoria)
-            val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
-            val image: ImageView = itemView.findViewById(R.id.imagen)
+            val title: TextView = itemView.findViewById(R.id.txtDia)
+            val name: TextView = itemView.findViewById(R.id.txtNombreVianda)
+            val image: ImageView = itemView.findViewById(R.id.imagenS)
             val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
 
-            title.text = data.categoria
+            title.text = data.dia
             name.text = data.name
 
             Glide.with(itemView.context).load(data.imagen).into(image)
 
-            verificarCategoria(data, title)
-
             btnDetalles.setOnClickListener { verDetalles() }
-
-            //no tiene sentido agregar esto
-            //itemView.setOnClickListener(listener);
 
             itemView.setOnClickListener{
                 Toast.makeText(itemView.context, "Ver ${data.name}", Toast.LENGTH_SHORT).show()
-            }
-
-
-        }
-
-        //no tiene sentido agregar esto
-/*
-        fun setOnClickListener(listener1: View.OnClickListener) {
-            listener = listener1
-        }
-*/
-
-        @SuppressLint("ResourceAsColor")
-        private fun verificarCategoria(data: MenuDia, title: TextView) = when (data.categoria) {
-            "Vegano" -> {
-                title.setBackgroundColor(R.color.color_vegano)
-            }
-            "Vegetariano" -> {
-                title.setBackgroundColor(R.color.color_vegetariano)
-            }
-            else -> {
-                title.setBackgroundColor(R.color.color_carnico)
             }
         }
 
@@ -84,12 +52,12 @@ class AdapterMenuDia(var list: ArrayList<MenuDia>) :
             }
 
             Toast.makeText(itemView.context, "Que onda", Toast.LENGTH_LONG).show()
-            //findNavController().navigate(R.id.nav_detalles_plato, null, options)
+            //findNavController().navigate(R.id.nav_detalles_vianda, null, options)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var v = LayoutInflater.from(parent?.context).inflate(R.layout.content_item_md, parent, false)
+        var v = LayoutInflater.from(parent?.context).inflate(R.layout.content_item_ms, parent, false)
         return ViewHolder(v)
     }
 
