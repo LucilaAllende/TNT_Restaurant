@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--   -->
+<!--Creamos un nuevo diseño-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagenPlato"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/desayono_merienda"
+            tools:srcCompat="@drawable/desayono_merienda" />
+
+        <TextView
+            android:id="@+id/txtCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagenPlato"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="-5dp"
+            android:text="Para el Desayuno o la Merienda"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/txtNombreMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtCategoria"
+            android:padding="10dp"
+            android:text="Cargue aqui los mejores platos para acompañar sus tardes o mañanas y sus clientes lo disfruten"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageopciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/button_ver_detalles"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNombreMenu"
+            android:layout_alignEnd="@id/txtNombreMenu"
+            android:layout_alignRight="@id/txtNombreMenu"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:textColor="?attr/colorPrimary"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/button_agregar_pedido"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNombreMenu"
+            android:layout_alignEnd="@id/txtNombreMenu"
+            android:layout_alignRight="@id/button_ver_detalles"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="122dp"
+            android:layout_marginRight="121dp"
+            android:textColor="?attr/colorPrimary"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

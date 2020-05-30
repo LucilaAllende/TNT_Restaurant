@@ -45,6 +45,43 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1029490981678:android:afaed77b4c499cfc4518bf",
+        "android_client_info": {
+          "package_name": "com.example.appempleado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029490981678-bqjdtbbcp2v5923kpe48j7d1hev6ohgc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appempleado",
+            "certificate_hash": "24bbd908aea7dd30debc0a5df8b1254b2df7a262"
+          }
+        },
+        {
+          "client_id": "1029490981678-uvg8u5lamritr113tj9bd8hlu3a9ivm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkYmZUwrbyP1kp8v_yIjVFsFXbWhzSQKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029490981678-uvg8u5lamritr113tj9bd8hlu3a9ivm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1029490981678:android:9706e4a0129a64704518bf",
         "android_client_info": {
           "package_name": "com.example.ejemplofirebase"
