@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.appcliente.R
 import com.example.appcliente.ui.adapters.SeccionesAdapter
 import com.example.appcliente.ui.home.menudia.MenuDiaFragment
+import com.example.appcliente.ui.home.menumate.MenuMateFragment
 import com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -63,8 +64,9 @@ open class HomeFragment : Fragment() {
 
     private fun llenarViewPager(viewPager: ViewPager) {
         val adapter = SeccionesAdapter(fragmentManager)
-        adapter.addFragment(MenuDiaFragment(), "MenuDia del día")
-        adapter.addFragment(MenuSemanalFragment(), "Viandas de la semana")
+        adapter.addFragment(MenuDiaFragment(), "Almuerzo")
+        adapter.addFragment(MenuSemanalFragment(), "Viandas")
+        adapter.addFragment(MenuMateFragment(), "Para el Mate")
         viewPager.adapter = adapter
     }
 
