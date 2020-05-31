@@ -5,9 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
@@ -54,6 +52,11 @@ class FragmentHome : Fragment() {
     }
 
 
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return super.onContextItemSelected(item)
+        Toast.makeText(context, "Saliendo ", Toast.LENGTH_SHORT).show()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,9 +64,21 @@ class FragmentHome : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.btnLogout.setOnClickListener { logout() }
         binding.btnAltaPlato.setOnClickListener{ altaPlato(0)}
+        setHasOptionsMenu(true)
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: android.view.Menu, inflater:MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        FirebaseAuth.getInstance().signOut()
+        findNavController().navigate(R.id.action_fragmentHome_to_fragmentPortada,null)
+        return true
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

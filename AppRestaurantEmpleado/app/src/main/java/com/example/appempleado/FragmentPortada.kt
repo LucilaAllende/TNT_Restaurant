@@ -54,26 +54,10 @@ class FragmentPortada : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         super.onCreate(savedInstanceState)
-
-        // This callback will only be called when MyFragment is at least Started.
-        /*
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(
-            true // default to enabled
-        ) {
-            override fun handleOnBackPressed() {
-                Toast.makeText(context, "Estas intentando salir", Toast.LENGTH_SHORT).show()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(),callback)
-    */
-
-
-
         var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            findNavController().navigate(R.id.action_fragmentPortada_to_fragmentHome,null,options)
+            findNavController().navigate(R.id.action_fragmentPortada_to_fragmentHome,null)
         }
         _binding = FragmentPortadaBinding.inflate(inflater, container, false)
         binding.btnLogin.setOnClickListener { login() }

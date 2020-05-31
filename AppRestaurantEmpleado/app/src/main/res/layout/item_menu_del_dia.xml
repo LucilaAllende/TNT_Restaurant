@@ -7,8 +7,10 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardElevation="4dp"
+    android:layout_margin="20dp"
+    app:cardBackgroundColor="#51F89E6E"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="6dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -31,8 +33,10 @@
             android:layout_below="@id/imagenPlato"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="-5dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Plato Del Dia"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="25sp" />
 
         <TextView
@@ -40,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtCategoria"
+            android:fontFamily="sans-serif-condensed-medium"
             android:padding="10dp"
             android:text="Cargue aqui los mejores platos del dia para que sus clientes lo disfruten"
             android:textSize="20sp" />

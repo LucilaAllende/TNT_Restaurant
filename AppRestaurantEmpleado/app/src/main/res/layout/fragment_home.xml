@@ -15,7 +15,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="730dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -23,7 +23,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="179dp"
+            android:layout_marginBottom="0dp"
             android:clipToPadding="false"
             android:foregroundGravity="center"
             android:overScrollMode="never"></androidx.viewpager.widget.ViewPager>
@@ -40,16 +40,6 @@
             android:paddingRight="30dp"
             android:text="Nuevo Plato"
             android:textColor="#fff" />
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="14dp"
-            android:text="salir"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </RelativeLayout>
 
