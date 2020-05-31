@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser
 class FragmentPortada : Fragment() {
     private var _binding: FragmentPortadaBinding? = null
     private val binding get() = _binding!!
-    var callback: OnBackPressedCallback? = null
+    private var callback: OnBackPressedCallback? = null //TODO: puede haber un problema de navegabilidad aca. verificar bien cuando navego.
 
     val options = navOptions {
         anim {
@@ -28,6 +28,20 @@ class FragmentPortada : Fragment() {
             popExit = R.anim.slide_out_right
         }
     }
+
+    /*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        super.onActivityCreated(savedInstanceState)
+        callback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+                finishAffinity(requireActivity())
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(),callback!!)
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
