@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">AppEmpleado</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="tipo_plato_array">
+        <item>Vegano</item>
+        <item>Vegetariano</item>
+        <item>Carnico</item>
+    </string-array>
 </resources>

@@ -18,33 +18,19 @@ import com.google.firebase.auth.FirebaseUser
 class FragmentPortada : Fragment() {
     private var _binding: FragmentPortadaBinding? = null
     private val binding get() = _binding!!
-    private var callback: OnBackPressedCallback? = null //TODO: puede haber un problema de navegabilidad aca. verificar bien cuando navego.
+    private var callback: OnBackPressedCallback? = null
 
     val options = navOptions {
         anim {
-            enter = R.anim.slide_in_right
+            enter = R.anim.fade_out
             exit = R.anim.slide_out_left
             popEnter = R.anim.slide_in_left
             popExit = R.anim.slide_out_right
         }
     }
 
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        super.onActivityCreated(savedInstanceState)
-        callback = object : OnBackPressedCallback(
-            true // default to enabled
-        ) {
-            override fun handleOnBackPressed() {
-                finishAffinity(requireActivity())
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(),callback!!)
-    }*/
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         callback = object : OnBackPressedCallback(
             true // default to enabled
         ) {
@@ -59,7 +45,6 @@ class FragmentPortada : Fragment() {
         super.onStop()
         callback!!.remove()
     }
-
 
 
     override fun onCreateView(
@@ -77,6 +62,18 @@ class FragmentPortada : Fragment() {
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegistrarse.setOnClickListener{ signin() }
         val view = binding.root
+
+
+
+
+
+
+
+
+
+
+
+
         return view
     }
 

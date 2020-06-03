@@ -35,7 +35,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="17dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Plato Del Dia"
+            android:text="Menu Del Dia"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="25sp" />
 

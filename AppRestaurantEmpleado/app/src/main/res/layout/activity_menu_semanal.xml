@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuDelDiaActivity">
+    tools:context=".MenuSemanalActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#51F89E6E">
+        android:background="#45578EFA"
+        tools:layout_editor_absoluteX="-36dp"
+        tools:layout_editor_absoluteY="0dp">
 
 
         <ImageView
-            android:id="@+id/imgPlato"
+            android:id="@+id/imgPlatoSemanal"
             android:layout_width="298dp"
             android:layout_height="168dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtNombre"
+            app:layout_constraintBottom_toTopOf="@+id/txtNombreSemanal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +28,7 @@
             tools:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
         <Button
-            android:id="@+id/btnAltaPlato"
+            android:id="@+id/btnAltaPlatoSemanal"
             style="@android:style/Widget.DeviceDefault.Button.Colored"
             android:layout_width="228dp"
             android:layout_height="59dp"
@@ -39,32 +41,21 @@
             app:layout_constraintVertical_bias="0.935" />
 
         <EditText
-            android:id="@+id/txtNombre"
-            android:layout_width="199dp"
+            android:id="@+id/txtNombreSemanal"
+            android:layout_width="301dp"
             android:layout_height="71dp"
             android:ems="10"
             android:hint="Nombre"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.264"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.468" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="91dp"
-            android:layout_height="70dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.828"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.467" />
+            app:layout_constraintVertical_bias="0.41" />
 
         <EditText
-            android:id="@+id/txtDescripcion"
+            android:id="@+id/txtDescripcionSemanal"
             android:layout_width="301dp"
             android:layout_height="65dp"
             android:ems="10"
@@ -72,13 +63,27 @@
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintHorizontal_bias="0.527"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.624" />
+            app:layout_constraintVertical_bias="0.54" />
 
         <EditText
-            android:id="@+id/txtPrecio"
+            android:id="@+id/txtFechaSemanal"
+            android:layout_width="302dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Fecha disponible"
+            android:inputType="date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.655" />
+
+        <EditText
+            android:id="@+id/txtPrecioSemanal"
             android:layout_width="301dp"
             android:layout_height="65dp"
             android:ems="10"
@@ -86,25 +91,26 @@
             android:inputType="numberDecimal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.747" />
+            app:layout_constraintVertical_bias="0.776" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnImagenPlato"
+            android:id="@+id/btnImagenPlatoSemanal"
             android:layout_width="93dp"
             android:layout_height="55dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
             android:src="@android:drawable/ic_input_add"
-            app:layout_constraintBottom_toBottomOf="@+id/imgPlato"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.815"
-            app:layout_constraintStart_toStartOf="@+id/imgPlato"
-            app:layout_constraintTop_toTopOf="@+id/imgPlato"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="@+id/imgPlatoSemanal"
+            app:layout_constraintTop_toTopOf="@+id/imgPlatoSemanal" />
 
         <ProgressBar
-            android:id="@+id/pbAltaPlato"
+            android:id="@+id/pbAltaPlatoSemanal"
             style="?android:attr/progressBarStyle"
             android:layout_width="103dp"
 
@@ -116,4 +122,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

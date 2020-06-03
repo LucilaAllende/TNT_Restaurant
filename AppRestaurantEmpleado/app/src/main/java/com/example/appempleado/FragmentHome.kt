@@ -3,7 +3,10 @@ package com.example.appempleado
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.*
 import android.widget.Toast
@@ -24,8 +27,8 @@ class FragmentHome : Fragment() {
     var callback: OnBackPressedCallback? = null
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         callback = object : OnBackPressedCallback(
             true // default to enabled
         ) {
@@ -52,6 +55,22 @@ class FragmentHome : Fragment() {
     }
 
 
+    fun Context.vibrate(milliseconds:Long = 15){
+        val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val canVibrate:Boolean = vibrator.hasVibrator()
+        if(canVibrate){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        milliseconds,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            }else{
+                vibrator.vibrate(milliseconds)
+            }
+        }
+    }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return super.onContextItemSelected(item)
@@ -96,6 +115,7 @@ class FragmentHome : Fragment() {
             }
 
             override fun onPageSelected(position: Int) {
+                context?.vibrate()
                 binding.btnAltaPlato.setOnClickListener{ altaPlato(position)}
             }
         })
@@ -112,9 +132,11 @@ class FragmentHome : Fragment() {
     }
 
     private fun altaPlato(numeroMenu:Int){
-        Toast.makeText(context, "Creando plato "+numeroMenu, Toast.LENGTH_SHORT).show()
-        val intent = Intent(context, MenuDelDiaActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, "message")
+        var intent: Intent? = null
+        when(numeroMenu){
+            0 -> intent = Intent(context, MenuDelDiaActivity::class.java)
+            1 -> intent = Intent(context, MenuSemanalActivity::class.java)
+            2 -> intent = Intent(context, MenuMeriendaActivity::class.java)
         }
         startActivity(intent)
     }
