@@ -45,7 +45,7 @@ class MenuMateFragment : Fragment() {
 
         recyclerView?.adapter= AdapterMenuMate(paraMate)
 
-        FirebaseDatabase.getInstance().reference.child("Platos").addChildEventListener(object :
+        FirebaseDatabase.getInstance().reference.child("desayunoMerienda").addChildEventListener(object :
             ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 println("error trayendo datos de la base")
@@ -60,7 +60,7 @@ class MenuMateFragment : Fragment() {
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                /*val desayunoMerienda = p0.getValue(MenuMate::class.java)
+                val desayunoMerienda = p0.getValue(MenuMate::class.java)
                 if (desayunoMerienda != null) {
                     println(desayunoMerienda)
                     paraMate.add(
@@ -72,7 +72,7 @@ class MenuMateFragment : Fragment() {
                             desayunoMerienda.precio
                         )
                     )
-                }*/
+                }
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {

@@ -45,7 +45,7 @@ class MenuSemanalFragment : Fragment() {
 
         recyclerView?.adapter= AdapterMenuSemanal(viandas)
 
-        FirebaseDatabase.getInstance().reference.child("Platos").addChildEventListener(object :
+        FirebaseDatabase.getInstance().reference.child("vianda").addChildEventListener(object :
             ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 println("error trayendo datos de la base")
@@ -60,7 +60,7 @@ class MenuSemanalFragment : Fragment() {
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                /*val vianda = p0.getValue(Vianda::class.java)
+                val vianda = p0.getValue(Vianda::class.java)
                 if (vianda != null) {
                     println(vianda)
                     viandas.add(
@@ -72,7 +72,7 @@ class MenuSemanalFragment : Fragment() {
                             vianda.precio
                         )
                     )
-                }*/
+                }
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {

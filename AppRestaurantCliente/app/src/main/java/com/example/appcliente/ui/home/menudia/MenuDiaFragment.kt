@@ -63,7 +63,7 @@ class MenuDiaFragment : Fragment() {
         })*/
 
         //TODO: Esto trae instancias de "Platos" de la base de datos
-        FirebaseDatabase.getInstance().reference.child("Platos").addChildEventListener(object :
+        FirebaseDatabase.getInstance().reference.child("platoDia").addChildEventListener(object :
             ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
                 println("error trayendo datos de la base")
@@ -79,7 +79,7 @@ class MenuDiaFragment : Fragment() {
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
 
-                /*val plato = p0.getValue(PlatoDia::class.java)
+                val plato = p0.getValue(PlatoDia::class.java)
                 if (plato != null) {
                     println(plato)
                     menuDia.add(
@@ -91,7 +91,7 @@ class MenuDiaFragment : Fragment() {
 
                         )
                     )
-                }*/
+                }
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {

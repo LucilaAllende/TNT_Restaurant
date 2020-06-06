@@ -6,4 +6,9 @@
         <item>Vegetariano</item>
         <item>Carnico</item>
     </string-array>
+    <string-array name="sabor_plato_array">
+        <item>Salado</item>
+        <item>Dulce</item>
+        <item>Agridulce</item>
+    </string-array>
 </resources>

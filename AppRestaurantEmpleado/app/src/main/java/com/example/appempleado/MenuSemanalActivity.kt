@@ -73,12 +73,12 @@ class MenuSemanalActivity : AppCompatActivity() {
                 val downloadUrl: Task<Uri> = imgReference.downloadUrl
                 downloadUrl.addOnSuccessListener { uri ->
                     val database = FirebaseDatabase.getInstance()
-                    val platoReference: DatabaseReference = database.reference.child("Platos").push()
+                    val platoReference: DatabaseReference = database.reference.child("vianda").push()
                     platoReference.child("nombre").setValue(txtNombre.text.toString())
-                    platoReference.child("descripcion").setValue(txtDescripcion.text.toString())
-                    platoReference.child("fechaDisponible").setValue(txtFecha)
+                    platoReference.child("ingredientes").setValue(txtDescripcion.text.toString())
+                    platoReference.child("dia").setValue(txtFecha.text.toString())
                     platoReference.child("precio").setValue(txtPrecio.text.toString())
-                    platoReference.child("imageUrl").setValue(uri.toString())
+                    platoReference.child("imagenUrl").setValue(uri.toString())
                     pbAltaPlato.visibility = View.INVISIBLE
                     Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
                     this.finish()

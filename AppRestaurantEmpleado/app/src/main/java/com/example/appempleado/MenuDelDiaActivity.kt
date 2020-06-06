@@ -22,7 +22,7 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
     private lateinit var pbAltaPlato: ProgressBar
-    private lateinit var tipoPlato: String /*Esto indica vegano, carnico o vegetariano*/
+    private var tipoPlato: String = "vegano" /*Esto indica vegano, carnico o vegetariano*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,12 +81,12 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                     val downloadUrl: Task<Uri> = imgReference.downloadUrl
                     downloadUrl.addOnSuccessListener { uri ->
                         val database = FirebaseDatabase.getInstance()
-                        val platoReference: DatabaseReference = database.reference.child("Platos").push()
+                        val platoReference: DatabaseReference = database.reference.child("platoDia").push()
                         platoReference.child("nombre").setValue(txtNombre.text.toString())
-                        platoReference.child("tipo").setValue(tipoPlato)
-                        platoReference.child("descripcion").setValue(txtDescripcion.text.toString())
+                        platoReference.child("ingredientes").setValue(txtDescripcion.text.toString())
+                        platoReference.child("imagenUrl").setValue(uri.toString())
                         platoReference.child("precio").setValue(txtPrecio.text.toString())
-                        platoReference.child("imageUrl").setValue(uri.toString())
+                        platoReference.child("categoria").setValue(tipoPlato)
                         pbAltaPlato.visibility = View.INVISIBLE
                         Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
                         this.finish()

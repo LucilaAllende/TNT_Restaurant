@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-class MenuMeriendaActivity : AppCompatActivity() {
+class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     val REQUEST_CODE = 123
     private var imageUrl: Uri? = null
     private lateinit var btnImagenPlato: View
@@ -22,6 +22,7 @@ class MenuMeriendaActivity : AppCompatActivity() {
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
     private lateinit var pbAltaPlato: ProgressBar
+    private var sabor: String = "salado" /*Esto indica vegano, carnico o vegetariano*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,16 @@ class MenuMeriendaActivity : AppCompatActivity() {
         pbAltaPlato = this.findViewById(R.id.pbAltaPlatoMerienda)
         btnImagenPlato.setOnClickListener { altaImagenPlato() }
         btnAltaPlato.setOnClickListener{ cargarPlato() }
+
+        val spinner: Spinner = findViewById(R.id.spinnerMerienda)
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.sabor_plato_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
 
     }
 
@@ -70,16 +81,27 @@ class MenuMeriendaActivity : AppCompatActivity() {
                 val downloadUrl: Task<Uri> = imgReference.downloadUrl
                 downloadUrl.addOnSuccessListener { uri ->
                     val database = FirebaseDatabase.getInstance()
-                    val platoReference: DatabaseReference = database.reference.child("Platos").push()
+                    val platoReference: DatabaseReference = database.reference.child("desayunoMerienda").push()
                     platoReference.child("nombre").setValue(txtNombre.text.toString())
-                    platoReference.child("descripcion").setValue(txtDescripcion.text.toString())
+                    platoReference.child("ingredientes").setValue(txtDescripcion.text.toString())
                     platoReference.child("precio").setValue(txtPrecio.text.toString())
-                    platoReference.child("imageUrl").setValue(uri.toString())
+                    platoReference.child("imagenUrl").setValue(uri.toString())
+                    platoReference.child("sabor").setValue(sabor) //TODO: evitar el harcoding aca
                     pbAltaPlato.visibility = View.INVISIBLE
                     Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
                     this.finish()
                 }
             }
+        }
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        sabor = "Vegano"
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (parent != null) {
+            sabor = parent.getItemAtPosition(position).toString()
         }
     }
 }
