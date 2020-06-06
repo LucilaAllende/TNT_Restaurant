@@ -27,9 +27,11 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>) :
             val name: TextView = itemView.findViewById(R.id.txtNombre)
             val image: ImageView = itemView.findViewById(R.id.imagenM)
             val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
+            var precio: TextView = itemView.findViewById(R.id.txtPrecio)
 
             title.text = data.sabor
             name.text = data.name
+            precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
 

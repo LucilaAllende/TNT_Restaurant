@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appcliente.R
 
-class AdapterMenuSemanal(var list: ArrayList<MenuSemanal>) :
+class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
     RecyclerView.Adapter<AdapterMenuSemanal.ViewHolder>(){
 
     //clase para manejar nuestra vista
@@ -20,16 +20,18 @@ class AdapterMenuSemanal(var list: ArrayList<MenuSemanal>) :
         RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
 
         //recibimos lo datos que se agregan dentro de nuestra vista
-        fun bindItems (data: MenuSemanal){
+        fun bindItems (data: Vianda){
 
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtDia)
             val name: TextView = itemView.findViewById(R.id.txtNombreVianda)
             val image: ImageView = itemView.findViewById(R.id.imagenS)
             val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
+            val precio: TextView = itemView.findViewById(R.id.txtPrecioVianda)
 
             title.text = data.dia
             name.text = data.name
+            precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
 

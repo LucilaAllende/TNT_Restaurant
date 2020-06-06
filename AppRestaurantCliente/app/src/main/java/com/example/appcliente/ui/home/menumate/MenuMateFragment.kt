@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 
 
 /**
@@ -39,10 +43,44 @@ class MenuMateFragment : Fragment() {
         val paraMate= ArrayList<MenuMate>()
         llenarMenu(paraMate)
 
-        recyclerView?.adapter=
-            AdapterMenuMate(paraMate)
+        recyclerView?.adapter= AdapterMenuMate(paraMate)
+
+        FirebaseDatabase.getInstance().reference.child("Platos").addChildEventListener(object :
+            ChildEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("error trayendo datos de la base")
+            }
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                /*val desayunoMerienda = p0.getValue(MenuMate::class.java)
+                if (desayunoMerienda != null) {
+                    println(desayunoMerienda)
+                    paraMate.add(
+                        MenuMate(
+                            desayunoMerienda.name,
+                            desayunoMerienda.ingredientes,
+                            R.drawable.mate2,
+                            desayunoMerienda.sabor,
+                            desayunoMerienda.precio
+                        )
+                    )
+                }*/
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })
     }
 
+    //Esto se va a borrar cuando trabajemos directamente con la BD
     private fun llenarMenu(paraMate: ArrayList<MenuMate>) {
         paraMate.add(
             MenuMate(
@@ -53,7 +91,8 @@ class MenuMateFragment : Fragment() {
                         "Sal\n" +
                         "Aceite",
                 R.drawable.mate1,
-                "Salado"
+                "Salado",
+                "20.50"
             )
         )
         paraMate.add(
@@ -66,7 +105,8 @@ class MenuMateFragment : Fragment() {
                         "Aceite\n+" +
                         "Dulce de Leche",
                 R.drawable.mate2,
-                "Agridulce"
+                "Agridulce",
+                "20.50"
             )
         )
         paraMate.add(
@@ -79,7 +119,8 @@ class MenuMateFragment : Fragment() {
                         "Huevo\n+" +
                         "Mermelada de melocotón",
                 R.drawable.mate3,
-                "Dulce"
+                "Dulce",
+                "20.50"
             )
         )
     }

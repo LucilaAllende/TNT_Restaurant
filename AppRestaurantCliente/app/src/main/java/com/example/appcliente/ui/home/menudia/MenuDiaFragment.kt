@@ -78,19 +78,20 @@ class MenuDiaFragment : Fragment() {
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val plato = p0.getValue(Plato::class.java)
+
+                /*val plato = p0.getValue(PlatoDia::class.java)
                 if (plato != null) {
                     println(plato)
                     menuDia.add(
-                        PlatoDia(
-                            plato.nombre,
-                            plato.descripcion,
-                            R.drawable.platovengano1,
-                            "unacategoria",
-                            plato.precio
+                        PlatoDia(plato.name,
+                           plato.ingredientes,
+                           R.drawable.platovengano1,
+                           plato.categoria,
+                           plato.precio
+
                         )
                     )
-                }
+                }*/
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
@@ -101,6 +102,8 @@ class MenuDiaFragment : Fragment() {
     }
 
 
+
+    //Esto se va a borrar cuando trabajemos directamente con la BD
     private fun llenarMenu(series: ArrayList<PlatoDia>) {
         series.add(
             PlatoDia(
