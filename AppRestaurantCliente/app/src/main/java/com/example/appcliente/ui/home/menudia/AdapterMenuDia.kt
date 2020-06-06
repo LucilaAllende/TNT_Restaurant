@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.appcliente.R
 
 
-class AdapterMenuDia(var list: ArrayList<MenuDia>) :
+class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
@@ -25,16 +25,18 @@ class AdapterMenuDia(var list: ArrayList<MenuDia>) :
         //var listener: View.OnClickListener? = null
 
         //recibimos lo datos que se agregan dentro de nuestra vista
-        fun bindItems (data: MenuDia){
+        fun bindItems (data: PlatoDia){
 
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
             val image: ImageView = itemView.findViewById(R.id.imagen)
             val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
+            val precio : TextView = itemView.findViewById(R.id.txtPrecioPlato)
 
             title.text = data.categoria
             name.text = data.name
+            precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
 
@@ -60,7 +62,7 @@ class AdapterMenuDia(var list: ArrayList<MenuDia>) :
 */
 
         @SuppressLint("ResourceAsColor")
-        private fun verificarCategoria(data: MenuDia, title: TextView) = when (data.categoria) {
+        private fun verificarCategoria(data: PlatoDia, title: TextView) = when (data.categoria) {
             "Vegano" -> {
                 title.setBackgroundColor(R.color.color_vegano)
             }

@@ -2,12 +2,10 @@ package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +17,7 @@ import com.google.firebase.database.*
 class MenuDiaFragment : Fragment() {
 
     var vista: View? = null
-    val series = ArrayList<MenuDia>()
+    val menuDia = ArrayList<PlatoDia>()
     var actividad: Activity? = null
     var interfaceComunicaFragments: IComunicaFragments? = null
 
@@ -42,10 +40,8 @@ class MenuDiaFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
 
-
-        llenarMenu(series)
-        recyclerView?.adapter =
-            AdapterMenuDia(series)
+        llenarMenu(menuDia)
+        recyclerView?.adapter = AdapterMenuDia(menuDia)
 
 /*        recyclerView?.setOnClickListener(View.OnClickListener { view ->
             Toast.makeText(
@@ -85,9 +81,18 @@ class MenuDiaFragment : Fragment() {
                 val plato = p0.getValue(Plato::class.java)
                 if (plato != null) {
                     println(plato)
-                    series.add(MenuDia(plato.nombre, plato.descripcion,  R.drawable.platovengano1, "unacategoria"))
+                    menuDia.add(
+                        PlatoDia(
+                            plato.nombre,
+                            plato.descripcion,
+                            R.drawable.platovengano1,
+                            "unacategoria",
+                            plato.precio
+                        )
+                    )
                 }
             }
+
             override fun onChildRemoved(p0: DataSnapshot) {
             }
         })
@@ -96,9 +101,9 @@ class MenuDiaFragment : Fragment() {
     }
 
 
-    private fun llenarMenu(series: ArrayList<MenuDia>) {
+    private fun llenarMenu(series: ArrayList<PlatoDia>) {
         series.add(
-            MenuDia(
+            PlatoDia(
                 "Hamburguesas de lenteja y brocoli",
                 "½ cabeza de brócoli\n" +
                         "200 gr de lentejas cocidas\n" +
@@ -106,11 +111,12 @@ class MenuDiaFragment : Fragment() {
                         "2 ajos\n" +
                         "½ pimiento rojo",
                 R.drawable.platovengano1,
-                "Vegano"
+                "Vegano",
+                "$14.50"
             )
         )
         series.add(
-            MenuDia(
+            PlatoDia(
                 "Espaguetis de calabacín con pesto rojo",
                 "2 calabacines\n" +
                         "6 tomates secos\n" +
@@ -122,11 +128,12 @@ class MenuDiaFragment : Fragment() {
                         "Aceite de oliva\n" +
                         "Sal",
                 R.drawable.platovegetariano1,
-                "Vegetariano"
+                "Vegetariano",
+                "$10.50"
             )
         )
         series.add(
-            MenuDia(
+            PlatoDia(
                 "Milanesa con puré de papa",
                 "4 filetes de ternera\n" +
                         "3 huevos\n" +
@@ -144,7 +151,8 @@ class MenuDiaFragment : Fragment() {
                         "orégano\n" +
                         "perejil",
                 R.drawable.platocarnico1,
-                "Carnico"
+                "Carnico",
+                "$12.50"
             )
         )
     }

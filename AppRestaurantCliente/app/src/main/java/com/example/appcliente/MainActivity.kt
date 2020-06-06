@@ -3,7 +3,6 @@ package com.example.appcliente
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,9 +12,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.appcliente.ui.home.menudia.DetallesPlatoFragment
-import com.example.appcliente.ui.home.menudia.MenuDia
 import com.example.appcliente.ui.home.menudia.MenuDiaFragment
-import com.example.appcliente.ui.interfaces.IComunicaFragments
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -64,7 +61,7 @@ class MainActivity() : AppCompatActivity(){
         return super.onOptionsItemSelected(item);
     }
 
-/*    override fun enviarMenuDia(menuDia: MenuDia){
+/*    override fun enviarMenuDia(menuDia: PlatoDia){
         detalleFragment = this.supportFragmentManager
             .findFragmentById(R.id.nav_detalles_plato) as DetallesPlatoFragment?
         if (detalleFragment != null && findViewById<View?>(R.id.activity_main) == null) {

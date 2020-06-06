@@ -31,9 +31,9 @@ class DetallesPlatoFragment : Fragment() {
         val imagenDetalle = vista.findViewById<View>(R.id.imagen) as ImageView
 
         val objetoPersonaje = arguments
-        var menuDia: MenuDia? = null
+        var menuDia: PlatoDia? = null
         if (objetoPersonaje != null) {
-            menuDia = objetoPersonaje.getSerializable("objeto") as MenuDia
+            menuDia = objetoPersonaje.getSerializable("objeto") as PlatoDia
             asignarInformacion(menuDia)
         }
 
@@ -41,7 +41,7 @@ class DetallesPlatoFragment : Fragment() {
     }
 
 
-    fun asignarInformacion(menu: MenuDia) {
+    fun asignarInformacion(menu: PlatoDia) {
         imagenDetalle?.setImageResource(menu.imagen)
         textDescripcion?.setText(menu.ingredientes)
     }
