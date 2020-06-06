@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
 import com.example.appcliente.ui.interfaces.IComunicaFragments
+import com.google.firebase.database.*
 
 
 class MenuDiaFragment : Fragment() {
 
     var vista: View? = null
-
+    val series = ArrayList<MenuDia>()
     var actividad: Activity? = null
     var interfaceComunicaFragments: IComunicaFragments? = null
 
@@ -41,10 +42,9 @@ class MenuDiaFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
 
-        val series= ArrayList<MenuDia>()
-        llenarMenu(series)
 
-        recyclerView?.adapter=
+        llenarMenu(series)
+        recyclerView?.adapter =
             AdapterMenuDia(series)
 
 /*        recyclerView?.setOnClickListener(View.OnClickListener { view ->
@@ -65,7 +65,36 @@ class MenuDiaFragment : Fragment() {
                 }
             )
         })*/
+
+        //TODO: Esto trae instancias de "Platos" de la base de datos
+        FirebaseDatabase.getInstance().reference.child("Platos").addChildEventListener(object :
+            ChildEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("error trayendo datos de la base")
+            }
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val plato = p0.getValue(Plato::class.java)
+                if (plato != null) {
+                    println(plato)
+                    series.add(MenuDia(plato.nombre, plato.descripcion,  R.drawable.platovengano1, "unacategoria"))
+                }
+            }
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+        })
+
+
     }
+
 
     private fun llenarMenu(series: ArrayList<MenuDia>) {
         series.add(
@@ -128,3 +157,11 @@ class MenuDiaFragment : Fragment() {
         }
     }*/
 }
+
+
+data class Plato(
+    var descripcion: String="",
+    var imageUrl:String="",
+    var nombre: String = "",
+    var precio: String=""
+)
