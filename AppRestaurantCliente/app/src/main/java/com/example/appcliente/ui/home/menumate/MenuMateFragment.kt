@@ -65,7 +65,7 @@ class MenuMateFragment : Fragment() {
                     println(desayunoMerienda)
                     paraMate.add(
                         MenuMate(
-                            desayunoMerienda.name,
+                            desayunoMerienda.nombre,
                             desayunoMerienda.ingredientes,
                             R.drawable.mate2,
                             desayunoMerienda.sabor,

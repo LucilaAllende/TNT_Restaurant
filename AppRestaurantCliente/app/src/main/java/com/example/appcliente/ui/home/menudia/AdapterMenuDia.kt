@@ -35,7 +35,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             val precio : TextView = itemView.findViewById(R.id.txtPrecioPlato)
 
             title.text = data.categoria
-            name.text = data.name
+            name.text = data.nombre
             precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
@@ -48,7 +48,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             //itemView.setOnClickListener(listener);
 
             itemView.setOnClickListener{
-                Toast.makeText(itemView.context, "Ver ${data.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
 
 

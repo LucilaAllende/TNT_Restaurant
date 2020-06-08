@@ -65,7 +65,7 @@ class MenuSemanalFragment : Fragment() {
                     println(vianda)
                     viandas.add(
                         Vianda(
-                            vianda.name,
+                            vianda.nombre,
                             vianda.ingredientes,
                             R.drawable.vianda1,
                             vianda.dia,

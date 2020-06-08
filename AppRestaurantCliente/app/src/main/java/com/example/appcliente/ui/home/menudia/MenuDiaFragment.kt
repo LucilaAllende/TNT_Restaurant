@@ -81,9 +81,9 @@ class MenuDiaFragment : Fragment() {
 
                 val plato = p0.getValue(PlatoDia::class.java)
                 if (plato != null) {
-                    println(plato)
+                    //TODO: Esta linea de abajo no se si esta bien. Buscar como es la forma de agregar dinamicamente elementos a un recyclerView!
                     menuDia.add(
-                        PlatoDia(plato.name,
+                        PlatoDia(plato.nombre,
                            plato.ingredientes,
                            R.drawable.platovengano1,
                            plato.categoria,

@@ -30,7 +30,7 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
             val precio: TextView = itemView.findViewById(R.id.txtPrecioVianda)
 
             title.text = data.dia
-            name.text = data.name
+            name.text = data.nombre
             precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
@@ -38,7 +38,7 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
             btnDetalles.setOnClickListener { verDetalles() }
 
             itemView.setOnClickListener{
-                Toast.makeText(itemView.context, "Ver ${data.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
         }
 

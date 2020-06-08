@@ -30,7 +30,7 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>) :
             var precio: TextView = itemView.findViewById(R.id.txtPrecio)
 
             title.text = data.sabor
-            name.text = data.name
+            name.text = data.nombre
             precio.text = data.precio
 
             Glide.with(itemView.context).load(data.imagen).into(image)
@@ -38,7 +38,7 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>) :
             btnDetalles.setOnClickListener { verDetalles() }
 
             itemView.setOnClickListener{
-                Toast.makeText(itemView.context, "Ver ${data.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
         }
 
