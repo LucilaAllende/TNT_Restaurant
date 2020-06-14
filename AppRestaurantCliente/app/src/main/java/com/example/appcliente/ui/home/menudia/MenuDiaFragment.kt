@@ -2,6 +2,8 @@ package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
 import com.example.appcliente.ui.interfaces.IComunicaFragments
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 
 
 class MenuDiaFragment : Fragment() {
@@ -20,6 +25,7 @@ class MenuDiaFragment : Fragment() {
     val menuDia = ArrayList<PlatoDia>()
     var actividad: Activity? = null
     var interfaceComunicaFragments: IComunicaFragments? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,24 +49,15 @@ class MenuDiaFragment : Fragment() {
         llenarMenu(menuDia)
         recyclerView?.adapter = AdapterMenuDia(menuDia)
 
-/*        recyclerView?.setOnClickListener(View.OnClickListener { view ->
-            Toast.makeText(
-                context, "Seleccion: " +
-                        recyclerView?.getChildAdapterPosition(view)?.let {
-                            series.get(it)
-                                .name
-                        }, Toast.LENGTH_SHORT
-            ).show()
-            interfaceComunicaFragments?.enviarMenuDia(
-                recyclerView?.getChildAdapterPosition(
-                    view
-                )?.let {
-                    series.get(
-                        it
-                    )
-                }
-            )
-        })*/
+        //TODO : Agregamos el metodo que muestra el msj de alerta por pantalla.
+        fun showDialog() {
+            val dialogBuilder = AlertDialog.Builder(context)
+            dialogBuilder.setMessage("The message here")
+            dialogBuilder.setPositiveButton("Done",
+                DialogInterface.OnClickListener { dialog, whichButton -> })
+            val b = dialogBuilder.create()
+            b.show()
+        }
 
         //TODO: Esto trae instancias de "Platos" de la base de datos
         FirebaseDatabase.getInstance().reference.child("platoDia").addChildEventListener(object :
@@ -96,12 +93,13 @@ class MenuDiaFragment : Fragment() {
 
             override fun onChildRemoved(p0: DataSnapshot) {
             }
+
+
         })
 
 
+
     }
-
-
 
     //Esto se va a borrar cuando trabajemos directamente con la BD
     private fun llenarMenu(series: ArrayList<PlatoDia>) {
@@ -159,17 +157,7 @@ class MenuDiaFragment : Fragment() {
             )
         )
     }
-
-/*    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is Activity) {
-            actividad = context
-            interfaceComunicaFragments = actividad as IComunicaFragments?
-        }
-    }*/
 }
-
-
 data class Plato(
     var descripcion: String="",
     var imageUrl:String="",

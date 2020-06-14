@@ -8,19 +8,21 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardElevation="4dp"> <!-- Agrega una sombra al card view en forma de L  -->
-
+    app:cardElevation="4dp"
+    > <!-- Agrega una sombra al card view en forma de L  -->
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutIngredientes"
+        tools:context=".ui.home.menudia.DetallePlatoFragment"
+        >
 
         <ImageView
             android:id="@+id/imagen"
             android:layout_width="fill_parent"
             android:layout_height="180dp"
-            android:contentDescription="@string/descripcionPortada"
-
             android:adjustViewBounds="true"
+            android:contentDescription="@string/descripcionPortada"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -40,7 +42,6 @@
             android:layout_below="@id/txtCategoria"
             android:padding="10dp"
             android:textSize="20sp" />
-
 
         <TextView
             android:id="@+id/txtPrecioPlato"

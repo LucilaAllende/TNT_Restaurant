@@ -1,5 +1,7 @@
 package com.example.appcliente.ui.home.menudia
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +41,15 @@ class DetallesPlatoFragment : Fragment() {
 
         return vista
     }
-
+    // TODO : Metodo que muestra el mensaje
+    fun showDialog() {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage("The message here")
+        dialogBuilder.setPositiveButton("Done",
+            DialogInterface.OnClickListener { dialog, whichButton -> })
+        val b = dialogBuilder.create()
+        b.show()
+    }
 
     fun asignarInformacion(menu: PlatoDia) {
         imagenDetalle?.setImageResource(menu.imagen)

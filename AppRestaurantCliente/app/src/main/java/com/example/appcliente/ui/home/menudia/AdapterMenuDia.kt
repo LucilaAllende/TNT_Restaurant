@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,13 +18,9 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     //clase para manejar nuestra vista
     class ViewHolder(view: View) :
         RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
-
-        //no tiene sentido agregar esto
-        //var listener: View.OnClickListener? = null
-
+        val detallesPlatoFragment: DetallesPlatoFragment= itemView.findViewById(R.id.detallesPlatoFragment)
         //recibimos lo datos que se agregan dentro de nuestra vista
-        fun bindItems (data: PlatoDia){
-
+        fun bindItems (data: PlatoDia, holder: ViewHolder){
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
@@ -37,30 +31,14 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             title.text = data.categoria
             name.text = data.nombre
             precio.text = data.precio
-
             Glide.with(itemView.context).load(data.imagen).into(image)
-
             verificarCategoria(data, title)
-
-            btnDetalles.setOnClickListener { verDetalles() }
-
-            //no tiene sentido agregar esto
-            //itemView.setOnClickListener(listener);
-
+            btnDetalles.setOnClickListener { verDetalles(detallesPlatoFragment) }
+            //btnDetalles.setOnClickListener(fragmentDetallePlato.showDialog())
             itemView.setOnClickListener{
                 Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
-
-
         }
-
-        //no tiene sentido agregar esto
-/*
-        fun setOnClickListener(listener1: View.OnClickListener) {
-            listener = listener1
-        }
-*/
-
         @SuppressLint("ResourceAsColor")
         private fun verificarCategoria(data: PlatoDia, title: TextView) = when (data.categoria) {
             "Vegano" -> {
@@ -73,9 +51,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
                 title.setBackgroundColor(R.color.color_carnico)
             }
         }
-
-        private fun verDetalles() {
-
+        // TODO :
+        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
             val options = navOptions {
                 anim {
                     enter = R.anim.slide_in_right
@@ -84,9 +61,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
                     popExit = R.anim.slide_out_right
                 }
             }
-
             Toast.makeText(itemView.context, "Que onda", Toast.LENGTH_LONG).show()
-            //findNavController().navigate(R.id.nav_detalles_plato, null, options)
+            detallesPlatoFragment.showDialog()
         }
     }
 
@@ -100,6 +76,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(list[position])
+        holder.bindItems(list[position], holder)
     }
 }
+
+
