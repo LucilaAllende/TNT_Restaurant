@@ -49,16 +49,6 @@ class MenuDiaFragment : Fragment() {
         llenarMenu(menuDia)
         recyclerView?.adapter = AdapterMenuDia(menuDia)
 
-        //TODO : Agregamos el metodo que muestra el msj de alerta por pantalla.
-        fun showDialog() {
-            val dialogBuilder = AlertDialog.Builder(context)
-            dialogBuilder.setMessage("The message here")
-            dialogBuilder.setPositiveButton("Done",
-                DialogInterface.OnClickListener { dialog, whichButton -> })
-            val b = dialogBuilder.create()
-            b.show()
-        }
-
         //TODO: Esto trae instancias de "Platos" de la base de datos
         FirebaseDatabase.getInstance().reference.child("platoDia").addChildEventListener(object :
             ChildEventListener {

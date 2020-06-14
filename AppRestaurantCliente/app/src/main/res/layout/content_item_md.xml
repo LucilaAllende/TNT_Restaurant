@@ -13,8 +13,6 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayoutIngredientes"
-        tools:context=".ui.home.menudia.DetallePlatoFragment"
         >
 
         <ImageView
@@ -85,6 +83,7 @@
             android:text="Pedir plato"
             android:textColor="?attr/colorPrimary"
             tools:ignore="HardcodedText" />
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
