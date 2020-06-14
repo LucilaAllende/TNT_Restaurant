@@ -1,6 +1,8 @@
 package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,34 +12,39 @@ import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.appcliente.R
+import kotlinx.android.synthetic.main.content_item_md.view.*
 
 
 class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
-    class ViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
-        val detallesPlatoFragment: DetallesPlatoFragment= itemView.findViewById(R.id.detallesPlatoFragment)
+    //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private val btnVer: Button = view.findViewById(R.id.button_ver_detalles)
+        private val context: Context = view.context
+
         //recibimos lo datos que se agregan dentro de nuestra vista
         fun bindItems (data: PlatoDia, holder: ViewHolder){
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
             val image: ImageView = itemView.findViewById(R.id.imagen)
-            val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
             val precio : TextView = itemView.findViewById(R.id.txtPrecioPlato)
+            val ingredientes : TextView = itemView.findViewById(R.id.txt_ingredientes)
 
             title.text = data.categoria
             name.text = data.nombre
             precio.text = data.precio
+            ingredientes.text = data.ingredientes
             Glide.with(itemView.context).load(data.imagen).into(image)
+
             verificarCategoria(data, title)
-            btnDetalles.setOnClickListener { verDetalles(detallesPlatoFragment) }
-            //btnDetalles.setOnClickListener(fragmentDetallePlato.showDialog())
             itemView.setOnClickListener{
                 Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
+
         }
         @SuppressLint("ResourceAsColor")
         private fun verificarCategoria(data: PlatoDia, title: TextView) = when (data.categoria) {
@@ -51,8 +58,23 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
                 title.setBackgroundColor(R.color.color_carnico)
             }
         }
-        // TODO :
-        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
+
+        fun escuchame(){
+            btnVer.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            when (v?.id) {
+                R.id.button_ver_detalles -> {
+                    val intent = Intent(context, DetallesActivity::class.java)
+                    intent.putExtra("name", itemView.txtNombrePlato.text);
+                    intent.putExtra("ingredientes", itemView.txt_ingredientes.text )
+                    context.startActivity(intent)
+                }
+            }
+        }
+
+/*        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
             val options = navOptions {
                 anim {
                     enter = R.anim.slide_in_right
@@ -63,7 +85,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             }
             Toast.makeText(itemView.context, "Que onda", Toast.LENGTH_LONG).show()
             detallesPlatoFragment.showDialog()
-        }
+        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -77,6 +99,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position], holder)
+        //set eventos
+        holder.escuchame()
     }
 }
 

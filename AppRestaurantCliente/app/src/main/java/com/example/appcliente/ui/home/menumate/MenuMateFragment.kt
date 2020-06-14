@@ -1,11 +1,15 @@
 package com.example.appcliente.ui.home.menumate
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
@@ -29,6 +33,28 @@ class MenuMateFragment : Fragment() {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_menu_mate, container, false)
         return vista
+    }
+
+    private fun verDetalles() {
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
+        Toast.makeText(context, "Que onda", Toast.LENGTH_LONG).show()
+    }
+
+    // TODO : Metodo que muestra el mensaje
+    fun showDialog() {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage("The message here")
+        dialogBuilder.setPositiveButton("Done",
+            DialogInterface.OnClickListener { dialog, whichButton -> })
+        val b = dialogBuilder.create()
+        b.show()
     }
 
     @SuppressLint("ResourceAsColor")

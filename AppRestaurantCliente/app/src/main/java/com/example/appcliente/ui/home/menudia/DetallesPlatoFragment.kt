@@ -41,15 +41,7 @@ class DetallesPlatoFragment : Fragment() {
 
         return vista
     }
-    // TODO : Metodo que muestra el mensaje
-    fun showDialog() {
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setMessage("The message here")
-        dialogBuilder.setPositiveButton("Done",
-            DialogInterface.OnClickListener { dialog, whichButton -> })
-        val b = dialogBuilder.create()
-        b.show()
-    }
+
 
     fun asignarInformacion(menu: PlatoDia) {
         imagenDetalle?.setImageResource(menu.imagen)
