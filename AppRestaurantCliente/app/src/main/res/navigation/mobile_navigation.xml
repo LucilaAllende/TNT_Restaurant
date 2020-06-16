@@ -29,12 +29,22 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_detalles_plato"
-        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
+        android:id="@+id/nav_menu_dia"
+        android:name="com.example.appcliente.ui.home.menudia.MenuDiaFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalles_plato">
+        <action
+            android:id="@+id/action_nav_menu_dia_to_nav_detalles_dia"
+            app:destination="@id/nav_detalles_dia" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_dia"
+        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
+        android:label="@string/menu_cuenta"
+        tools:layout="@layout/fragment_cuenta" />
+
 
     <fragment
         android:id="@+id/nav_cuenta"

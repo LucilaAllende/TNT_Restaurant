@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -36,23 +37,21 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
             val image: ImageView = itemView.findViewById(R.id.imagen)
-            val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
             val precio : TextView = itemView.findViewById(R.id.txtPrecioPlato)
             val idPlato: TextView = itemView.txtIdPlatoMD
+            val ingredientes : TextView = itemView.findViewById(R.id.txt_ingredientes)
 
             idPlato.text = data.id
             title.text = data.categoria
             name.text = data.nombre
             precio.text = data.precio
-	    ingredientes.text = data.ingredientes	
+	        ingredientes.text = data.ingredientes
             Glide.with(itemView.context).load(Uri.parse(data.imagenUrl)).into(image)
             //image.setImageURI(Uri.parse(data.imagen))
 
 
             verificarCategoria(data, title)
             itemView.button_agregar_pedido.setOnClickListener{verificarPedido()}
-            //btnDetalles.setOnClickListener { verDetalles(detallesPlatoFragment) }//TODO:comentario 2
-            //btnDetalles.setOnClickListener(fragmentDetallePlato.showDialog())
             itemView.setOnClickListener{
                 Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
             }
@@ -77,17 +76,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
         }
 
         override fun onClick(v: View?) {
-            when (v?.id) {
-                R.id.button_ver_detalles -> {
-                    val intent = Intent(context, DetallesActivity::class.java)
-                    intent.putExtra("name", itemView.txtNombrePlato.text);
-                    intent.putExtra("ingredientes", itemView.txt_ingredientes.text )
-                    context.startActivity(intent)
-                }
-            }
-        }
 
-/*        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
             val options = navOptions {
                 anim {
                     enter = R.anim.slide_in_right
@@ -96,9 +85,20 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
                     popExit = R.anim.slide_out_right
                 }
             }
-            Toast.makeText(itemView.context, "Que onda", Toast.LENGTH_LONG).show()
-            detallesPlatoFragment.showDialog()
+
+            when (v?.id) {
+                R.id.button_ver_detalles -> {
+
+                    //findNavController(DetallesPlatoFragment()).navigate(R.id.detallesPlatoFragment, null, options)
+
+                    val intent = Intent(context, DetallesActivity::class.java)
+                    intent.putExtra("name", itemView.txtNombrePlato.text);
+                    intent.putExtra("ingredientes", itemView.txt_ingredientes.text )
+                    context.startActivity(intent)
+                }
+            }
         }
+
 
         private fun verificarPedido(){
 
