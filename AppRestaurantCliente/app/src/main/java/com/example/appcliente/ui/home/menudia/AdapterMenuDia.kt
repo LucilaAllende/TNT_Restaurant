@@ -2,13 +2,13 @@ package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,10 +25,12 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
-    class ViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
-        //val detallesPlatoFragment: DetallesPlatoFragment= itemView.findViewById(R.id.detallesPlatoFragment)//TODO:comentario 1
-        //recibimos lo datos que se agregan dentro de nuestra vista
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+
+        private val btnVer: Button = view.findViewById(R.id.button_ver_detalles)
+        private val context: Context = view.context
+
+
         fun bindItems (data: PlatoDia, holder: ViewHolder){
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
@@ -42,7 +44,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             title.text = data.categoria
             name.text = data.nombre
             precio.text = data.precio
-
+	    ingredientes.text = data.ingredientes	
             Glide.with(itemView.context).load(Uri.parse(data.imagenUrl)).into(image)
             //image.setImageURI(Uri.parse(data.imagen))
 
@@ -70,7 +72,22 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             }
         }
 
-        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
+        fun escuchame(){
+            btnVer.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            when (v?.id) {
+                R.id.button_ver_detalles -> {
+                    val intent = Intent(context, DetallesActivity::class.java)
+                    intent.putExtra("name", itemView.txtNombrePlato.text);
+                    intent.putExtra("ingredientes", itemView.txt_ingredientes.text )
+                    context.startActivity(intent)
+                }
+            }
+        }
+
+/*        private fun verDetalles(detallesPlatoFragment: DetallesPlatoFragment) {
             val options = navOptions {
                 anim {
                     enter = R.anim.slide_in_right
@@ -156,6 +173,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position], holder)
+        //set eventos
+        holder.escuchame()
     }
 }
 
