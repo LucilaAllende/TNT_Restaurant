@@ -52,7 +52,7 @@ class DetallesPlatoFragment : Fragment() {
     }
 
     fun asignarInformacion(menu: PlatoDia) {
-        imagenDetalle?.setImageResource(menu.imagen)
+        //imagenDetalle?.setImageResource(menu.imagen)
         textDescripcion?.setText(menu.ingredientes)
     }
 

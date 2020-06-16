@@ -25,7 +25,7 @@ class MenuDiaFragment : Fragment() {
     val menuDia = ArrayList<PlatoDia>()
     var actividad: Activity? = null
     var interfaceComunicaFragments: IComunicaFragments? = null
-
+    var recyclerView: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,16 +40,31 @@ class MenuDiaFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val recyclerView: RecyclerView? = activity?.findViewById(R.id.recyclear)
+        recyclerView = activity?.findViewById(R.id.recyclear)
 
         if (recyclerView != null) {
-            recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
-
-        llenarMenu(menuDia)
         recyclerView?.adapter = AdapterMenuDia(menuDia)
+        verificarPlato()
+    }
 
-        //TODO: Esto trae instancias de "Platos" de la base de datos
+    private fun deboAgregarPlato(platoDia: PlatoDia): Boolean {
+        var encontrado = true
+        for (c in menuDia) {
+            if (c.id == platoDia.id &&
+                c.imagenUrl == platoDia.imagenUrl &&
+                c.ingredientes == platoDia.ingredientes &&
+                c.nombre == platoDia.nombre &&
+                c.precio == platoDia.precio &&
+                c.categoria == platoDia.categoria) {
+                encontrado = false
+            }
+        }
+        return encontrado
+    }
+
+    private fun verificarPlato(){
         FirebaseDatabase.getInstance().reference.child("platoDia").addChildEventListener(object :
             ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
@@ -57,57 +72,46 @@ class MenuDiaFragment : Fragment() {
             }
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-
-                val plato = p0.getValue(PlatoDia::class.java)
-                if (plato != null) {
-                    //TODO: Esta linea de abajo no se si esta bien. Buscar como es la forma de agregar dinamicamente elementos a un recyclerView!
-                    menuDia.add(
-                        PlatoDia(plato.nombre,
-                           plato.ingredientes,
-                           R.drawable.platovengano1,
-                           plato.categoria,
-                           plato.precio
-
-                        )
-                    )
+                var platoDia = p0.getValue(PlatoDia::class.java)
+                platoDia!!.id = p0.key.toString()
+                if (deboAgregarPlato(platoDia!!)) {
+                    menuDia.add(platoDia!!)
+                    recyclerView?.getAdapter()?.notifyDataSetChanged();
                 }
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
             }
-
-
         })
-
-
-
     }
 
-    //Esto se va a borrar cuando trabajemos directamente con la BD
     private fun llenarMenu(series: ArrayList<PlatoDia>) {
+        println(":::::::::::::::::::::::")
+        println("LLENANDO")
+        println(":::::::::::::::::::::::")
         series.add(
             PlatoDia(
+                "md 1",
                 "Hamburguesas de lenteja y brocoli",
                 "½ cabeza de brócoli\n" +
                         "200 gr de lentejas cocidas\n" +
                         "1 cebolla\n" +
                         "2 ajos\n" +
                         "½ pimiento rojo",
-                R.drawable.platovengano1,
+                "R.drawable.platovengano1",
                 "Vegano",
                 "$14.50"
             )
         )
         series.add(
             PlatoDia(
+                "md 2",
                 "Espaguetis de calabacín con pesto rojo",
                 "2 calabacines\n" +
                         "6 tomates secos\n" +
@@ -118,13 +122,14 @@ class MenuDiaFragment : Fragment() {
                         "50 g de queso parmesano rallado\n" +
                         "Aceite de oliva\n" +
                         "Sal",
-                R.drawable.platovegetariano1,
+                "R.drawable.platovegetariano1",
                 "Vegetariano",
                 "$10.50"
             )
         )
         series.add(
             PlatoDia(
+                    "md 3",
                 "Milanesa con puré de papa",
                 "4 filetes de ternera\n" +
                         "3 huevos\n" +
@@ -141,16 +146,10 @@ class MenuDiaFragment : Fragment() {
                         "pimienta\n" +
                         "orégano\n" +
                         "perejil",
-                R.drawable.platocarnico1,
+                "R.drawable.platocarnico1",
                 "Carnico",
                 "$12.50"
             )
         )
     }
 }
-data class Plato(
-    var descripcion: String="",
-    var imageUrl:String="",
-    var nombre: String = "",
-    var precio: String=""
-)

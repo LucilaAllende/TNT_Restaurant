@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase
 class MenuSemanalFragment : Fragment() {
 
     var vista: View? = null
+    val viandas= ArrayList<Vianda>()
+    var recyclerView: RecyclerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,17 +36,31 @@ class MenuSemanalFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val recyclerView: RecyclerView? = activity?.findViewById(R.id.recyclearS)
-
+        recyclerView = activity?.findViewById(R.id.recyclearS)
         if (recyclerView != null) {
-            recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
-
-        val viandas= ArrayList<Vianda>()
-        llenarMenu(viandas)
-
+        //llenarMenu(viandas)
         recyclerView?.adapter= AdapterMenuSemanal(viandas)
+        verificarPlato()
+    }
 
+    private fun deboAgregarPlato(vianda: Vianda): Boolean {
+        var encontrado = true
+        for (c in viandas) {
+            if (c.id == vianda.id &&
+                c.imagenUrl == vianda.imagenUrl &&
+                c.ingredientes == vianda.ingredientes &&
+                c.nombre == vianda.nombre &&
+                c.precio == vianda.precio &&
+                c.dia == vianda.dia) {
+                encontrado = false
+            }
+        }
+        return encontrado
+    }
+
+    private fun verificarPlato(){
         FirebaseDatabase.getInstance().reference.child("vianda").addChildEventListener(object :
             ChildEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
@@ -52,26 +68,17 @@ class MenuSemanalFragment : Fragment() {
             }
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                 val vianda = p0.getValue(Vianda::class.java)
-                if (vianda != null) {
-                    println(vianda)
-                    viandas.add(
-                        Vianda(
-                            vianda.nombre,
-                            vianda.ingredientes,
-                            R.drawable.vianda1,
-                            vianda.dia,
-                            vianda.precio
-                        )
-                    )
+                vianda!!.id = p0.key.toString()
+                if (deboAgregarPlato(vianda!!)) {
+                    viandas.add(vianda!!)
+                    recyclerView?.getAdapter()?.notifyDataSetChanged();
                 }
             }
 
@@ -79,24 +86,25 @@ class MenuSemanalFragment : Fragment() {
             }
         })
     }
-
     //Esto se va a borrar cuando trabajemos directamente con la BD
     private fun llenarMenu(viandas: ArrayList<Vianda>) {
         viandas.add(
             Vianda(
+                "id 1",
                 "Gratinado de puerros con jamón y queso",
                 "Puerro en conserva\n" +
                         "Queso Edam en lonchas\n" +
                         "Jamón de York en lonchas\n" +
                         "Salsa bechamel\n" +
                         "Queso rallado para gratinar",
-                R.drawable.vianda1,
+                "R.drawable.vianda1",
                 "Lunes",
                 "$45.20"
             )
         )
         viandas.add(
             Vianda(
+                "id 2",
                 "Sándwich de ensalada de huevo",
                 "Huevos\n" +
                         "Cebolla\n" +
@@ -104,13 +112,14 @@ class MenuSemanalFragment : Fragment() {
                         "Creme Fraiche\n" +
                         "Mayonesa\n" +
                         "Pan de molde sin corteza\n",
-                R.drawable.vianda2,
+                "R.drawable.vianda2",
                 "Martes",
                 "$45.20"
             )
         )
         viandas.add(
             Vianda(
+                "id 3",
                 "Tarta de espinaca",
                 "Tapas de tarta\n" +
                         "Espinaca\n" +
@@ -123,13 +132,14 @@ class MenuSemanalFragment : Fragment() {
                         "Sal \n" +
                         "Pimienta\n" +
                         "Nuez moscada\n",
-                R.drawable.vianda3,
+                "R.drawable.vianda3",
                 "Miercoles",
                 "$45.20"
             )
         )
         viandas.add(
             Vianda(
+                "id 4",
                 "Pizza",
                 "Tapas de tarta\n" +
                         "Harina\n" +
@@ -141,13 +151,14 @@ class MenuSemanalFragment : Fragment() {
                         "Jamón cocido.\n" +
                         "Aceitunas negra \n" +
                         "Orégano seco \n",
-                R.drawable.vianda4,
+                "R.drawable.vianda4",
                 "Jueves",
                 "$45.20"
             )
         )
         viandas.add(
             Vianda(
+                "id 5",
                 "Canelones de pollo",
                 "Tapas de tarta\n" +
                         "Pechuga de pollo\n" +
@@ -160,7 +171,7 @@ class MenuSemanalFragment : Fragment() {
                         "Sal \n" +
                         "Pimienta\n" +
                         "Aceite de oliva virgen extra\n",
-                R.drawable.vianda5,
+                "R.drawable.vianda5",
                 "Viernes",
                 "$45.20"
             )

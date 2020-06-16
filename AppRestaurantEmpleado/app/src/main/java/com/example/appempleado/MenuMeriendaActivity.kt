@@ -81,12 +81,13 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 val downloadUrl: Task<Uri> = imgReference.downloadUrl
                 downloadUrl.addOnSuccessListener { uri ->
                     val database = FirebaseDatabase.getInstance()
+                    val plato = mapOf("nombre" to txtNombre.text.toString(),
+                                    "ingredientes" to txtDescripcion.text.toString(),
+                                    "imagenUrl" to uri.toString(),
+                                    "precio" to txtPrecio.text.toString(),
+                                    "sabor" to sabor)
                     val platoReference: DatabaseReference = database.reference.child("desayunoMerienda").push()
-                    platoReference.child("nombre").setValue(txtNombre.text.toString())
-                    platoReference.child("ingredientes").setValue(txtDescripcion.text.toString())
-                    platoReference.child("precio").setValue(txtPrecio.text.toString())
-                    platoReference.child("imagenUrl").setValue(uri.toString())
-                    platoReference.child("sabor").setValue(sabor) //TODO: evitar el harcoding aca
+                    platoReference.setValue(plato)
                     pbAltaPlato.visibility = View.INVISIBLE
                     Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
                     this.finish()
