@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_pedido"
-        android:name="com.example.appcliente.ui.historial.HistorialFragment"
+        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
         android:label="@string/menu_pedido"
         tools:layout="@layout/fragment_pedido" />
 

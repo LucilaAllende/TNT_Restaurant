@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,10 +15,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.content_item_md.view.*
 import kotlinx.android.synthetic.main.fragment_historial.*
-import kotlinx.android.synthetic.main.item_pedido.*
-import kotlinx.android.synthetic.main.item_pedido.view.*
+import kotlinx.android.synthetic.main.item_plato_historial.view.*
 
 
 class HistorialFragment : Fragment() {
@@ -115,6 +112,7 @@ class HistorialFragment : Fragment() {
                 }
         })
     }
+
     fun mostrarSnackbar(mensaje: String){
         val snackBar = activity?.findViewById<TabLayout>(R.id.tabs)?.let {
             Snackbar.make(
@@ -126,13 +124,6 @@ class HistorialFragment : Fragment() {
             snackBar.show()
         }
     }
-
-
-
-}
-
-private fun eliminarPedido(idPedido: String){
-    FirebaseDatabase.getInstance().reference.child("Pedido/"+idPedido).removeValue()
 }
 
 fun notificarPedido(){
@@ -146,7 +137,7 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_pedido, parent, false))
+        var vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_historial, parent, false))
         return vh
     }
 
@@ -155,13 +146,11 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 }
 
-
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val txtNombre= view.cardViewPedido.txtNombreViandaPedido
-    val txtPrecio = view.cardViewPedido.txtPrecioPedido
+    val txtNombre= view.cardViewPedido.txtNombrePlatoHistorial
+    val txtPrecio = view.cardViewPedido.txtPrecioHistorial
     val color = view.bannerColor
-    val platoId = view.textViewPlatoIdPedido
-    val btnEliminar = view.btnEliminarPedido
+    val platoId = view.textViewPlatoIdHistorial
     val btnNotificar = view.btnNotificarPedido
 
     fun bind(p: Pedido) {
@@ -178,7 +167,6 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         txtNombre.text = p.nombrePlato
         txtPrecio.text = p.precioPlato
         platoId.text = p.platoId
-        btnEliminar.setOnClickListener{eliminarPedido(p.id)}
         btnNotificar.setOnClickListener{ notificarPedido()}
     }
     //view.viewCard.btnEliminarPedido

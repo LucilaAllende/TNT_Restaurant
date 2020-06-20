@@ -1,34 +1,29 @@
 package com.example.appcliente.ui.pedido
 
+import android.graphics.Color
 import com.example.appcliente.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appcliente.databinding.FragmentPedidoBinding
-import com.example.appcliente.ui.cuenta.CuentaViewModel
-import com.example.appcliente.ui.historial.HistorialViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.item_pedido.view.*
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_pedido.*
+import kotlinx.android.synthetic.main.item_plato_pedido.view.*
 
 
 class PedidoFragment : Fragment() {
 
-    private var _binding: FragmentPedidoBinding? = null
-    private val binding get() = _binding!!
-    var lista_pedidos: ArrayList<Pedido> = ArrayList()
     private lateinit var galleryViewModel: PedidoViewModel
+    var vista: View? = null
+    var lista_pedidos: ArrayList<Pedido> = ArrayList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,60 +32,101 @@ class PedidoFragment : Fragment() {
     ): View? {
         galleryViewModel =
             ViewModelProviders.of(this).get(PedidoViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_pedido, container, false)
-        val textView: TextView = root.findViewById(R.id.text_gallery)
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs() // remove all the tabs from the action bar and deselect the current tab
-        return root
+        vista= inflater.inflate(R.layout.fragment_pedido, container, false)
+        activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs()
+        verificarPedidos()
+        return vista
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //verificarPedidos()
-        //rvPedido.layoutManager = LinearLayoutManager(this.context)
-        //rvPedido.adapter = ResultadoAdapter(lista_pedidos)
-        //binding.layoutPedido.visibility = View.INVISIBLE
-        println(":..................")
-        println("ENTRANDO AL PEDIDO CAPOO")
-        println(":..................")
-        val snackBar = Snackbar.make(
-            requireActivity().findViewById(R.id.content),
-            "Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG
-        )
-        snackBar.show()
-        println(":..................")
-        println("saliendo")
-        println(":..................")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        rvPedidoVerdad.layoutManager = LinearLayoutManager(this.context)
+        rvPedidoVerdad.adapter = PedidoAdapter(lista_pedidos)
     }
 
     private fun verificarPedidos(){
         FirebaseDatabase.getInstance().reference.child("Pedido")
             .orderByChild("clienteId")
             .equalTo(FirebaseAuth.getInstance().currentUser?.uid)
-            .addValueEventListener(object: ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {}
+            .addChildEventListener(object: ChildEventListener {
 
-                override fun onDataChange(p0: DataSnapshot) {
+                override fun onCancelled(p0: DatabaseError) {
+                    println("cancelado")
+                }
+
+                override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                    println("movido")
+                }
+
+                override fun onChildChanged(p0: DataSnapshot, p1: String?) {
                     if(p0.childrenCount > 0){
-                        for (ds in p0.children) {
-                            val pedido = ds.getValue(com.example.appcliente.ui.home.menudia.Pedido::class.java)!!
-
+                        val pedido = p0.getValue(Pedido::class.java)!!
+                        pedido.id = p0.key.toString()
+                        lista_pedidos.add(pedido)
+                        if (rvPedidoVerdad != null){
+                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
                     }
+                    else{
+                        if (rvPedidoVerdad != null){
+                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        }
+                        mostrarSnackbar("No hay pedidos aun.")
+                    }
+                }
 
+                override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                    if(p0.childrenCount > 0){
+                        val pedido = p0.getValue(Pedido::class.java)!!
+                        pedido.id = p0.key.toString()
+                        lista_pedidos.add(pedido)
+                        if (rvPedidoVerdad != null){
+                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        }
+                    }
+                    else{
+                        if (rvPedidoVerdad != null){
+                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        }
+                        mostrarSnackbar("No hay pedidos aun.")
+                    }
+                }
+
+                override fun onChildRemoved(p0: DataSnapshot) {
+
+                    if (rvPedidoVerdad != null){
+                        val pedido = p0.getValue(Pedido::class.java)!!
+                        pedido.id = p0.key.toString()
+                        val pos = lista_pedidos.indexOf(pedido)
+                        lista_pedidos.remove(pedido)
+                        if (rvPedidoVerdad != null){
+                            rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
+                            rvPedidoVerdad.adapter?.notifyDataSetChanged()
+                            if (lista_pedidos.size == 0){
+                                mostrarSnackbar("No hay pedidos aun.")
+                            }
+                        }
+                    }
                 }
             })
     }
+
+    fun mostrarSnackbar(mensaje: String){
+        val snackBar = activity?.findViewById<TabLayout>(R.id.tabs)?.let {
+            Snackbar.make(
+                it,
+                mensaje, Snackbar.LENGTH_LONG
+            )
+        }
+        if (snackBar != null) {
+            snackBar.show()
+        }
+    }
 }
 
-
+private fun eliminarPedido(idPedido: String){
+    FirebaseDatabase.getInstance().reference.child("Pedido/"+idPedido).removeValue()
+}
 
 
 class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<ViewHolder>() {
@@ -100,7 +136,8 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_pedido, parent, false))
+        var vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_pedido, parent, false))
+        return vh
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -109,22 +146,39 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
 }
 
 
-
-
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val r= view.cardViewPedido.txtNombreViandaPedido
+    val txtNombre= view.cardViewPedido.txtNombrePlatoPedido
+    val txtPrecio = view.cardViewPedido.txtPrecioPedido
+    val color = view.bannerColor
+    val platoId = view.textViewPlatoIdPedido
+    val btnEliminar = view.btnEliminarPedido
+
     fun bind(p: Pedido) {
-        r.text = p.nombrePlato
+        if(p.tipo == "md"){ //menuDia
+            color.setBackgroundColor(Color.parseColor("#F87652")) //menu dia
+        }
+        else if(p.tipo == "mm"){ //menuMate
+            color.setBackgroundColor(Color.parseColor("#C3223A"))
+        }
+        else{
+            color.setBackgroundColor(Color.parseColor("#757575"))
+        }
+        color.text = p.timestamp
+        txtNombre.text = p.nombrePlato
+        txtPrecio.text = p.precioPlato
+        platoId.text = p.platoId
+        btnEliminar.setOnClickListener{eliminarPedido(p.id)}
     }
 }
 
-
 data class Pedido(
+    var id: String ="",
     var clienteId: String = "",
     var direccionEnvio: String = "",
     var estado:String = "",
     var platoId:String = "",
     var timestamp:String = "",
     var nombrePlato: String ="",
-    var precioPlato:String=""
+    var precioPlato:String="",
+    var tipo:String=""
 )
