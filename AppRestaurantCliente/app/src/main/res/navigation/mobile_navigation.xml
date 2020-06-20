@@ -40,6 +40,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_direccion_pedido"
+        android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
+        android:label="@string/menu_cuenta"
+        tools:layout="@layout/fragment_cuenta" />
+
+    <fragment
         android:id="@+id/nav_detalles_dia"
         android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
         android:label="@string/menu_cuenta"

@@ -8,13 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_pedido.*
+import kotlinx.android.synthetic.main.fragment_pedido.view.*
 import kotlinx.android.synthetic.main.item_plato_pedido.view.*
 
 
@@ -23,16 +27,34 @@ class PedidoFragment : Fragment() {
     private lateinit var galleryViewModel: PedidoViewModel
     var vista: View? = null
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
-
+    lateinit var btnFab: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
         galleryViewModel =
             ViewModelProviders.of(this).get(PedidoViewModel::class.java)
-        vista= inflater.inflate(R.layout.fragment_pedido, container, false)
+        vista = inflater.inflate(R.layout.fragment_pedido, container, false)
+        //btnFab = vista?.fab!!
+        val fab: View? = vista?.findViewById(R.id.fab)
+        fab?.setOnClickListener { view ->
+            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+            //findNavController(R.id.nav_direccion_pedido, null, options)
+        }
+
         activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs()
         verificarPedidos()
         return vista
