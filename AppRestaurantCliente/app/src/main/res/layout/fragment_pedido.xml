@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pedido.PedidoFragment"/>
+    tools:context=".ui.pedido.PedidoFragment"
+    android:id="@+id/frameLayout">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPedidoVerdad"
+        android:layout_width="410dp"
+        android:layout_height="347dp"
+        android:scrollbars="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_conversion_absoluteHeight="474dp"
+        tools:layout_conversion_absoluteWidth="357dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="113dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvPedido"
+        android:text="@string/ver_detalles"
+        tools:ignore="MissingConstraints"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="88dp"
+        tools:layout_editor_absoluteX="161dp" />
+</FrameLayout>

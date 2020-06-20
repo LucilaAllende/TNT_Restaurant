@@ -28,7 +28,7 @@ class PedidoFragment : Fragment() {
     private var _binding: FragmentPedidoBinding? = null
     private val binding get() = _binding!!
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
-    private lateinit var galleryViewModel: HistorialViewModel
+    private lateinit var galleryViewModel: PedidoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +36,8 @@ class PedidoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         galleryViewModel =
-            ViewModelProviders.of(this).get(HistorialViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_historial, container, false)
+            ViewModelProviders.of(this).get(PedidoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_pedido, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
@@ -45,11 +45,6 @@ class PedidoFragment : Fragment() {
         activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs() // remove all the tabs from the action bar and deselect the current tab
         return root
     }
-
-
-
-
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
