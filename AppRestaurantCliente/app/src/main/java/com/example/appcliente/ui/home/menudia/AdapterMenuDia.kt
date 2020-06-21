@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -88,8 +89,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
 
             when (v?.id) {
                 R.id.button_ver_detalles -> {
-
-                    //findNavController(DetallesPlatoFragment()).navigate(R.id.detallesPlatoFragment, null, options)
+                    //findNavController(DetallesPlatoFragment()).navigate(R.id.nav_detalles_dia, null, options)
 
                     val intent = Intent(context, DetallesActivity::class.java)
                     intent.putExtra("name", itemView.txtNombrePlato.text);

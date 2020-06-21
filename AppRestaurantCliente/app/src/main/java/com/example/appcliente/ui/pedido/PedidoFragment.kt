@@ -18,7 +18,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_pedido.*
-import kotlinx.android.synthetic.main.fragment_pedido.view.*
 import kotlinx.android.synthetic.main.item_plato_pedido.view.*
 
 
@@ -46,13 +45,12 @@ class PedidoFragment : Fragment() {
         galleryViewModel =
             ViewModelProviders.of(this).get(PedidoViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
-        //btnFab = vista?.fab!!
+
+        //var pedido = FirebaseDatabase.getInstance().reference.child("Pedido")
+
         val fab: View? = vista?.findViewById(R.id.fab)
-        fab?.setOnClickListener { view ->
-            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .show()
-            //findNavController(R.id.nav_direccion_pedido, null, options)
+        fab?.setOnClickListener {
+            findNavController().navigate(R.id.nav_solicitar_direccion_pedido, null, options)
         }
 
         activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs()

@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.content_item_md.view.*
 import kotlinx.android.synthetic.main.content_item_mm.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,7 +33,7 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>) :
 
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtSabor)
-            val name: TextView = itemView.findViewById(R.id.txtNombre)
+            val name: TextView = itemView.findViewById(R.id.editCalle)
             val image: ImageView = itemView.findViewById(R.id.imagenM)
             val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
             val btnPedido: Button = itemView.findViewById(R.id.button_agregar_pedido)
@@ -86,7 +85,7 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>) :
                     val pedido = mapOf("timestamp" to formatedDate.toString(),
                         "clienteId" to user.uid,
                         "platoId" to itemView.txtIdPlatoMM.text.toString(),
-                        "nombrePlato" to itemView.txtNombre.text.toString(),
+                        "nombrePlato" to itemView.editCalle.text.toString(),
                         "precioPlato" to itemView.txtPrecio.text.toString(),
                         "direccionEnvio" to "aca va la direccion del cliente",
                         "estado" to "en preparacion", // [en preparación | en camino | entregado]
