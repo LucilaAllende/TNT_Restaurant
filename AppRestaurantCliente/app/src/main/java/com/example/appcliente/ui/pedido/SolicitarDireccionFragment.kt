@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 
 import com.example.appcliente.R
+import com.google.firebase.database.FirebaseDatabase
 
 /**
  * A simple [Fragment] subclass.
@@ -41,8 +42,12 @@ class SolicitarDireccionFragment : Fragment() {
 
     private fun asignarRetiroAPedido() {
         //TODO Aca hay que asignarle al pedido, la direccion en buffet
-        //
         //TODO Borrar pedido o sacar pedido del Pedido, solo tiene que quedar en el historial.
+
+/*        for id in lista_id_pedido{
+            FirebaseDatabase.getInstance().reference.child("Pedido/"+id).child("direccionEnvio").setValue("Retiro en Buffet")
+        }*/
+
         Toast.makeText(context, "Ya puede retirar su pedido",Toast.LENGTH_LONG).show()
     }
 

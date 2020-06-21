@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +29,7 @@ class PedidoFragment : Fragment() {
     var vista: View? = null
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
     lateinit var btnFab: FloatingActionButton
+    val lista_id_pedidos: ArrayList<String> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +53,8 @@ class PedidoFragment : Fragment() {
 
         val fab: View? = vista?.findViewById(R.id.fab)
         fab?.setOnClickListener {
+            //safeArgs
+            //var bundle = bundleOf("amount" to amount)
             findNavController().navigate(R.id.nav_solicitar_direccion_pedido, null, options)
         }
 
@@ -99,6 +104,7 @@ class PedidoFragment : Fragment() {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
+                        lista_id_pedidos.add(pedido.id)
                         lista_pedidos.add(pedido)
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
