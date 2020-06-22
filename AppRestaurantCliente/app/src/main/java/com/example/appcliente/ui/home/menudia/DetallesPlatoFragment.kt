@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.appcliente.R
 
 
@@ -19,6 +20,7 @@ class DetallesPlatoFragment : Fragment() {
 
     var textDescripcion: TextView? = null
     var imagenDetalle: ImageView? = null
+    val args: DetallesPlatoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +33,14 @@ class DetallesPlatoFragment : Fragment() {
 
         val textDescripcion = vista.findViewById<View>(R.id.descripcionId) as TextView
         val imagenDetalle = vista.findViewById<View>(R.id.imagen) as ImageView
+        textDescripcion.text = arguments?.getString("name")
 
-        val objetoPersonaje = arguments
+        /*val objetoPersonaje = arguments
         var menuDia: PlatoDia? = null
         if (objetoPersonaje != null) {
             menuDia = objetoPersonaje.getSerializable("objeto") as PlatoDia
             asignarInformacion(menuDia)
-        }
+        }*/
 
         return vista
     }
