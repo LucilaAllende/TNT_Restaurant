@@ -46,19 +46,6 @@
             android:padding="10dp"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/txtPrecioPedido"
-            android:layout_width="75dp"
-            android:layout_height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="93dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:padding="10dp"
-            android:textSize="14sp" />
-
         <Button
             android:id="@+id/btnNotificarPedido"
             style="?android:attr/borderlessButtonStyle"
@@ -72,21 +59,8 @@
             android:layout_marginRight="38dp"
             android:background="#FFFFFF"
             android:drawableRight="@drawable/ic_alarm_add_pomodoro_24dp"
-            android:text="Notificarme"
+            android:text="Suscribirme"
             android:textColor="?attr/colorPrimary"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btnEliminarPedido"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="132dp"
-            android:layout_marginEnd="122dp"
-            android:layout_marginRight="121dp"
-            android:text="Eliminar Pedido"
-            android:textColor="#ff0000"
             tools:ignore="HardcodedText" />
 
     </RelativeLayout>
