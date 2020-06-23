@@ -1,16 +1,29 @@
 package com.example.appempleado
 
 import android.app.Activity
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.gson.annotations.SerializedName
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
     val REQUEST_CODE = 123
@@ -88,6 +101,12 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                                             "categoria" to tipoPlato)
                         val platoReference: DatabaseReference = database.reference.child("platoDia").push()
                         platoReference.setValue(plato)
+
+                        var body = txtNombre.text.toString() + " vuelve a estar disponible. Pedilo ahora!"
+                        var titulo = "No te lo pierdas!"
+                        var topico = txtNombre.text.toString().replace(" ", "_")
+                        agregarNotificacion(body,titulo,topico)
+
                         pbAltaPlato.visibility = View.INVISIBLE
                         Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
                         this.finish()
@@ -106,4 +125,72 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         }
     }
 
+
+
+
+    fun agregarNotificacion(body:String, titulo:String, topico:String) {
+        val apiService =   ServiceBuilder.buildService(RestApi::class.java)
+        val peticion = Peticion(  to = "/topics/"+topico,
+                                   notification = Notification(body=body,
+                                                               title = titulo,
+                                                               sound = "default",
+                                                               color="#ff4455"))
+        var call = apiService.addNotificacion(peticion)
+        call.enqueue(object : Callback<Result> {
+            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                if (response.isSuccessful){
+                    println("respuesta exitosa")
+                }
+            }
+            override fun onFailure(call: Call<Result>, t: Throwable) {
+                println("error")
+            }
+        })
+    }
+
+    data class Result(
+        var message_id: String=""
+    )
+
+    data class Notification (
+        var body: String?,
+        var title: String?,
+        var sound: String?,
+        var color: String?
+    )
+
+    data class Peticion (
+        var to:String="",
+        @SerializedName("notification") var notification:Notification
+    )
+    //TODO: esta clave dejarla en un archivo no harcodeada aca!
+    interface RestApi {
+        @Headers("Content-Type: application/json","Authorization: key=AAAA77Jxuy4:APA91bHzcGTqP3yIxNOeYZdB0a16bBAQ3UCa5sQ78DfrALwbUkKhVR9-8pxl2OGhPtRxdpB4oefP-G2-7h1ju6BAVq8JFUQJfRO4MUuOxJXSqhnxqmsJM7HoMzj4xsoZbmRI8ajAbpSZ")
+        @POST("send")
+        fun addNotificacion(@Body respuesta: Peticion): Call<Result>
+    }
+
+    object ServiceBuilder {
+        private val client = OkHttpClient.Builder().build()
+
+        private val retrofit = Retrofit.Builder()
+            .baseUrl("https://fcm.googleapis.com/fcm/") // change this IP for testing by your actual machine IP
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        fun<T> buildService(service: Class<T>): T{
+            return retrofit.create(service)
+        }
+    }
+
+
+
+
+
+
 }
+
+
+
+
