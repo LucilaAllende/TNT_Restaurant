@@ -40,11 +40,30 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_solicitar_direccion_pedido"
+        android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_solicitar_direccion" />
+
+    <fragment
+        android:id="@+id/nav_direccion_usuario"
+        android:name="com.example.appcliente.ui.pedido.DireccionFragment"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_direccion" />
+
+    <fragment
+        android:id="@+id/nav_ubicacion_usuario"
+        android:name="com.example.appcliente.ui.pedido.UbicacionFragment"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_ubicacion" />
+
+    <fragment
         android:id="@+id/nav_detalles_dia"
         android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
-        android:label="@string/menu_cuenta"
-        tools:layout="@layout/fragment_cuenta" />
-
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_plato">
+        <argument android:name="name"/>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_cuenta"
@@ -54,7 +73,7 @@
 
     <fragment
         android:id="@+id/nav_pedido"
-        android:name="com.example.appcliente.ui.historial.HistorialFragment"
+        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
         android:label="@string/menu_pedido"
         tools:layout="@layout/fragment_pedido" />
 

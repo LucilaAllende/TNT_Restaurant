@@ -18,6 +18,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 
 class MenuDiaFragment : Fragment() {
 
@@ -45,7 +49,22 @@ class MenuDiaFragment : Fragment() {
         if (recyclerView != null) {
             recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
-        recyclerView?.adapter = AdapterMenuDia(menuDia)
+        recyclerView?.adapter = AdapterMenuDia(menuDia){
+                item -> Toast.makeText(context, "Desde el fragment",Toast.LENGTH_SHORT).show()
+                val action = MenuDiaFragmentDirections.actionNavMenuDiaToNavDetallesDia("hola")
+
+                val options = navOptions {
+                    anim {
+                        enter = R.anim.slide_in_right
+                        exit = R.anim.slide_out_left
+                        popEnter = R.anim.slide_in_left
+                        popExit = R.anim.slide_out_right
+                    }
+                }
+
+                val bundle = bundleOf("name" to item.nombre)
+                findNavController().navigate(R.id.nav_detalles_dia, bundle, options)
+        }
         verificarPlato()
     }
 

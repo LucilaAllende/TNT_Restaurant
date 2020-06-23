@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,11 +23,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
+class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (PlatoDia) -> Unit) :
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
         private val btnVer: Button = view.findViewById(R.id.button_ver_detalles)
         private val context: Context = view.context
@@ -71,11 +72,13 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
             }
         }
 
+/*
         fun escuchame(){
             btnVer.setOnClickListener(this)
         }
+*/
 
-        override fun onClick(v: View?) {
+        fun onClick(v: View?) {
 
             val options = navOptions {
                 anim {
@@ -88,13 +91,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
 
             when (v?.id) {
                 R.id.button_ver_detalles -> {
+                    findNavController(DetallesPlatoFragment()).navigate(R.id.nav_detalles_dia, null, options)
 
-                    //findNavController(DetallesPlatoFragment()).navigate(R.id.detallesPlatoFragment, null, options)
-
-                    val intent = Intent(context, DetallesActivity::class.java)
-                    intent.putExtra("name", itemView.txtNombrePlato.text);
-                    intent.putExtra("ingredientes", itemView.txt_ingredientes.text )
-                    context.startActivity(intent)
                 }
             }
         }
@@ -174,7 +172,8 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position], holder)
         //set eventos
-        holder.escuchame()
+        //holder.escuchame()
+        holder.itemView.setOnClickListener { listener(list[position]) }
     }
 }
 

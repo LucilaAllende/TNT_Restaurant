@@ -35,4 +35,17 @@
     <string name="detail_location">"8 Rue Scribe, 75009 Paris, France"</string>
     <string name="ver_detalles">Ver Detalles</string>
     <string name="menu_pedido">Mi pedido</string>
+    <string name="enviar_pedido">Enviar Pedido</string>
+    <string name="enviar_domicilio">Enviar a mi domicilio</string>
+    <string name="ingresar_ubicacion">Ingresar mi ubicacion</string>
+    <string name="txt_calle">Calle</string>
+    <string name="txtNumero">N° Calle</string>
+    <string name="txt_retirar">Retirar en Buffet</string>
+    <string name="txt_titulo_direccion">Su direccion es:</string>
+    <string name="btn_confirmar_direccion">Confirmar</string>
+    <string name="txt_ciudad">Ciudad</string>
+    <string name="txt_ingrese_ubicacion">Ingrese su ubicación</string>
+    <string name="txt_calles_medio">¿Entre que calles se encuentra?</string>
+    <string name="n_piso">N° Piso</string>
+    <string name="n_departamento">N° Departamento</string>
 </resources>

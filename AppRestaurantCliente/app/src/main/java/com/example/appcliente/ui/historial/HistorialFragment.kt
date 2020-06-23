@@ -2,11 +2,13 @@ package com.example.appcliente.ui.historial
 
 import android.content.Context
 import android.graphics.Color
+import com.example.appcliente.R
 import android.os.Bundle
 import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
@@ -19,7 +21,10 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.content_item_md.view.*
 import kotlinx.android.synthetic.main.fragment_historial.*
+import kotlinx.android.synthetic.main.item_plato_historial.view.*
 import kotlinx.android.synthetic.main.item_pedido.view.*
 import kotlinx.coroutines.CoroutineScope
 import com.example.appcliente.R
