@@ -1,39 +1,23 @@
 package com.example.appcliente.ui.historial
 
-import android.content.Context
 import android.graphics.Color
 import com.example.appcliente.R
 import android.os.Bundle
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.*
-import androidx.room.Query
-import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.content_item_md.view.*
 import kotlinx.android.synthetic.main.fragment_historial.*
 import kotlinx.android.synthetic.main.item_plato_historial.view.*
-import kotlinx.android.synthetic.main.item_pedido.view.*
-import kotlinx.coroutines.CoroutineScope
-import com.example.appcliente.R
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.database.*
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.RemoteMessage
-import kotlinx.coroutines.launch
-
 
 class HistorialFragment : Fragment() {
 
@@ -161,7 +145,7 @@ class HistorialFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             var vh = ViewHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_pedido,
+                    R.layout.item_plato_historial,
                     parent,
                     false
                 )
@@ -248,111 +232,6 @@ class HistorialFragment : Fragment() {
         var notificarme: Boolean = false
     )
 
-    //ROOM para notificaciones
-    @Entity(tableName = "notificaciones")
-    data class Notificacion(
-        @PrimaryKey(autoGenerate = true)
-        var id: Int = 0,
-
-        @ColumnInfo(name = "platoId")
-        var platoId: String,
-
-        @ColumnInfo(name = "usuarioId")
-        var usuarioId: String,
-
-        @ColumnInfo(name = "nombrePlato")
-        var nombrePlato: String
-
-
-    )
-
-    //Creamos el DAO
-    @Dao
-    interface notificacionDAO {
-        @Query("SELECT * from notificaciones ORDER BY id ASC")
-        suspend fun getPlatos(): List<Notificacion>
-
-        @Insert(onConflict = OnConflictStrategy.IGNORE)
-        suspend fun insert(notificacion: Notificacion)
-
-        @Query("select * from notificaciones where nombrePlato = :nombre_plato and usuarioId = :usuario_id")
-        fun getNotificacion(nombre_plato: String, usuario_id: String): LiveData<List<Notificacion>>
-
-        @Query("delete from notificaciones where nombrePlato = :nombre_plato and usuarioId = :usuario_id")
-        suspend fun borrarNotificacion(nombre_plato: String, usuario_id: String)
-
-        @Query("DELETE FROM notificaciones")
-        suspend fun deleteAll()
-
-        @Insert(onConflict = OnConflictStrategy.IGNORE)
-        suspend fun insertar(notificacion: Notificacion)
-
-        @Query("select * from notificaciones")
-        fun getAll(): LiveData<List<Notificacion>>
-    }
-
-    //Creamos la BD
-    @Database(entities = arrayOf(Notificacion::class), version = 1)
-    abstract class NotificacionesRoomDatabase : RoomDatabase() {
-        abstract fun notificacionDao(): notificacionDAO
-
-        companion object {
-            @Volatile
-            private var INSTANCIA: NotificacionesRoomDatabase? = null
-
-            fun obtenerDatabase(context: Context): NotificacionesRoomDatabase {
-                val instanciaTemporal = INSTANCIA
-                if (instanciaTemporal != null) {
-                    return instanciaTemporal
-                }
-                synchronized(this) {
-                    val instancia = Room.databaseBuilder(
-                        context.applicationContext,
-                        NotificacionesRoomDatabase::class.java,
-                        "notificaciones_database"
-                    )
-                        //.addCallback(PartidoDatabaseCallback(viewModelScope))
-                        .build()
-                    INSTANCIA = instancia
-                    return instancia
-                }
-            }
-
-
-            private class PartidoDatabaseCallback(private val scope: CoroutineScope) :
-                RoomDatabase.Callback() {
-                /* importante: destacar el scope como parametro */
-
-                /**
-                 * Lo que hacemos en esta clase es sobreescribir el método onOpen
-                 * para cargar la base de datos.
-                 *
-                 */
-                override fun onOpen(db: SupportSQLiteDatabase) {
-                    super.onOpen(db)
-                    INSTANCIA?.let { database ->
-                        scope.launch {
-                            cargarBaseDeDatos(database.notificacionDao())
-                        }
-                    }
-                }
-
-                suspend fun cargarBaseDeDatos(notificacionDAO: notificacionDAO) {
-
-                    notificacionDAO.insert(
-                        Notificacion(
-                            1,
-                            "idunplato",
-                            "UsuarioID",
-                            "carneConPapas"
-                        )
-                    )
-
-                }
-            }
-
-        }
-    }
 
 data class Usuario(
     var apellido: String ="",
