@@ -11,60 +11,180 @@
         android:layout_height="match_parent"
         android:background="#7692B4">
 
-        <EditText
-            android:id="@+id/txtNombre"
-            android:layout_width="301dp"
-            android:layout_height="65dp"
-            android:ems="10"
-            android:hint="Nombre"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/txtSignInCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_singing_cuenta"
+            app:layout_constraintBottom_toTopOf="@+id/txtNombre"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.143" />
-
-        <EditText
-            android:id="@+id/txtPassword"
-            android:layout_width="301dp"
-            android:layout_height="65dp"
-            android:ems="10"
-            android:hint="contraseña"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="301dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/txtApellido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSignInCuenta" />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="301dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="contraseña"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/editCalleDireccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+        <EditText
             android:id="@+id/txtEmail"
             android:layout_width="301dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txtPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.379" />
+            app:layout_constraintTop_toBottomOf="@+id/txtApellido" />
 
         <EditText
             android:id="@+id/txtApellido"
             android:layout_width="301dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:ems="10"
             android:hint="Apellido"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txtEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.266" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+
+        <EditText
+            android:id="@+id/editCalleDireccion"
+            android:layout_width="301dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/txt_calle"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editNumCalleDireccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarSinging" />
+
+
+        <EditText
+            android:id="@+id/editNumCalleDireccion"
+            android:layout_width="143dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/txtNumero"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/editPisoDireccion"
+            app:layout_constraintEnd_toStartOf="@+id/editCiudadDireccion"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editCalleDireccion" />
+
+        <EditText
+            android:id="@+id/editCiudadDireccion"
+            android:layout_width="202dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/txt_ciudad"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editDptoDireccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editNumCalleDireccion"
+            app:layout_constraintTop_toBottomOf="@+id/editCalleDireccion" />
+
+
+        <EditText
+            android:id="@+id/editPisoDireccion"
+            android:layout_width="143dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/n_piso"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/txtCallesDireccion"
+            app:layout_constraintEnd_toStartOf="@+id/editDptoDireccion"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNumCalleDireccion" />
+
+        <EditText
+            android:id="@+id/editDptoDireccion"
+            android:layout_width="202dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/n_departamento"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/txtCallesDireccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/editPisoDireccion"
+            app:layout_constraintTop_toBottomOf="@+id/editCiudadDireccion" />
+
+        <TextView
+            android:id="@+id/txtCallesDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_calles_medio"
+            app:layout_constraintBottom_toTopOf="@+id/editCalle2Direccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPisoDireccion" />
+
+
+        <EditText
+            android:id="@+id/editCalle2Direccion"
+            android:layout_width="301dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/txt_calle"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editCalle1Direccion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCallesDireccion" />
+
+        <EditText
+            android:id="@+id/editCalle1Direccion"
+            android:layout_width="301dp"
+            android:layout_height="60dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/txt_calle"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/btnSinging"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editCalle2Direccion" />
 
         <ProgressBar
             android:id="@+id/progressBarSinging"
@@ -84,11 +204,12 @@
             android:layout_width="259dp"
             android:layout_height="68dp"
             android:text="Registrarse"
+            style="@android:style/Widget.DeviceDefault.Button.Colored"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.723" />
+            app:layout_constraintTop_toBottomOf="@+id/editCalle1Direccion" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

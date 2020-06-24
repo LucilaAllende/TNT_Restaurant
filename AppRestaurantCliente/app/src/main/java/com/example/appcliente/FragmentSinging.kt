@@ -57,11 +57,28 @@ class FragmentSinging : Fragment() {
         var apellido = binding.txtApellido.text.toString()
         var password = binding.txtPassword.text.toString()
         var email = binding.txtEmail.text.toString()
+        var calle_vivienda = binding.editCalleDireccion.text.toString()
+        var calle_izquierda = binding.editCalle1Direccion.text.toString()
+        var calle_derecha = binding.editCalle2Direccion.text.toString()
+        var ciudad = binding.editCiudadDireccion.text.toString()
+        var numero_calle = binding.editNumCalleDireccion.text.toString()
+        var numero_piso = binding.editPisoDireccion.text.toString()
+        var numero_departamento = binding.editDptoDireccion.text.toString()
+
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         dbReference = database.reference.child("Usuarios")
-
-        if (!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(apellido) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(email)){
+        if (!TextUtils.isEmpty(nombre) &&
+            !TextUtils.isEmpty(apellido) &&
+            !TextUtils.isEmpty(password) &&
+            !TextUtils.isEmpty(email) &&
+            !TextUtils.isEmpty(calle_vivienda) &&
+            !TextUtils.isEmpty(calle_izquierda) &&
+            !TextUtils.isEmpty(calle_derecha) &&
+            !TextUtils.isEmpty(ciudad) &&
+            !TextUtils.isEmpty(numero_calle) &&
+            !TextUtils.isEmpty(numero_piso) &&
+            !TextUtils.isEmpty(numero_departamento)){
             progressBar = binding.progressBarSinging
             progressBar.visibility = View.VISIBLE
             auth.createUserWithEmailAndPassword(email,password)
@@ -75,6 +92,13 @@ class FragmentSinging : Fragment() {
                             userBD.child("nombre").setValue(nombre)
                             userBD.child("apellido").setValue(apellido)
                             userBD.child("email").setValue(email)
+                            userBD.child("calle_vivienda").setValue(calle_vivienda)
+                            userBD.child("calle_izquierda").setValue(calle_izquierda)
+                            userBD.child("calle_derecha").setValue(calle_derecha)
+                            userBD.child("ciudad").setValue(ciudad)
+                            userBD.child("numero_calle").setValue(numero_calle)
+                            userBD.child("numero_piso").setValue(numero_piso)
+                            userBD.child("numero_departamento").setValue(numero_departamento)
                             action()
                         }
                         else{ //TODO: mejorar esto adentro de un try catch!
