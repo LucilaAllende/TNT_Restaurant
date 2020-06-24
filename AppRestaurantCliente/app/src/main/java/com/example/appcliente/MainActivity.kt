@@ -11,18 +11,13 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.appcliente.ui.home.menudia.DetallesPlatoFragment
-import com.example.appcliente.ui.home.menudia.MenuDiaFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-//, IComunicaFragments agregar para que implemente esta interface
-class MainActivity() : AppCompatActivity(){
+
+class MainActivity : AppCompatActivity(){
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-
-    var menuFragment: MenuDiaFragment? = null
-    var detalleFragment: DetallesPlatoFragment ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,23 +53,7 @@ class MainActivity() : AppCompatActivity(){
                 findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentInicio)
             }
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 
-/*    override fun enviarMenuDia(menuDia: PlatoDia){
-        detalleFragment = this.supportFragmentManager
-            .findFragmentById(R.id.nav_detalles_plato) as DetallesPlatoFragment?
-        if (detalleFragment != null && findViewById<View?>(R.id.activity_main) == null) {
-            detalleFragment?.asignarInformacion(menuDia)
-        } else {
-            detalleFragment = DetallesPlatoFragment()
-            val bundleEnvio = Bundle()
-            bundleEnvio.putSerializable("objeto", menuDia)
-            detalleFragment!!.arguments = bundleEnvio
-
-            //cargamos el fragment en el Activity
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main, detalleFragment!!).addToBackStack(null).commit()
-        }
-    }*/
 }

@@ -25,8 +25,8 @@ class DetallesMateFragment : Fragment() {
         // Inflate the layout for this fragment
         val vista: View = inflater.inflate(R.layout.fragment_detalles_mate, container, false)
 
-        val textDescripcion = vista.findViewById<View>(R.id.descripcionId) as TextView
-        val imagenDetalle = vista.findViewById<View>(R.id.imagen) as ImageView
+        val textDescripcion = vista.findViewById<View>(R.id.txtIngredientesDesayunoMerienda) as TextView
+        val imagenDetalle = vista.findViewById<View>(R.id.imagenIngredientesDesayunoMerienda) as ImageView
         textDescripcion.text = arguments?.getString("name")
 
         return vista

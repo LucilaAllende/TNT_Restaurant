@@ -33,7 +33,7 @@
         deserunt mollit anim id est laborum.
     </string>
     <string name="detail_location">"8 Rue Scribe, 75009 Paris, France"</string>
-    <string name="ver_detalles">Ver Detalles</string>
+    <string name="ver_ingredientes">Ingredientes</string>
     <string name="menu_pedido">Mi pedido</string>
     <string name="enviar_pedido">Enviar Pedido</string>
     <string name="enviar_domicilio">Enviar a mi domicilio</string>
@@ -48,4 +48,7 @@
     <string name="txt_calles_medio">¿Entre que calles se encuentra?</string>
     <string name="n_piso">N° Piso</string>
     <string name="n_departamento">N° Departamento</string>
+    <string name="nombre_almuerzo_ingredientes">Nombre Almuerzo</string>
+    <string name="ingredientes_almuerzo">Ingredientes</string>
+    <string name="id_plato_md">id</string>
 </resources>

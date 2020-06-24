@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imagen"
+        android:id="@+id/imagenIngredientesAlmmuerzo"
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:contentDescription="@string/descripcionPortada"
@@ -17,9 +17,20 @@
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/descripcionId"
+        android:id="@+id/txtNombreAlmuerzo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Descripcion"/>
+        android:background="@color/accentColor"
+        android:text="@string/nombre_almuerzo_ingredientes"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txtIngredientesAlmuerzo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ingredientes_almuerzo"
+        android:textSize="18sp" />
 
 </LinearLayout>

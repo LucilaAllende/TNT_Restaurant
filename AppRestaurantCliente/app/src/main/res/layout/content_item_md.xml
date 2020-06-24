@@ -19,7 +19,7 @@
             android:id="@+id/txtIdPlatoMD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/id_plato_md"
             android:visibility="invisible" />
 
         <ImageView
@@ -72,7 +72,7 @@
             android:layout_marginTop="-1dp"
             android:layout_marginEnd="-19dp"
             android:layout_marginRight="-19dp"
-            android:text="@string/ver_detalles"
+            android:text="@string/ver_ingredientes"
             android:textColor="?attr/colorPrimary"
             tools:ignore="HardcodedText" />
 

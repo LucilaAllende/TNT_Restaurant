@@ -1,9 +1,6 @@
 package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
-import com.example.appcliente.ui.interfaces.IComunicaFragments
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,8 +23,6 @@ class MenuDiaFragment : Fragment() {
 
     var vista: View? = null
     val menuDia = ArrayList<PlatoDia>()
-    var actividad: Activity? = null
-    var interfaceComunicaFragments: IComunicaFragments? = null
     var recyclerView: RecyclerView? = null
 
     override fun onCreateView(
@@ -51,7 +45,7 @@ class MenuDiaFragment : Fragment() {
         }
         recyclerView?.adapter = AdapterMenuDia(menuDia){
                 item -> Toast.makeText(context, "Desde el fragment",Toast.LENGTH_SHORT).show()
-                val action = MenuDiaFragmentDirections.actionNavMenuDiaToNavDetallesDia("hola")
+                //val action = MenuDiaFragmentDirections.actionNavMenuDiaToNavDetallesDia("hola", "ingredientes")
 
                 val options = navOptions {
                     anim {
@@ -62,7 +56,7 @@ class MenuDiaFragment : Fragment() {
                     }
                 }
 
-                val bundle = bundleOf("name" to item.nombre)
+                val bundle = bundleOf("nombre" to item.nombre,"ingredientes" to item.ingredientes)
                 findNavController().navigate(R.id.nav_detalles_dia, bundle, options)
         }
         verificarPlato()

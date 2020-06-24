@@ -44,7 +44,8 @@
         android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalles_plato">
-        <argument android:name="name"/>
+        <argument android:name="nombre"/>
+        <argument android:name="ingredientes"/>
     </fragment>
 
     <fragment

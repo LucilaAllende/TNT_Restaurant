@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.example.appcliente.R
+//import androidx.navigation.fragment.navArgs
 
 
 /**
@@ -16,9 +15,7 @@ import com.example.appcliente.R
  */
 class DetallesPlatoFragment : Fragment() {
 
-    var textDescripcion: TextView? = null
-    var imagenDetalle: ImageView? = null
-    val args: DetallesPlatoFragmentArgs by navArgs()
+    //val args: DetallesPlatoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +26,12 @@ class DetallesPlatoFragment : Fragment() {
         val vista: View =
             inflater.inflate(R.layout.fragment_detalles_plato, container, false)
 
-        val textDescripcion = vista.findViewById<View>(R.id.descripcionId) as TextView
-        val imagenDetalle = vista.findViewById<View>(R.id.imagen) as ImageView
-        textDescripcion.text = arguments?.getString("name")
+        val textIngredientes = vista.findViewById<View>(R.id.txtIngredientesAlmuerzo) as TextView
+        val textNombre = vista.findViewById<View>(R.id.txtNombreAlmuerzo) as TextView
+        //val imagenDetalle = vista.findViewById<View>(R.id.imagenIngredientesAlmmuerzo) as ImageView
+
+        textIngredientes.text = arguments?.getString("ingredientes")
+        textNombre.text = arguments?.getString("nombre")
 
 
         return vista
