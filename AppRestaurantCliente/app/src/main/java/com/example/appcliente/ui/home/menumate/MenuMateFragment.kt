@@ -3,6 +3,7 @@ package com.example.appcliente.ui.home.menumate
 import com.example.appcliente.R
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,13 +36,20 @@ class MenuMateFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_menu_mate, container, false)
-        verificarPlato()
+        //Log.i("Pase a tab")
+        //verificarPlato()
         return vista
+    }
+
+    override fun onResume() {
+        super.onResume()
+        verificarPlato()
     }
 
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        verificarPlato()
         recyclerView = activity?.findViewById(R.id.recyclearMate)
 
         if (recyclerView != null) {

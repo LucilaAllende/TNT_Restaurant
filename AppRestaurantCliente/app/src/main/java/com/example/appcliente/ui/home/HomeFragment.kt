@@ -51,7 +51,7 @@ open class HomeFragment : Fragment() {
             }
 
             //ESTE CODIGO UTILIZO PARA VOLVER A MOSTRAR LA BARRA
-            var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+            val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
             appBar!!.visibility = View.VISIBLE
 
 
