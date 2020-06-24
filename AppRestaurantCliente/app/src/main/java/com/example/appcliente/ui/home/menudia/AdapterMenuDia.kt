@@ -2,7 +2,6 @@ package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
 import android.net.Uri
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +19,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (PlatoDia) -> Unit) :
+class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener: (PlatoDia) -> Unit) :
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
 
-        fun bindItems (data: PlatoDia, holder: ViewHolder){
+        fun bindItems (data: PlatoDia){
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtCategoria)
             val name: TextView = itemView.findViewById(R.id.txtNombrePlato)
@@ -132,20 +131,18 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
         }
 
         private fun mostrarSnackbar(mensaje: String){
-            val snackBar = itemView?.let {
+            val snackBar = itemView.let {
                 Snackbar.make(
                     it,
                     mensaje, Snackbar.LENGTH_LONG
                 )
             }
-            if (snackBar != null) {
-                snackBar.show()
-            }
+            snackBar.show()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var v = LayoutInflater.from(parent?.context).inflate(R.layout.content_item_md, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_item_md, parent, false)
         return ViewHolder(v)
     }
 
@@ -154,14 +151,14 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(list[position], holder)
+        holder.bindItems(list[position])
         val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
         btnVer.setOnClickListener { listener(list[position]) }
 
     }
 }
 
-data class Pedido(
+/*data class Pedido(
     var id: String ="",
     var clienteId: String = "",
     var direccionEnvio: String = "",
@@ -171,4 +168,4 @@ data class Pedido(
     var nombrePlato: String ="",
     var precioPlato:String="",
     var tipo:String=""
-)
+)*/

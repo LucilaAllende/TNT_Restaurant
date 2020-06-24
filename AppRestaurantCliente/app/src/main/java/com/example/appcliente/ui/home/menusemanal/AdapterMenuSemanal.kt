@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,12 +22,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
+class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listener: (Vianda) -> Unit) :
     RecyclerView.Adapter<AdapterMenuSemanal.ViewHolder>(){
 
     //clase para manejar nuestra vista
-    class ViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) { //el view que vamos agregar dentro de este es el view que recibimos en la clase viewHolder
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         //recibimos lo datos que se agregan dentro de nuestra vista
         fun bindItems (data: Vianda){
@@ -35,7 +35,6 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
             val title: TextView = itemView.findViewById(R.id.txtDia)
             val name: TextView = itemView.findViewById(R.id.txtNombreVianda)
             val image: ImageView = itemView.findViewById(R.id.imagenS)
-            val btnDetalles: Button = itemView.findViewById(R.id.button_ver_detalles)
             val btnAgregarPedido = itemView.button_agregar_pedido
             val precio: TextView = itemView.findViewById(R.id.txtPrecioVianda)
 
@@ -45,7 +44,6 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
 
             Glide.with(itemView.context).load(Uri.parse(data.imagenUrl)).into(image)
 
-            btnDetalles.setOnClickListener { verDetalles() }
             btnAgregarPedido.setOnClickListener{ agregarPedido()}
 
             itemView.setOnClickListener{
@@ -53,7 +51,7 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
             }
         }
 
-        private fun verDetalles() {
+        override fun onClick(v: View?) {
 
             val options = navOptions {
                 anim {
@@ -64,8 +62,13 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
                 }
             }
 
-            Toast.makeText(itemView.context, "Que onda", Toast.LENGTH_LONG).show()
-            //findNavController().navigate(R.id.nav_detalles_vianda, null, options)
+            when (v?.id) {
+                R.id.button_ver_detalles -> {
+                    NavHostFragment.findNavController(MenuSemanalFragment())
+                        .navigate(R.id.nav_detalles_dia, null, options)
+
+                }
+            }
         }
 
         private fun agregarPedido(){
@@ -99,20 +102,18 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
         }
 
         private fun mostrarSnackbar(mensaje: String){
-            val snackBar = itemView?.let {
+            val snackBar = itemView.let {
                 Snackbar.make(
                     it,
                     mensaje, Snackbar.LENGTH_LONG
                 )
             }
-            if (snackBar != null) {
-                snackBar.show()
-            }
+            snackBar.show()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var v = LayoutInflater.from(parent?.context).inflate(R.layout.content_item_ms, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.content_item_ms, parent, false)
         return ViewHolder(v)
     }
 
@@ -122,10 +123,12 @@ class AdapterMenuSemanal(var list: ArrayList<Vianda>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
+        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
+        btnVer.setOnClickListener { listener(list[position]) }
     }
 }
 
-data class Pedido(
+/*data class Pedido(
     var id: String ="",
     var clienteId: String = "",
     var direccionEnvio: String = "",
@@ -135,4 +138,4 @@ data class Pedido(
     var nombrePlato: String ="",
     var precioPlato:String="",
     var tipo:String=""
-)
+)*/

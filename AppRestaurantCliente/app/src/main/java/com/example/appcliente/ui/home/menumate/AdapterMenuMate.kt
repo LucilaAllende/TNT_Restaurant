@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AdapterMenuMate(var list: ArrayList<MenuMate>, private val listener: (MenuMate) -> Unit) :
+class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listener: (MenuMate) -> Unit) :
     RecyclerView.Adapter<AdapterMenuMate.ViewHolder>(){
 
     //clase para manejar nuestra vista
@@ -133,7 +133,7 @@ class AdapterMenuMate(var list: ArrayList<MenuMate>, private val listener: (Menu
     }
 }
 
-data class Pedido(
+/*data class Pedido(
     var id: String ="",
     var clienteId: String = "",
     var direccionEnvio: String = "",
@@ -143,4 +143,4 @@ data class Pedido(
     var nombrePlato: String ="",
     var precioPlato:String="",
     var tipo:String=""
-)
+)*/

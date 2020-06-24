@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -41,7 +45,22 @@ class MenuSemanalFragment : Fragment() {
             recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
         //llenarMenu(viandas)
-        recyclerView?.adapter= AdapterMenuSemanal(viandas)
+        recyclerView?.adapter= AdapterMenuSemanal(viandas){
+                item -> Toast.makeText(context, "Desde el fragment", Toast.LENGTH_SHORT).show()
+            val action = MenuSemanalFragmentDirections.actionNavMenuSemanalToNavDetallesVianda("hola")
+
+            val options = navOptions {
+                anim {
+                    enter = R.anim.slide_in_right
+                    exit = R.anim.slide_out_left
+                    popEnter = R.anim.slide_in_left
+                    popExit = R.anim.slide_out_right
+                }
+            }
+
+            val bundle = bundleOf("name" to item.nombre)
+            findNavController().navigate(R.id.nav_detalles_dia, bundle, options)
+        }
         verificarPlato()
     }
 

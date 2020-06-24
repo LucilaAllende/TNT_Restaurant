@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/nav_menu_dia"
         android:name="com.example.appcliente.ui.home.menudia.MenuDiaFragment"
-        android:label="Ingredientes"
+        android:label="Almuerzo"
         tools:layout="@layout/fragment_detalles_plato">
         <action
             android:id="@+id/action_nav_menu_dia_to_nav_detalles_dia"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/nav_menu_mate"
         android:name="com.example.appcliente.ui.home.menumate.MenuMateFragment"
-        android:label="Ingredientes"
+        android:label="Desayuno-Merienda"
         tools:layout="@layout/fragment_detalles_mate">
         <action
             android:id="@+id/action_nav_menu_mate_to_nav_detalles_mate"
@@ -63,6 +63,25 @@
         android:name="com.example.appcliente.ui.home.menumate.DetallesMateFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalles_mate">
+        <argument android:name="name"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_menu_semanal"
+        android:name="com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment"
+        android:label="Viandas Semanales"
+        tools:layout="@layout/fragment_detalles_vianda">
+        <action
+            android:id="@+id/action_nav_menu_semanal_to_nav_detalles_vianda"
+            app:destination="@id/nav_detalles_vianda" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_vianda"
+        android:name="com.example.appcliente.ui.home.menusemanal.DetallesViandaFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_vianda">
         <argument android:name="name"/>
     </fragment>
 
