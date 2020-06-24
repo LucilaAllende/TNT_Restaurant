@@ -40,6 +40,33 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_detalles_dia"
+        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_plato">
+        <argument android:name="name"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_menu_mate"
+        android:name="com.example.appcliente.ui.home.menumate.MenuMateFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_mate">
+        <action
+            android:id="@+id/action_nav_menu_mate_to_nav_detalles_mate"
+            app:destination="@id/nav_detalles_mate" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_mate"
+        android:name="com.example.appcliente.ui.home.menumate.DetallesMateFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_mate">
+        <argument android:name="name"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_solicitar_direccion_pedido"
         android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
         android:label="@string/menu_pedido"
@@ -57,13 +84,7 @@
         android:label="@string/menu_pedido"
         tools:layout="@layout/fragment_ubicacion" />
 
-    <fragment
-        android:id="@+id/nav_detalles_dia"
-        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
-        android:label="Ingredientes"
-        tools:layout="@layout/fragment_detalles_plato">
-        <argument android:name="name"/>
-    </fragment>
+
 
     <fragment
         android:id="@+id/nav_cuenta"
