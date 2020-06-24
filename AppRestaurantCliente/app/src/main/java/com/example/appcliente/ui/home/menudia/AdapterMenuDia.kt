@@ -3,14 +3,11 @@ package com.example.appcliente.ui.home.menudia
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.cardview.widget.CardView
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,11 +24,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
     RecyclerView.Adapter<AdapterMenuDia.ViewHolder>(){
 
     //clase para manejar nuestra vista
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-
-        private val btnVer: Button = view.findViewById(R.id.button_ver_detalles)
-        private val context: Context = view.context
-
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener{
 
         fun bindItems (data: PlatoDia, holder: ViewHolder){
             //variables para nuestras vistas
@@ -53,9 +46,6 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
 
             verificarCategoria(data, title)
             itemView.button_agregar_pedido.setOnClickListener{verificarPedido()}
-            itemView.setOnClickListener{
-                Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
-            }
         }
 
 
@@ -72,13 +62,7 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
             }
         }
 
-/*
-        fun escuchame(){
-            btnVer.setOnClickListener(this)
-        }
-*/
-
-        fun onClick(v: View?) {
+        override fun onClick(v: View?) {
 
             val options = navOptions {
                 anim {
@@ -171,9 +155,9 @@ class AdapterMenuDia(var list: ArrayList<PlatoDia>, private val listener: (Plato
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position], holder)
-        //set eventos
-        //holder.escuchame()
-        holder.itemView.setOnClickListener { listener(list[position]) }
+        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
+        btnVer.setOnClickListener { listener(list[position]) }
+
     }
 }
 
