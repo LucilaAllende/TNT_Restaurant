@@ -64,7 +64,8 @@
         android:name="com.example.appcliente.ui.home.menumate.DetallesMateFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalles_mate">
-        <argument android:name="name"/>
+        <argument android:name="nombre"/>
+        <argument android:name="ingredientes"/>
     </fragment>
 
     <fragment
@@ -83,7 +84,8 @@
         android:name="com.example.appcliente.ui.home.menusemanal.DetallesViandaFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalles_vianda">
-        <argument android:name="name"/>
+        <argument android:name="nombre"/>
+        <argument android:name="ingredientes"/>
     </fragment>
 
     <fragment

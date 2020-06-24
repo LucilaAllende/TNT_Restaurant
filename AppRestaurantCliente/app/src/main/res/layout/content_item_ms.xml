@@ -61,7 +61,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button_ver_detalles"
+            android:id="@+id/button_ver_ingredientes_vianda"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtNombreVianda"
             android:layout_alignEnd="@id/txtNombreVianda"
-            android:layout_alignRight="@id/button_ver_detalles"
+            android:layout_alignRight="@id/button_ver_ingredientes_vianda"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="122dp"
             android:layout_marginRight="121dp"

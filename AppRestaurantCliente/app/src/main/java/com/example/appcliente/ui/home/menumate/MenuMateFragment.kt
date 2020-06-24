@@ -2,8 +2,6 @@ package com.example.appcliente.ui.home.menumate
 
 import com.example.appcliente.R
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,12 +22,12 @@ import com.google.firebase.database.FirebaseDatabase
 /**
  * A simple [Fragment] subclass.
  */
-val paraMate= ArrayList<MenuMate>()
+
 
 class MenuMateFragment : Fragment() {
     var recyclerView: RecyclerView? = null
     var vista: View? = null
-
+    val paraMate= ArrayList<MenuMate>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,28 +39,6 @@ class MenuMateFragment : Fragment() {
         return vista
     }
 
-    private fun verDetalles() {
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-        Toast.makeText(context, "Que onda", Toast.LENGTH_LONG).show()
-    }
-
-    // TODO : Metodo que muestra el mensaje
-    fun showDialog() {
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setMessage("The message here")
-        dialogBuilder.setPositiveButton("Done",
-            DialogInterface.OnClickListener { dialog, whichButton -> })
-        val b = dialogBuilder.create()
-        b.show()
-    }
-
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -72,12 +48,9 @@ class MenuMateFragment : Fragment() {
             recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
 
-
-        //llenarMenu(paraMate)
-
         recyclerView?.adapter= AdapterMenuMate(paraMate){
-                item -> Toast.makeText(context, "Desde el fragment",Toast.LENGTH_SHORT).show()
-            val action = MenuMateFragmentDirections.actionNavMenuMateToNavDetallesMate("hola")
+                item -> Toast.makeText(context, "Desde el fragment Mate",Toast.LENGTH_SHORT).show()
+            //val action = MenuMateFragmentDirections.actionNavMenuMateToNavDetallesMate("hola")
 
             val options = navOptions {
                 anim {
@@ -89,10 +62,8 @@ class MenuMateFragment : Fragment() {
             }
 
             val bundle = bundleOf("name" to item.nombre)
-            findNavController().navigate(R.id.nav_detalles_dia, bundle, options)
+            findNavController().navigate(R.id.nav_detalles_mate, bundle, options)
         }
-
-
     }
 
     private fun deboAgregarPlato(merienda: MenuMate): Boolean {
@@ -127,7 +98,7 @@ class MenuMateFragment : Fragment() {
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                 if(p0.childrenCount > 0){
-                    var merienda = p0.getValue(MenuMate::class.java)!!
+                    val merienda = p0.getValue(MenuMate::class.java)!!
                     merienda.id = p0.key.toString()
                     if (deboAgregarPlato(merienda)){
                         paraMate.add(merienda)
@@ -147,54 +118,4 @@ class MenuMateFragment : Fragment() {
             }
         })
     }
-
-    //Esto se va a borrar cuando trabajemos directamente con la BD
-    private fun llenarMenu(paraMate: ArrayList<MenuMate>) {
-        paraMate.add(
-            MenuMate(
-                "id1",
-                "Tortas fritas",
-                "Harina\n" +
-                        "Grasa\n" +
-                        "Agua\n" +
-                        "Sal\n" +
-                        "Aceite",
-                "R.drawable.mate1",
-                "Salado",
-                "20.50"
-            )
-        )
-        paraMate.add(
-            MenuMate(
-                "id2",
-                "Churros rellenos de dulce de leche",
-                "Harina\n" +
-                        "Azucar\n" +
-                        "Agua\n" +
-                        "Sal\n" +
-                        "Aceite\n+" +
-                        "Dulce de Leche",
-                "R.drawable.mate2",
-                "Agridulce",
-                "20.50"
-            )
-        )
-        paraMate.add(
-            MenuMate(
-                "id3",
-                "Tarta de manzana",
-                "Harina\n" +
-                        "Azucar\n" +
-                        "Leche\n" +
-                        "Manzana\n" +
-                        "Huevo\n+" +
-                        "Mermelada de melocotón",
-                "R.drawable.mate3",
-                "Dulce",
-                "20.50"
-            )
-        )
-    }
-
-
 }

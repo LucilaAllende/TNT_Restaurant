@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.appcliente.R
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -46,8 +45,8 @@ class MenuSemanalFragment : Fragment() {
         }
         //llenarMenu(viandas)
         recyclerView?.adapter= AdapterMenuSemanal(viandas){
-                item -> Toast.makeText(context, "Desde el fragment", Toast.LENGTH_SHORT).show()
-            val action = MenuSemanalFragmentDirections.actionNavMenuSemanalToNavDetallesVianda("hola")
+                item -> Toast.makeText(context, "Desde el fragment Vianda", Toast.LENGTH_SHORT).show()
+            //val action = MenuSemanalFragmentDirections.actionNavMenuSemanalToNavDetallesVianda("hola")
 
             val options = navOptions {
                 anim {
@@ -58,8 +57,8 @@ class MenuSemanalFragment : Fragment() {
                 }
             }
 
-            val bundle = bundleOf("name" to item.nombre)
-            findNavController().navigate(R.id.nav_detalles_dia, bundle, options)
+            val bundle = bundleOf("nombre" to item.nombre,"ingredientes" to item.ingredientes)
+            findNavController().navigate(R.id.nav_detalles_vianda, bundle, options)
         }
         verificarPlato()
     }
@@ -95,9 +94,9 @@ class MenuSemanalFragment : Fragment() {
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                 val vianda = p0.getValue(Vianda::class.java)
                 vianda!!.id = p0.key.toString()
-                if (deboAgregarPlato(vianda!!)) {
-                    viandas.add(vianda!!)
-                    recyclerView?.getAdapter()?.notifyDataSetChanged();
+                if (deboAgregarPlato(vianda)) {
+                    viandas.add(vianda)
+                    recyclerView?.adapter?.notifyDataSetChanged()
                 }
             }
 
@@ -105,96 +104,4 @@ class MenuSemanalFragment : Fragment() {
             }
         })
     }
-    //Esto se va a borrar cuando trabajemos directamente con la BD
-    private fun llenarMenu(viandas: ArrayList<Vianda>) {
-        viandas.add(
-            Vianda(
-                "id 1",
-                "Gratinado de puerros con jamón y queso",
-                "Puerro en conserva\n" +
-                        "Queso Edam en lonchas\n" +
-                        "Jamón de York en lonchas\n" +
-                        "Salsa bechamel\n" +
-                        "Queso rallado para gratinar",
-                "R.drawable.vianda1",
-                "Lunes",
-                "$45.20"
-            )
-        )
-        viandas.add(
-            Vianda(
-                "id 2",
-                "Sándwich de ensalada de huevo",
-                "Huevos\n" +
-                        "Cebolla\n" +
-                        "Mostaza\n" +
-                        "Creme Fraiche\n" +
-                        "Mayonesa\n" +
-                        "Pan de molde sin corteza\n",
-                "R.drawable.vianda2",
-                "Martes",
-                "$45.20"
-            )
-        )
-        viandas.add(
-            Vianda(
-                "id 3",
-                "Tarta de espinaca",
-                "Tapas de tarta\n" +
-                        "Espinaca\n" +
-                        "Cebolla\n" +
-                        "Ajo\n" +
-                        "Huevo\n" +
-                        "Aceitunas verdes\n" +
-                        "Aceite de oliva\n" +
-                        "Queso parmesano\n" +
-                        "Sal \n" +
-                        "Pimienta\n" +
-                        "Nuez moscada\n",
-                "R.drawable.vianda3",
-                "Miercoles",
-                "$45.20"
-            )
-        )
-        viandas.add(
-            Vianda(
-                "id 4",
-                "Pizza",
-                "Tapas de tarta\n" +
-                        "Harina\n" +
-                        "Levadura\n" +
-                        "Sal\n" +
-                        "Aceite\n" +
-                        "Salsa de tomate\n" +
-                        "Mozzarella rallada\n" +
-                        "Jamón cocido.\n" +
-                        "Aceitunas negra \n" +
-                        "Orégano seco \n",
-                "R.drawable.vianda4",
-                "Jueves",
-                "$45.20"
-            )
-        )
-        viandas.add(
-            Vianda(
-                "id 5",
-                "Canelones de pollo",
-                "Tapas de tarta\n" +
-                        "Pechuga de pollo\n" +
-                        "Cebolla\n" +
-                        "Ajo\n" +
-                        "Apio\n" +
-                        "Huevo\n" +
-                        "Perejil\n" +
-                        "Queso rallado\n" +
-                        "Sal \n" +
-                        "Pimienta\n" +
-                        "Aceite de oliva virgen extra\n",
-                "R.drawable.vianda5",
-                "Viernes",
-                "$45.20"
-            )
-        )
-    }
-
 }

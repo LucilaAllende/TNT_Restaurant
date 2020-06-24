@@ -73,7 +73,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
             }
 
             when (v?.id) {
-                R.id.button_ver_detalles -> {
+                R.id.button_ver_ingredientes_almuerzo -> {
                     findNavController(DetallesPlatoFragment()).navigate(R.id.nav_detalles_dia, null, options)
 
                 }
@@ -152,7 +152,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
-        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
+        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_ingredientes_almuerzo)
         btnVer.setOnClickListener { listener(list[position]) }
 
     }

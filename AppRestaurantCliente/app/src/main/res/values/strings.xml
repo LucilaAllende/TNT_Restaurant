@@ -51,4 +51,8 @@
     <string name="nombre_almuerzo_ingredientes">Nombre Almuerzo</string>
     <string name="ingredientes_almuerzo">Ingredientes</string>
     <string name="id_plato_md">id</string>
+    <string name="nombre_vianda_ingredientes">Nombre Vianda</string>
+    <string name="ingredientes_vianda">Ingredientes Vianda</string>
+    <string name="nombre_desayuno">Nombre Desayuno</string>
+    <string name="ingredientes_desayuno">Ingredientes Desayuno</string>
 </resources>

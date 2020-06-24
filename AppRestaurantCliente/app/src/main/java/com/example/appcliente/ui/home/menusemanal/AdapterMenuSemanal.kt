@@ -46,9 +46,6 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
 
             btnAgregarPedido.setOnClickListener{ agregarPedido()}
 
-            itemView.setOnClickListener{
-                Toast.makeText(itemView.context, "Ver ${data.nombre}", Toast.LENGTH_SHORT).show()
-            }
         }
 
         override fun onClick(v: View?) {
@@ -63,9 +60,9 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             }
 
             when (v?.id) {
-                R.id.button_ver_detalles -> {
+                R.id.button_ver_ingredientes_vianda -> {
                     NavHostFragment.findNavController(MenuSemanalFragment())
-                        .navigate(R.id.nav_detalles_dia, null, options)
+                        .navigate(R.id.nav_detalles_vianda, null, options)
 
                 }
             }
@@ -123,7 +120,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
-        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
+        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_ingredientes_vianda)
         btnVer.setOnClickListener { listener(list[position]) }
     }
 }

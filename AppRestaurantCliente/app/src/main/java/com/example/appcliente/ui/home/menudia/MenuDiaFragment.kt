@@ -13,7 +13,6 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -44,7 +43,7 @@ class MenuDiaFragment : Fragment() {
             recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
         recyclerView?.adapter = AdapterMenuDia(menuDia){
-                item -> Toast.makeText(context, "Desde el fragment",Toast.LENGTH_SHORT).show()
+                item -> Toast.makeText(context, "Desde el fragment Menu dia",Toast.LENGTH_SHORT).show()
                 //val action = MenuDiaFragmentDirections.actionNavMenuDiaToNavDetallesDia("hola", "ingredientes")
 
                 val options = navOptions {
@@ -91,78 +90,16 @@ class MenuDiaFragment : Fragment() {
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                var platoDia = p0.getValue(PlatoDia::class.java)
+                val platoDia = p0.getValue(PlatoDia::class.java)
                 platoDia!!.id = p0.key.toString()
-                if (deboAgregarPlato(platoDia!!)) {
-                    menuDia.add(platoDia!!)
-                    recyclerView?.getAdapter()?.notifyDataSetChanged();
+                if (deboAgregarPlato(platoDia)) {
+                    menuDia.add(platoDia)
+                    recyclerView?.adapter?.notifyDataSetChanged()
                 }
             }
 
             override fun onChildRemoved(p0: DataSnapshot) {
             }
         })
-    }
-
-    private fun llenarMenu(series: ArrayList<PlatoDia>) {
-        println(":::::::::::::::::::::::")
-        println("LLENANDO")
-        println(":::::::::::::::::::::::")
-        series.add(
-            PlatoDia(
-                "md 1",
-                "Hamburguesas de lenteja y brocoli",
-                "½ cabeza de brócoli\n" +
-                        "200 gr de lentejas cocidas\n" +
-                        "1 cebolla\n" +
-                        "2 ajos\n" +
-                        "½ pimiento rojo",
-                "R.drawable.platovengano1",
-                "Vegano",
-                "$14.50"
-            )
-        )
-        series.add(
-            PlatoDia(
-                "md 2",
-                "Espaguetis de calabacín con pesto rojo",
-                "2 calabacines\n" +
-                        "6 tomates secos\n" +
-                        "1 cebolleta\n" +
-                        "40 g de avellanas\n" +
-                        "1 diente de ajo\n" +
-                        "1 ramita de tomillo\n" +
-                        "50 g de queso parmesano rallado\n" +
-                        "Aceite de oliva\n" +
-                        "Sal",
-                "R.drawable.platovegetariano1",
-                "Vegetariano",
-                "$10.50"
-            )
-        )
-        series.add(
-            PlatoDia(
-                    "md 3",
-                "Milanesa con puré de papa",
-                "4 filetes de ternera\n" +
-                        "3 huevos\n" +
-                        "3 patatas\n" +
-                        "1 diente de ajo\n" +
-                        "150 ml de salsa de tomate\n" +
-                        "150 gr de queso mozzarella\n" +
-                        "1 tomate\n" +
-                        "harina\n" +
-                        "pan rallado\n" +
-                        "4 aceitunas negras (sin hueso)\n" +
-                        "aceite de oliva virgen extra\n" +
-                        "sal\n" +
-                        "pimienta\n" +
-                        "orégano\n" +
-                        "perejil",
-                "R.drawable.platocarnico1",
-                "Carnico",
-                "$12.50"
-            )
-        )
     }
 }

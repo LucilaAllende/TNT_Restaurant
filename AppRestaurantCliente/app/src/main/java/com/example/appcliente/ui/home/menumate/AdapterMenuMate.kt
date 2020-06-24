@@ -33,7 +33,7 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
 
             //variables para nuestras vistas
             val title: TextView = itemView.findViewById(R.id.txtSabor)
-            val name: TextView = itemView.findViewById(R.id.editCalle)
+            val name: TextView = itemView.findViewById(R.id.txtNombreDesayuno)
             val image: ImageView = itemView.findViewById(R.id.imagenM)
             val btnPedido: Button = itemView.findViewById(R.id.button_agregar_pedido)
             val precio: TextView = itemView.findViewById(R.id.txtPrecio)
@@ -60,9 +60,9 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
             }
 
             when (v?.id) {
-                R.id.button_ver_detalles -> {
+                R.id.button_ver_ingredientes_mate -> {
                     NavHostFragment.findNavController(MenuMateFragment())
-                        .navigate(R.id.nav_detalles_dia, null, options)
+                        .navigate(R.id.nav_detalles_mate, null, options)
 
                 }
             }
@@ -85,7 +85,7 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
                     val pedido = mapOf("timestamp" to formatedDate.toString(),
                         "clienteId" to user.uid,
                         "platoId" to itemView.txtIdPlatoMM.text.toString(),
-                        "nombrePlato" to itemView.editCalle.text.toString(),
+                        "nombrePlato" to itemView.txtNombreDesayuno.text.toString(),
                         "precioPlato" to itemView.txtPrecio.text.toString(),
                         "direccionEnvio" to "aca va la direccion del cliente",
                         "estado" to "en preparacion", // [en preparación | en camino | entregado]
@@ -128,7 +128,7 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
-        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_detalles)
+        val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_ingredientes_mate)
         btnVer.setOnClickListener { listener(list[position]) }
     }
 }
