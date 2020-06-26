@@ -64,7 +64,7 @@ open class HomeFragment : Fragment() {
     }
 
     private fun llenarViewPager(viewPager: ViewPager) {
-        val adapter = SeccionesAdapter(fragmentManager)
+        val adapter = SeccionesAdapter(getChildFragmentManager())
         adapter.addFragment(MenuDiaFragment(), "Almuerzo")
         adapter.addFragment(MenuSemanalFragment(), "Viandas")
         adapter.addFragment(MenuMateFragment(), "Para el Mate")
