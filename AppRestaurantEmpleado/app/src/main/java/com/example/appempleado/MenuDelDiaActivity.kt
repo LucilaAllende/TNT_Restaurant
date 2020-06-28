@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.synthetic.main.activity_menu_del_dia.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,8 +25,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+private var tipoPlato: String = "vegano" /*Esto indica vegano, carnico o vegetariano*/
 
-class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
+class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
     val REQUEST_CODE = 123
     private var imageUrl: Uri? = null
     private lateinit var btnImagenPlato: View
@@ -35,7 +37,6 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
     private lateinit var pbAltaPlato: ProgressBar
-    private var tipoPlato: String = "vegano" /*Esto indica vegano, carnico o vegetariano*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,18 +53,13 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         btnImagenPlato.setOnClickListener { altaImagenPlato() }
         btnAltaPlato.setOnClickListener{ cargarPlato() }
 
-        val spinner: Spinner = findViewById(R.id.spinner)
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.tipo_plato_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
 
+        var list_of_items = arrayOf("Vegano", "Vegetariano", "Carnico")
+        spinner!!.setOnItemSelectedListener(this)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner!!.setAdapter(aa)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -115,15 +111,6 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        tipoPlato = "Vegano"
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (parent != null) {
-            tipoPlato = parent.getItemAtPosition(position).toString()
-        }
-    }
 
 
 
@@ -184,12 +171,21 @@ class MenuDelDiaActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         }
     }
 
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        println("error capo")
+        tipoPlato = "Vegano"
+    }
 
-
-
-
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        println("entrenaodddddddd!!!!!!")
+        tipoPlato = parent!!.getItemAtPosition(position).toString()
+        println(".................")
+        println(tipoPlato)
+        println(".................")
+    }
 
 }
+
 
 
 
