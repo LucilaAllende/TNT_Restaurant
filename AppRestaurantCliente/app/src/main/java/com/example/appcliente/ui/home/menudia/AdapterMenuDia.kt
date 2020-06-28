@@ -43,12 +43,12 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
             //image.setImageURI(Uri.parse(data.imagen))
 
 
-            verificarCategoria(data, title)
+            //verificarCategoria(data, title)
             itemView.button_agregar_pedido.setOnClickListener{verificarPedido()}
         }
 
 
-        @SuppressLint("ResourceAsColor")
+/*        @SuppressLint("ResourceAsColor")
         private fun verificarCategoria(data: PlatoDia, title: TextView) = when (data.categoria) {
             "Vegano" -> {
                 title.setBackgroundColor(R.color.color_vegano)
@@ -59,7 +59,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
             else -> {
                 title.setBackgroundColor(R.color.color_carnico)
             }
-        }
+        }*/
 
         override fun onClick(v: View?) {
 

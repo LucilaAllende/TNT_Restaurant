@@ -36,15 +36,10 @@ class MenuMateFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_menu_mate, container, false)
-        //Log.i("Pase a tab")
-        //verificarPlato()
+        verificarPlato()
         return vista
     }
 
-    override fun onResume() {
-        super.onResume()
-        verificarPlato()
-    }
 
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {

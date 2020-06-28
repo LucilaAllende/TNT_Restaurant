@@ -21,4 +21,10 @@
     <color name="color_vegetariano">#33691E</color>
     <color name="color_vegano">#1E695E</color>
     <color name="color_carnico">#C3223A</color>
+
+
+    <color name="color_vegetariano_transparente">#7333691E</color>
+    <color name="color_vegano_transparente">#731E695E</color>
+    <color name="color_carnico_transparente">#73C3223A</color>
+
 </resources>

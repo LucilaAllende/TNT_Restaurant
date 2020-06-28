@@ -16,7 +16,7 @@
             android:id="@+id/textViewIdPlatoMS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/id_plato_ms"
             android:visibility="invisible" />
 
         <ImageView
@@ -36,8 +36,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="-5dp"
-            android:textSize="25sp"
-            android:background="@color/accentColor"/>
+            android:textSize="24sp"
+            android:background="@color/color_vegano_transparente"/>
 
         <TextView
             android:id="@+id/txtNombreVianda"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtDia"
             android:padding="10dp"
-            android:textSize="20sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/txtPrecioVianda"
@@ -58,7 +58,7 @@
             android:layout_marginEnd="-113dp"
             android:layout_marginRight="-113dp"
             android:padding="10dp"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/button_ver_ingredientes_vianda"
@@ -68,9 +68,9 @@
             android:layout_below="@id/txtNombreVianda"
             android:layout_alignEnd="@id/txtNombreVianda"
             android:layout_alignRight="@id/txtNombreVianda"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="-19dp"
+            android:layout_marginRight="-19dp"
             android:text="@string/ver_ingredientes"
             android:textColor="?attr/colorPrimary"
             tools:ignore="HardcodedText" />
@@ -83,9 +83,9 @@
             android:layout_below="@id/txtNombreVianda"
             android:layout_alignEnd="@id/txtNombreVianda"
             android:layout_alignRight="@id/button_ver_ingredientes_vianda"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="122dp"
-            android:layout_marginRight="121dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginEnd="107dp"
+            android:layout_marginRight="219dp"
             android:text="Pedir plato"
             android:textColor="?attr/colorPrimary"
             tools:ignore="HardcodedText" />
