@@ -1,10 +1,13 @@
 package com.example.appempleado
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import com.google.android.gms.tasks.Task
@@ -21,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import java.util.*
 
 class MenuSemanalActivity : AppCompatActivity() {
 
@@ -34,7 +38,7 @@ class MenuSemanalActivity : AppCompatActivity() {
     private lateinit var txtPrecio: TextView
     private lateinit var txtFecha: TextView
     private lateinit var pbAltaPlato: ProgressBar
-
+    private lateinit var picker: DatePickerDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +55,27 @@ class MenuSemanalActivity : AppCompatActivity() {
         btnImagenPlato.setOnClickListener { altaImagenPlato() }
         btnAltaPlato.setOnClickListener{ cargarPlato() }
 
+        txtFecha.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                val cldr: Calendar = Calendar.getInstance()
+                val day: Int = cldr.get(Calendar.DAY_OF_MONTH)
+                val month: Int = cldr.get(Calendar.MONTH)
+                val year: Int = cldr.get(Calendar.YEAR)
+                picker = DatePickerDialog(
+                    this@MenuSemanalActivity,
+                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        txtFecha.setText(
+                            dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                        )
+                    },
+                    year,
+                    month,
+                    day
+                )
+                picker.show()
+            }
+        })
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
