@@ -58,4 +58,6 @@
     <string name="txt_singing_cuenta">Datos de la Cuenta</string>
     <string name="id_plato_mm">id_plato_mm</string>
     <string name="id_plato_ms">id_plato_ms</string>
+    <string name="id_plato_pedido">id_plato_pedido</string>
+    <string name="eliminar_pedido">Eliminar Plato</string>
 </resources>

@@ -1,24 +1,26 @@
 package com.example.appcliente.ui.pedido
 
 import android.graphics.Color
-import com.example.appcliente.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.appcliente.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_pedido.*
 import kotlinx.android.synthetic.main.item_plato_pedido.view.*
 
@@ -28,7 +30,6 @@ class PedidoFragment : Fragment() {
     private lateinit var galleryViewModel: PedidoViewModel
     var vista: View? = null
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
-    lateinit var btnFab: FloatingActionButton
     val lista_id_pedidos: ArrayList<String> = ArrayList()
 
     override fun onCreateView(
@@ -66,6 +67,11 @@ class PedidoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         rvPedidoVerdad.layoutManager = LinearLayoutManager(this.context)
+        val decoration = DividerItemDecoration(
+            context,
+            VERTICAL
+        )
+        rvPedidoVerdad.addItemDecoration(decoration)
         rvPedidoVerdad.adapter = PedidoAdapter(lista_pedidos)
     }
 
@@ -181,13 +187,13 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(p: Pedido) {
         if(p.tipo == "md"){ //menuDia
-            color.setBackgroundColor(Color.parseColor("#F87652")) //menu dia
+            color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
         }
         else if(p.tipo == "mm"){ //menuMate
-            color.setBackgroundColor(Color.parseColor("#C3223A"))
+            color.setBackgroundColor(Color.parseColor("#731E695E"))
         }
         else{
-            color.setBackgroundColor(Color.parseColor("#757575"))
+            color.setBackgroundColor(Color.parseColor("#73C3223A"))
         }
         color.text = p.timestamp
         txtNombre.text = p.nombrePlato
