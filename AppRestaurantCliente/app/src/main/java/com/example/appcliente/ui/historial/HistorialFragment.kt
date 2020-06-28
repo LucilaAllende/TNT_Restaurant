@@ -34,8 +34,9 @@ class HistorialFragment : Fragment() {
         slideshowViewModel =
             ViewModelProviders.of(this).get(HistorialViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_historial, container, false)
-        activity?.findViewById<TabLayout>(R.id.tabs)
-            ?.removeAllTabs() // remove all the tabs from the action bar and deselect the current tab
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi!!.visibility = View.GONE // remove all the tabs from the action bar and deselect the current tab
         verificarPedidos()
         return vista
 

@@ -1,6 +1,7 @@
 package com.example.appcliente.ui.home
 
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,6 @@ import com.example.appcliente.ui.home.menudia.MenuDiaFragment
 import com.example.appcliente.ui.home.menumate.MenuMateFragment
 import com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 
 open class HomeFragment : Fragment() {
@@ -44,6 +44,7 @@ open class HomeFragment : Fragment() {
                 appBar?.addView(pestanas)
                 viewPager =
                     vista!!.findViewById<View>(R.id.idViewPagerInformacion) as ViewPager
+
                 llenarViewPager(viewPager!!)
                 viewPager!!.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
                 })
@@ -57,6 +58,8 @@ open class HomeFragment : Fragment() {
 
             pestanas!!.tabGravity = TabLayout.GRAVITY_FILL
             activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
+            val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+            tabsi?.visibility = View.VISIBLE
         } else {
             rotacion = 1
         }
@@ -74,7 +77,7 @@ open class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        if (rotacion === 0) {
+        if (this.rotacion == 0) {
             appBar?.removeView(pestanas)
         }
     }

@@ -29,6 +29,7 @@
         android:contentDescription="@string/enviar_pedido"
         android:text="@string/enviar_pedido"
         android:background="@color/accentColor"
+        android:src="@drawable/envio"
          />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

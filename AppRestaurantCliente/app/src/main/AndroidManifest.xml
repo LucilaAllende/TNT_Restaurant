@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
 
-        <activity android:name=".ui.home.menudia.DetallesActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

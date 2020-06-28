@@ -59,7 +59,8 @@ class PedidoFragment : Fragment() {
             findNavController().navigate(R.id.nav_solicitar_direccion_pedido, null, options)
         }
 
-        activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs()
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi!!.visibility = View.GONE
         verificarPedidos()
         return vista
     }
@@ -190,10 +191,10 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
             color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
         }
         else if(p.tipo == "mm"){ //menuMate
-            color.setBackgroundColor(Color.parseColor("#731E695E"))
+            color.setBackgroundColor(Color.parseColor("#73C3223A"))
         }
         else{
-            color.setBackgroundColor(Color.parseColor("#73C3223A"))
+            color.setBackgroundColor(Color.parseColor("#730C184E"))
         }
         color.text = p.timestamp
         txtNombre.text = p.nombrePlato

@@ -60,4 +60,6 @@
     <string name="id_plato_ms">id_plato_ms</string>
     <string name="id_plato_pedido">id_plato_pedido</string>
     <string name="eliminar_pedido">Eliminar Plato</string>
+    <string name="envio_al_campus">Envio al campus</string>
+    <string name="direccion_tomada_de_usuario">direccion tomada de usuario</string>
 </resources>

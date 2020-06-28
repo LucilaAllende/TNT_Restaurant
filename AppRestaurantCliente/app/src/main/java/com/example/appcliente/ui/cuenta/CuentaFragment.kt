@@ -29,7 +29,10 @@ class CuentaFragment : Fragment() {
             textView.text = it
         })
 
-        activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs() // remove all the tabs from the action bar and deselect the current tab
+        // remove all the tabs from the action bar and deselect the current tab
+        //activity?.findViewById<TabLayout>(R.id.tabs)?.removeAllTabs()
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi!!.visibility = View.GONE
         return root
     }
 
