@@ -34,10 +34,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_retirar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnEnvioCampus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIngresarUbicacion" />
+
+    <Button
+        android:id="@+id/btnEnvioCampus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/envio_al_campus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRetirarBuffet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

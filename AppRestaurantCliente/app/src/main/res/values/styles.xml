@@ -24,6 +24,9 @@
         <item name="cornerSize">4dp</item>
     </style>
 
+    <style name="UnelevatedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+    </style>
+
     <style name="Theme.App" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="extendedFloatingActionButtonStyle">@style/Widget.App.ExtendedFloatingActionButton</item>
         <item name="floatingActionButtonStyle">@style/Widget.App.FloatingActionButton</item>
