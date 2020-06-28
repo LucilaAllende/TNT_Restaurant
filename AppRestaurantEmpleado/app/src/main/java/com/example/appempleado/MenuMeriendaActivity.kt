@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.synthetic.main.activity_menu_del_dia.*
+import kotlinx.android.synthetic.main.activity_menu_merienda.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,7 +34,7 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
     private lateinit var pbAltaPlato: ProgressBar
-    private var sabor: String = "salado" /*Esto indica vegano, carnico o vegetariano*/
+    private var sabor: String = "Salado" /*Esto indica vegano, carnico o vegetariano*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,15 +51,11 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         btnImagenPlato.setOnClickListener { altaImagenPlato() }
         btnAltaPlato.setOnClickListener{ cargarPlato() }
 
-        val spinner: Spinner = findViewById(R.id.spinnerMerienda)
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.sabor_plato_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
+        var list_of_items = arrayOf("Salado", "Dulce", "Agridulce")
+        spinnerMerienda!!.setOnItemSelectedListener(this)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerMerienda!!.setAdapter(aa)
 
     }
 
@@ -113,7 +111,7 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        sabor = "Vegano"
+        sabor = "Salado"
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
