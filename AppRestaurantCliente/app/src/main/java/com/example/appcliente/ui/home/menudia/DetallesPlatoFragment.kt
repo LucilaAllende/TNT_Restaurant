@@ -30,9 +30,8 @@ class DetallesPlatoFragment : Fragment() {
         val textNombre = vista.findViewById<View>(R.id.txtNombreAlmuerzo) as TextView
         //val imagenDetalle = vista.findViewById<View>(R.id.imagenIngredientesAlmmuerzo) as ImageView
 
-        textIngredientes.text = arguments?.getString("ingredientes")
         textNombre.text = arguments?.getString("nombre")
-
+        textIngredientes.text = arguments?.getString("ingredientes")
 
         return vista
     }

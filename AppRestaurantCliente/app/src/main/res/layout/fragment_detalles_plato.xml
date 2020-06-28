@@ -21,7 +21,7 @@
         android:id="@+id/txtNombreAlmuerzo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/accentColor"
+        android:background="@color/color_vegetariano_transparente"
         android:text="@string/nombre_almuerzo_ingredientes"
         android:textSize="24sp"
         android:textStyle="italic" />

@@ -57,8 +57,8 @@
             android:layout_alignEnd="@id/txtNombreDesayuno"
             android:layout_alignRight="@id/txtNombreDesayuno"
             android:layout_marginTop="-43dp"
-            android:layout_marginEnd="-118dp"
-            android:layout_marginRight="-118dp"
+            android:layout_marginEnd="-113dp"
+            android:layout_marginRight="-113dp"
             android:padding="10dp"
             android:textSize="21sp" />
 

@@ -19,7 +19,7 @@
         android:id="@+id/txtNombreDesayuno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_fondo"
+        android:background="@color/color_carnico_transparente"
         android:text="@string/nombre_desayuno"
         android:textSize="24sp"
         android:textStyle="italic" />

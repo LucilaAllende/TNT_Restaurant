@@ -3,7 +3,6 @@ package com.example.appcliente.ui.home.menumate
 import com.example.appcliente.R
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +63,7 @@ class MenuMateFragment : Fragment() {
                 }
             }
 
-            val bundle = bundleOf("name" to item.nombre)
+            val bundle = bundleOf("nombre" to item.nombre,"ingredientes" to item.ingredientes)
             findNavController().navigate(R.id.nav_detalles_mate, bundle, options)
         }
     }

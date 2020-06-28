@@ -20,7 +20,7 @@
         android:id="@+id/txtNombreVianda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_vegano"
+        android:background="@color/color_vegano_transparente"
         android:text="@string/nombre_vianda_ingredientes"
         android:textSize="24sp"
         android:textStyle="italic" />
