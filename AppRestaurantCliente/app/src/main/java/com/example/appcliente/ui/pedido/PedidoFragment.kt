@@ -35,7 +35,6 @@ class PedidoFragment : Fragment() {
     private lateinit var galleryViewModel: PedidoViewModel
     var vista: View? = null
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
-    val lista_id_pedidos: ArrayList<String> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,17 +54,11 @@ class PedidoFragment : Fragment() {
             ViewModelProviders.of(this).get(PedidoViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
 
-        //var pedido = FirebaseDatabase.getInstance().reference.child("Pedido")
-
         val fab: View? = vista?.findViewById(R.id.fab)
         fab?.setOnClickListener {
             //safeArgs
-            //var bundle = bundleOf("amount" to amount)
             val bundle = Bundle( )
             bundle.putParcelableArrayList("pedidos", lista_pedidos)
-
-            //val action=PedidoFragmentDirections.actionNavPedidoToNavSolicitarDireccionPedido(Pedidos)
-            //NavHostFragment.findNavController(this@PedidoFragment).navigate(action)
             findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
         }
 

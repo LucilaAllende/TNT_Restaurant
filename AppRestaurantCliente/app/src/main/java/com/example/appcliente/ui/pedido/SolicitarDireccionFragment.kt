@@ -1,6 +1,7 @@
 package com.example.appcliente.ui.pedido
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,14 +21,19 @@ import kotlin.collections.ArrayList
 /**
  * A simple [Fragment] subclass.
  */
+@Suppress("UNCHECKED_CAST")
 class SolicitarDireccionFragment : Fragment() {
 
-    var vista: View? = null
-    var btnDomicilio: Button? = null
-    var btnUbicacion: Button? = null
-    var btnRetiro: Button? = null
+    private var vista: View? = null
 
-    var listaPedido: List<Pedido>? = null
+    private var btnDomicilio: Button? = null
+    private var btnUbicacion: Button? = null
+    private var btnRetiro: Button? = null
+    private var btnCampus: Button? = null
+
+    private var pedidos: Any? = null
+
+    private var listaPedido: List<Pedido>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,31 +45,27 @@ class SolicitarDireccionFragment : Fragment() {
         btnDomicilio = vista?.findViewById(R.id.btnEnviarDomicilio)
         btnUbicacion = vista?.findViewById(R.id.btnIngresarUbicacion)
         btnRetiro = vista?.findViewById(R.id.btnRetirarBuffet)
+        btnCampus = vista?.findViewById(R.id.btnEnvioCampus)
 
-        val pedidos =  arguments?.get("pedidos")
+        pedidos =  arguments?.get("pedidos")
 
         listaPedido = (pedidos as? ArrayList<*>)?.filterIsInstance<Pedido>()
 
-        println("................................................****")
-        println(listaPedido)
-
         btnDomicilio?.setOnClickListener { mostrarDomicilioUsuario() }
-        btnUbicacion?.setOnClickListener { tomarUbicacionIngresada() }
-        btnRetiro?.setOnClickListener { asignarRetiroAPedido() }
+        btnUbicacion?.setOnClickListener { tomarUbicacionUsuario() }
+        btnRetiro?.setOnClickListener { asignarRetiroEnBuffetAPedido() }
+        btnCampus?.setOnClickListener { tomarUbicacionCampusUsuario() }
 
         return vista
     }
 
-    private fun asignarRetiroAPedido() {
+
+
+    private fun asignarRetiroEnBuffetAPedido() {
         //TODO Aca hay que asignarle al pedido, la direccion en buffet
         //TODO Borrar pedido o sacar pedido del Pedido, solo tiene que quedar en el historial.
-        println("***************************")
-        println(listaPedido)
 
         for (plato in this.listaPedido!!){
-            println("***************************")
-            println(plato)
-
 
             val database = FirebaseDatabase.getInstance()
             val user = FirebaseAuth.getInstance().currentUser
@@ -80,7 +82,6 @@ class SolicitarDireccionFragment : Fragment() {
                 "tipo" to plato.tipo)
             val historialReference: DatabaseReference = database.reference.child("Historial").push()
 
-
             historialReference.setValue(pedidoHistorial)
 
             database.reference.child("Pedido/"+plato.id).removeValue()
@@ -91,12 +92,19 @@ class SolicitarDireccionFragment : Fragment() {
 
     private fun mostrarDomicilioUsuario() {
         //Aca hay que tomar la direccion del usuario y mostrarla en el siguiente fragmento
-        findNavController().navigate(R.id.nav_direccion_usuario, null, null)
+        val bundle = Bundle()
+        bundle.putParcelableArrayList("pedidos", pedidos as java.util.ArrayList<out Parcelable>?)
+        findNavController().navigate(R.id.nav_direccion_usuario, bundle, null)
     }
 
-    private fun tomarUbicacionIngresada() {
+    private fun tomarUbicacionUsuario() {
         //Aca hay que tomar la ubicacion del usuario
         findNavController().navigate(R.id.nav_ubicacion_usuario, null, null)
+    }
+
+
+    private fun tomarUbicacionCampusUsuario() {
+        findNavController().navigate(R.id.nav_ubicacion_campus_usuario, null, null)
     }
 
 }

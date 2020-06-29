@@ -5,26 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/fragmentInicio">
 
-    <fragment
-        android:id="@+id/nav_detalles_dia"
-        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
-        android:label="Ingredientes"
-        tools:layout="@layout/fragment_detalles_plato">
-        <argument android:name="nombre" />
-        <argument android:name="ingredientes" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_menu_dia"
-        android:name="com.example.appcliente.ui.home.menudia.MenuDiaFragment"
-        android:label="Almuerzo"
-        tools:layout="@layout/fragment_menu_dia">
-        <action
-            android:id="@+id/action_nav_menu_dia_to_nav_detalles_dia"
-            app:destination="@id/nav_detalles_dia"
-            app:popUpTo="@id/nav_home" />
-
-    </fragment>
 
     <fragment
         android:id="@+id/fragmentPortada"
@@ -39,121 +19,6 @@
             app:destination="@id/fragmentLogin" />
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.appcliente.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_nav_home_to_nav_menu_dia"
-            app:destination="@id/nav_menu_dia" />
-        <action
-            android:id="@+id/action_nav_home_to_nav_menu_semanal"
-            app:destination="@id/nav_menu_semanal" />
-        <action
-            android:id="@+id/action_nav_home_to_fragmentPortada"
-            app:destination="@id/fragmentPortada" />
-        <action
-            android:id="@+id/action_nav_home_to_nav_menu_mate"
-            app:destination="@id/nav_menu_mate" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_menu_mate"
-        android:name="com.example.appcliente.ui.home.menumate.MenuMateFragment"
-        android:label="Desayuno-Merienda"
-        tools:layout="@layout/fragment_menu_mate">
-        <action
-            android:id="@+id/action_nav_menu_mate_to_nav_detalles_mate"
-            app:destination="@id/nav_detalles_mate"
-            app:popUpTo="@id/nav_menu_mate" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_detalles_mate"
-        android:name="com.example.appcliente.ui.home.menumate.DetallesMateFragment"
-        android:label="Ingredientes"
-        tools:layout="@layout/fragment_detalles_mate">
-        <argument android:name="nombre"/>
-        <argument android:name="ingredientes"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_menu_semanal"
-        android:name="com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment"
-        android:label="Viandas Semanales"
-        tools:layout="@layout/fragment_menu_semanal">
-        <action
-            android:id="@+id/action_nav_menu_semanal_to_nav_detalles_vianda"
-            app:destination="@id/nav_detalles_vianda"
-            app:popUpTo="@id/nav_home" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_detalles_vianda"
-        android:name="com.example.appcliente.ui.home.menusemanal.DetallesViandaFragment"
-        android:label="Ingredientes"
-        tools:layout="@layout/fragment_detalles_vianda">
-        <argument android:name="nombre"/>
-        <argument android:name="ingredientes"/>
-    </fragment>
-
-
-
-    <fragment
-        android:id="@+id/nav_pedido"
-        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
-        android:label="@string/menu_pedido"
-        tools:layout="@layout/fragment_pedido" >
-        <action
-            android:id="@+id/action_nav_pedido_to_nav_solicitar_direccion_pedido"
-            app:destination="@id/nav_solicitar_direccion_pedido" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_solicitar_direccion_pedido"
-        android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
-        android:label="@string/menu_pedido"
-        tools:layout="@layout/fragment_solicitar_direccion" >
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_direccion_usuario"
-        android:name="com.example.appcliente.ui.pedido.DireccionFragment"
-        android:label="@string/menu_pedido"
-        tools:layout="@layout/fragment_direccion" />
-
-    <fragment
-        android:id="@+id/nav_ubicacion_usuario"
-        android:name="com.example.appcliente.ui.pedido.UbicacionFragment"
-        android:label="@string/menu_pedido"
-        tools:layout="@layout/fragment_ubicacion" />
-
-    <fragment
-        android:id="@+id/nav_cuenta"
-        android:name="com.example.appcliente.ui.cuenta.CuentaFragment"
-        android:label="@string/menu_cuenta"
-        tools:layout="@layout/fragment_cuenta" />
-
-
-
-
-    <fragment
-        android:id="@+id/nav_historial"
-        android:name="com.example.appcliente.ui.historial.HistorialFragment"
-        android:label="@string/menu_historial"
-        tools:layout="@layout/fragment_historial" />
-    <fragment
-        android:id="@+id/fragmentLogin"
-        android:name="com.example.appcliente.FragmentLogin"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_fragmentLogin_to_nav_home2"
-            app:destination="@id/nav_home" />
-    </fragment>
 
     <fragment
         android:id="@+id/fragmentSinging"
@@ -178,5 +43,155 @@
             app:destination="@id/nav_home" />
     </fragment>
 
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.appcliente.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_nav_home2"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.appcliente.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_menu_dia"
+            app:destination="@id/nav_menu_dia" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_menu_semanal"
+            app:destination="@id/nav_menu_semanal" />
+        <action
+            android:id="@+id/action_nav_home_to_fragmentPortada"
+            app:destination="@id/fragmentPortada" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_menu_mate"
+            app:destination="@id/nav_menu_mate" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_menu_dia"
+        android:name="com.example.appcliente.ui.home.menudia.MenuDiaFragment"
+        android:label="Almuerzo"
+        tools:layout="@layout/fragment_menu_dia">
+        <action
+            android:id="@+id/action_nav_menu_dia_to_nav_detalles_dia"
+            app:destination="@id/nav_detalles_dia"
+            app:popUpTo="@id/nav_home" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_dia"
+        android:name="com.example.appcliente.ui.home.menudia.DetallesPlatoFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_plato">
+        <argument android:name="nombre" />
+        <argument android:name="ingredientes" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_menu_semanal"
+        android:name="com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment"
+        android:label="Viandas Semanales"
+        tools:layout="@layout/fragment_menu_semanal">
+        <action
+            android:id="@+id/action_nav_menu_semanal_to_nav_detalles_vianda"
+            app:destination="@id/nav_detalles_vianda"
+            app:popUpTo="@id/nav_home" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_vianda"
+        android:name="com.example.appcliente.ui.home.menusemanal.DetallesViandaFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_vianda">
+        <argument android:name="nombre"/>
+        <argument android:name="ingredientes"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_menu_mate"
+        android:name="com.example.appcliente.ui.home.menumate.MenuMateFragment"
+        android:label="Desayuno-Merienda"
+        tools:layout="@layout/fragment_menu_mate">
+        <action
+            android:id="@+id/action_nav_menu_mate_to_nav_detalles_mate"
+            app:destination="@id/nav_detalles_mate"
+            app:popUpTo="@id/nav_menu_mate" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalles_mate"
+        android:name="com.example.appcliente.ui.home.menumate.DetallesMateFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalles_mate">
+        <argument android:name="nombre"/>
+        <argument android:name="ingredientes"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_pedido"
+        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_pedido" >
+        <action
+            android:id="@+id/action_nav_pedido_to_nav_solicitar_direccion_pedido"
+            app:destination="@id/nav_solicitar_direccion_pedido" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_solicitar_direccion_pedido"
+        android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
+        android:label="@string/enviar_pedido_ti"
+        tools:layout="@layout/fragment_solicitar_direccion" >
+        <action
+            android:id="@+id/action_nav_solicitar_direccion_pedido_to_nav_direccion_usuario2"
+            app:destination="@id/nav_direccion_usuario" />
+        <action
+            android:id="@+id/action_nav_solicitar_direccion_pedido_to_nav_ubicacion_usuario"
+            app:destination="@id/nav_ubicacion_usuario" />
+        <action
+            android:id="@+id/action_nav_solicitar_direccion_pedido_to_nav_ubicacion_campus_usuario"
+            app:destination="@id/nav_ubicacion_campus_usuario" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_direccion_usuario"
+        android:name="com.example.appcliente.ui.pedido.DireccionFragment"
+        android:label="@string/su_direcion_ti"
+        tools:layout="@layout/fragment_direccion" />
+
+    <fragment
+        android:id="@+id/nav_ubicacion_usuario"
+        android:name="com.example.appcliente.ui.pedido.UbicacionFragment"
+        android:label="@string/su_ubicacion_ti"
+        tools:layout="@layout/fragment_ubicacion" />
+
+    <fragment
+        android:id="@+id/nav_ubicacion_campus_usuario"
+        android:name="com.example.appcliente.ui.pedido.UbicacionCampusFragment"
+        android:label="@string/su_ubicacion_ti"
+        tools:layout="@layout/fragment_ubicacion_campus" />
+
+
+    <fragment
+        android:id="@+id/nav_cuenta"
+        android:name="com.example.appcliente.ui.cuenta.CuentaFragment"
+        android:label="@string/menu_cuenta"
+        tools:layout="@layout/fragment_cuenta" />
+
+    <fragment
+        android:id="@+id/nav_historial"
+        android:name="com.example.appcliente.ui.historial.HistorialFragment"
+        android:label="@string/menu_historial"
+        tools:layout="@layout/fragment_historial" />
 
 </navigation>
