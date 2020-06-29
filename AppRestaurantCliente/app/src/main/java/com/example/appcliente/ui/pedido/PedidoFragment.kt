@@ -56,14 +56,14 @@ class PedidoFragment : Fragment() {
 
         val fab: View? = vista?.findViewById(R.id.fab)
 
-        if (rvPedidoVerdad!= null){
-            fab?.setOnClickListener {
-                //safeArgs
-                val bundle = Bundle( )
-                bundle.putParcelableArrayList("pedidos", lista_pedidos)
-                findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
-            }
+
+        fab?.setOnClickListener {
+            //safeArgs
+            val bundle = Bundle( )
+            bundle.putParcelableArrayList("pedidos", lista_pedidos)
+            findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
         }
+
 
 
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
