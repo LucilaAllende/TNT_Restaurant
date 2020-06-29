@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewPedido"
@@ -19,13 +20,6 @@
             android:text="TextView"
             android:visibility="invisible" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/descripcionPortada"
-            android:scaleType="centerCrop" />
-
         <TextView
             android:id="@+id/bannerColor"
             android:layout_width="361dp"
@@ -34,7 +28,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="9dp"
-            android:background="@color/accentColor"
             android:textSize="18sp" />
 
         <TextView
@@ -58,7 +51,7 @@
             android:layout_marginEnd="38dp"
             android:layout_marginRight="38dp"
             android:background="#FFFFFF"
-            android:drawableRight="@drawable/ic_alarm_add_pomodoro_24dp"
+            android:drawableRight="@drawable/ic_add_alert_black_24dp"
             android:text="Suscribirme"
             android:textColor="?attr/colorPrimary"
             tools:ignore="HardcodedText" />

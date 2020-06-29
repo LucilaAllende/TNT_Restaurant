@@ -131,10 +131,6 @@ class HistorialFragment : Fragment() {
 
 }
 
-    private fun eliminarPedido(idPedido: String) {
-        FirebaseDatabase.getInstance().reference.child("Historial/" + idPedido).removeValue()
-    }
-
 
 
     class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<ViewHolder>() {
@@ -144,7 +140,7 @@ class HistorialFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            var vh = ViewHolder(
+            val vh = ViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_plato_historial,
                     parent,
@@ -170,11 +166,11 @@ class HistorialFragment : Fragment() {
 
         fun bind(p: Pedido) {
             if (p.tipo == "md") { //menuDia
-                color.setBackgroundColor(Color.parseColor("#F87652")) //menu dia
+                color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
             } else if (p.tipo == "mm") { //menuMate
-                color.setBackgroundColor(Color.parseColor("#C3223A"))
+                color.setBackgroundColor(Color.parseColor("#73C3223A"))
             } else {
-                color.setBackgroundColor(Color.parseColor("#757575"))
+                color.setBackgroundColor(Color.parseColor("#730C184E"))
             }
 
             if (p.notificarme){

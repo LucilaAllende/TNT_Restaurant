@@ -6,11 +6,8 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -34,7 +31,7 @@ class PedidoFragment : Fragment() {
 
     private lateinit var galleryViewModel: PedidoViewModel
     var vista: View? = null
-    var lista_pedidos: ArrayList<Pedido> = ArrayList()
+    var listaPedidos: ArrayList<Pedido> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,14 +53,14 @@ class PedidoFragment : Fragment() {
 
         val fab: View? = vista?.findViewById(R.id.fab)
 
+        if (listaPedidos!=null) {
 
+        }
         fab?.setOnClickListener {
-            //safeArgs
-            val bundle = Bundle( )
-            bundle.putParcelableArrayList("pedidos", lista_pedidos)
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("pedidos", listaPedidos)
             findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
         }
-
 
 
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
@@ -85,7 +82,7 @@ class PedidoFragment : Fragment() {
             VERTICAL
         )
         rvPedidoVerdad.addItemDecoration(decoration)
-        rvPedidoVerdad.adapter = PedidoAdapter(lista_pedidos)
+        rvPedidoVerdad.adapter = PedidoAdapter(listaPedidos)
     }
 
     private fun verificarPedidos(){
@@ -106,7 +103,7 @@ class PedidoFragment : Fragment() {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
-                        lista_pedidos.add(pedido)
+                        listaPedidos.add(pedido)
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
@@ -123,7 +120,7 @@ class PedidoFragment : Fragment() {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
-                        lista_pedidos.add(pedido)
+                        listaPedidos.add(pedido)
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
@@ -139,12 +136,12 @@ class PedidoFragment : Fragment() {
                 override fun onChildRemoved(p0: DataSnapshot) {
                     val pedido = p0.getValue(Pedido::class.java)!!
                     pedido.id = p0.key.toString()
-                    val pos = lista_pedidos.indexOf(pedido)
-                    lista_pedidos.remove(pedido)
+                    val pos = listaPedidos.indexOf(pedido)
+                    listaPedidos.remove(pedido)
                     if (rvPedidoVerdad != null){
                         rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
                         rvPedidoVerdad.adapter?.notifyDataSetChanged()
-                        if (lista_pedidos.size == 0){
+                        if (listaPedidos.size == 0){
                             mostrarSnackbar("No hay pedidos aun.")
                         }
                     }
