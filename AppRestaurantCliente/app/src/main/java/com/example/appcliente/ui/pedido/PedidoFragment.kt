@@ -55,12 +55,16 @@ class PedidoFragment : Fragment() {
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
 
         val fab: View? = vista?.findViewById(R.id.fab)
-        fab?.setOnClickListener {
-            //safeArgs
-            val bundle = Bundle( )
-            bundle.putParcelableArrayList("pedidos", lista_pedidos)
-            findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
+
+        if (rvPedidoVerdad!= null){
+            fab?.setOnClickListener {
+                //safeArgs
+                val bundle = Bundle( )
+                bundle.putParcelableArrayList("pedidos", lista_pedidos)
+                findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
+            }
         }
+
 
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
         tabsi!!.visibility = View.GONE
