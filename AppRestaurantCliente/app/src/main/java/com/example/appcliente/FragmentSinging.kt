@@ -11,11 +11,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import com.example.appcliente.databinding.FragmentPortadaBinding
 import com.example.appcliente.databinding.FragmentSingingBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -39,9 +37,9 @@ class FragmentSinging : Fragment() {
         _binding = FragmentSingingBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
-        appBar!!.visibility = View.GONE
+        appBar.visibility = View.GONE
 
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
@@ -53,17 +51,17 @@ class FragmentSinging : Fragment() {
 
 
     private fun createNewAccount() {
-        var nombre = binding.txtNombre.text.toString()
-        var apellido = binding.txtApellido.text.toString()
-        var password = binding.txtPassword.text.toString()
-        var email = binding.txtEmail.text.toString()
-        var calle_vivienda = binding.editCalleDireccion.text.toString()
-        var calle_izquierda = binding.editCalle1Direccion.text.toString()
-        var calle_derecha = binding.editCalle2Direccion.text.toString()
-        var ciudad = binding.editCiudadDireccion.text.toString()
-        var numero_calle = binding.editNumCalleDireccion.text.toString()
-        var numero_piso = binding.editPisoDireccion.text.toString()
-        var numero_departamento = binding.editDptoDireccion.text.toString()
+        val nombre = binding.txtNombre.text.toString()
+        val apellido = binding.txtApellido.text.toString()
+        val password = binding.txtPassword.text.toString()
+        val email = binding.txtEmail.text.toString()
+        val calle_vivienda = binding.editCalleDireccion.text.toString()
+        val calle_izquierda = binding.editCalle1Direccion.text.toString()
+        val calle_derecha = binding.editCalle2Direccion.text.toString()
+        val ciudad = binding.editCiudadDireccion.text.toString()
+        val numero_calle = binding.editNumCalleDireccion.text.toString()
+        val numero_piso = binding.editPisoDireccion.text.toString()
+        val numero_departamento = binding.editDptoDireccion.text.toString()
 
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
@@ -88,7 +86,7 @@ class FragmentSinging : Fragment() {
                         val user: FirebaseUser? = auth.currentUser
                         if (user!=null){
                             verifyEmail(user)
-                            var userBD = dbReference.child(user!!.uid)
+                            val userBD = dbReference.child(user.uid)
                             userBD.child("nombre").setValue(nombre)
                             userBD.child("apellido").setValue(apellido)
                             userBD.child("email").setValue(email)

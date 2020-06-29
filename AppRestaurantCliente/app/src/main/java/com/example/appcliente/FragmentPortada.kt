@@ -1,10 +1,13 @@
 package com.example.appcliente
 
+import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -24,6 +27,7 @@ class FragmentPortada : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +50,11 @@ class FragmentPortada : Fragment() {
         appBar!!.setLayoutParams(lp)
         appBar!!.setExpanded(!hide, true)*/
 
+/*        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        appBar!!.visibility = View.GONE*/
 
+        val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
+        tolBar?.visibility = View.GONE
 
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegistrarse.setOnClickListener{ signin() }

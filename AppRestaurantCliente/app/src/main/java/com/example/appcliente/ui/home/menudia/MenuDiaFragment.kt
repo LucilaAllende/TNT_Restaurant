@@ -1,6 +1,7 @@
 package com.example.appcliente.ui.home.menudia
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -24,6 +27,7 @@ class MenuDiaFragment : Fragment() {
     val menuDia = ArrayList<PlatoDia>()
     var recyclerView: RecyclerView? = null
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

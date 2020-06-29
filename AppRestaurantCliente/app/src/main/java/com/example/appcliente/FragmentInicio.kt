@@ -1,11 +1,9 @@
 package com.example.appcliente
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -13,7 +11,6 @@ import com.example.appcliente.databinding.FragmentInicioBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class FragmentInicio : Fragment() {
@@ -37,16 +34,16 @@ class FragmentInicio : Fragment() {
         val view = binding.root
 
         //ESTE CODIGO UTILIZO PARA OCULTAR LA BARRA
-        var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
-        appBar!!.visibility = View.GONE
+        appBar.visibility = View.GONE
 
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+        val user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             findNavController().navigate(R.id.action_fragmentInicio2_to_nav_home,null,options)
         } else {

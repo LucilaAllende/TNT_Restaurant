@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -19,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 class FragmentLogin : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var progressBar : ProgressBar
+    //private lateinit var progressBar : ProgressBar
     private lateinit var auth: FirebaseAuth
     val options = navOptions {
         anim {
@@ -39,9 +38,9 @@ class FragmentLogin : Fragment() {
         val view = binding.root
 
         //ESTE CODIGO UTILIZO PARA OCULTAR LA BARRA
-        var appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
-        appBar!!.visibility = View.GONE
+        appBar.visibility = View.GONE
 
         binding.btnLogin.setOnClickListener { login() }
         return view
@@ -49,8 +48,8 @@ class FragmentLogin : Fragment() {
 
     private fun login() {
         auth = FirebaseAuth.getInstance()
-        var usuario = binding.txtUsuario.text.toString()
-        var password = binding.txtPassword.text.toString()
+        val usuario = binding.txtUsuario.text.toString()
+        val password = binding.txtPassword.text.toString()
         if (!TextUtils.isEmpty(usuario) && !TextUtils.isEmpty(password)){
             binding.progressBarLogin.visibility = View.VISIBLE
             auth.signInWithEmailAndPassword(usuario,password)

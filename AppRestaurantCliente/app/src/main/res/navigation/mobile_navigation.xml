@@ -100,17 +100,23 @@
         <argument android:name="ingredientes"/>
     </fragment>
 
+
+
+    <fragment
+        android:id="@+id/nav_pedido"
+        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
+        android:label="@string/menu_pedido"
+        tools:layout="@layout/fragment_pedido" >
+        <action
+            android:id="@+id/action_nav_pedido_to_nav_solicitar_direccion_pedido"
+            app:destination="@id/nav_solicitar_direccion_pedido" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_solicitar_direccion_pedido"
         android:name="com.example.appcliente.ui.pedido.SolicitarDireccionFragment"
         android:label="@string/menu_pedido"
         tools:layout="@layout/fragment_solicitar_direccion" >
-        <action
-            android:id="@+id/action_nav_solicitar_direccion_pedido_to_nav_direccion_usuario"
-            app:destination="@id/nav_direccion_usuario" />
-        <action
-            android:id="@+id/action_nav_solicitar_direccion_pedido_to_nav_ubicacion_usuario"
-            app:destination="@id/nav_ubicacion_usuario" />
     </fragment>
 
     <fragment
@@ -131,15 +137,8 @@
         android:label="@string/menu_cuenta"
         tools:layout="@layout/fragment_cuenta" />
 
-    <fragment
-        android:id="@+id/nav_pedido"
-        android:name="com.example.appcliente.ui.pedido.PedidoFragment"
-        android:label="@string/menu_pedido"
-        tools:layout="@layout/fragment_pedido" >
-        <action
-            android:id="@+id/action_nav_pedido_to_nav_solicitar_direccion_pedido"
-            app:destination="@id/nav_solicitar_direccion_pedido" />
-    </fragment>
+
+
 
     <fragment
         android:id="@+id/nav_historial"

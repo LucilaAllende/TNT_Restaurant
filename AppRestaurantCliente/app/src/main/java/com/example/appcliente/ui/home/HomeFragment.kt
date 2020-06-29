@@ -2,10 +2,13 @@ package com.example.appcliente.ui.home
 
 import android.graphics.Color
 import android.opengl.Visibility
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.appcliente.R
@@ -26,6 +29,7 @@ open class HomeFragment : Fragment() {
     private var rotacion :Int ?=0
 
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,11 +59,15 @@ open class HomeFragment : Fragment() {
             val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
             appBar!!.visibility = View.VISIBLE
 
+            val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
+            tolBar?.visibility = View.VISIBLE
 
             pestanas!!.tabGravity = TabLayout.GRAVITY_FILL
+
             activity?.findViewById<TabLayout>(R.id.tabs)?.setupWithViewPager(viewPager)
             val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
             tabsi?.visibility = View.VISIBLE
+
         } else {
             rotacion = 1
         }

@@ -62,4 +62,6 @@
     <string name="eliminar_pedido">Eliminar Plato</string>
     <string name="envio_al_campus">Envio al campus</string>
     <string name="direccion_tomada_de_usuario">direccion tomada de usuario</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="registrarse">Registrarse</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.appcliente
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity(){
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        val tolBar: Toolbar? = findViewById<View>(R.id.toolbar) as? Toolbar
+        tolBar?.visibility = View.VISIBLE
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)

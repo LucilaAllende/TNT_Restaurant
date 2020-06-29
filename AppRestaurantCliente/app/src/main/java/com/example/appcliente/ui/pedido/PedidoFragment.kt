@@ -2,11 +2,15 @@ package com.example.appcliente.ui.pedido
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,6 +25,7 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_pedido.*
 import kotlinx.android.synthetic.main.item_plato_pedido.view.*
 
@@ -56,13 +61,23 @@ class PedidoFragment : Fragment() {
         fab?.setOnClickListener {
             //safeArgs
             //var bundle = bundleOf("amount" to amount)
-            findNavController().navigate(R.id.nav_solicitar_direccion_pedido, null, options)
+            val bundle = Bundle( )
+            bundle.putParcelableArrayList("pedidos", lista_pedidos)
+
+            //val action=PedidoFragmentDirections.actionNavPedidoToNavSolicitarDireccionPedido(Pedidos)
+            //NavHostFragment.findNavController(this@PedidoFragment).navigate(action)
+            findNavController().navigate(R.id.nav_solicitar_direccion_pedido, bundle, options)
         }
 
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
         tabsi!!.visibility = View.GONE
-        verificarPedidos()
+
         return vista
+    }
+
+    override fun onStart() {
+        super.onStart()
+        verificarPedidos()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -111,7 +126,6 @@ class PedidoFragment : Fragment() {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
-                        lista_id_pedidos.add(pedido.id)
                         lista_pedidos.add(pedido)
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
@@ -126,20 +140,18 @@ class PedidoFragment : Fragment() {
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot) {
-
+                    val pedido = p0.getValue(Pedido::class.java)!!
+                    pedido.id = p0.key.toString()
+                    val pos = lista_pedidos.indexOf(pedido)
+                    lista_pedidos.remove(pedido)
                     if (rvPedidoVerdad != null){
-                        val pedido = p0.getValue(Pedido::class.java)!!
-                        pedido.id = p0.key.toString()
-                        val pos = lista_pedidos.indexOf(pedido)
-                        lista_pedidos.remove(pedido)
-                        if (rvPedidoVerdad != null){
-                            rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
-                            rvPedidoVerdad.adapter?.notifyDataSetChanged()
-                            if (lista_pedidos.size == 0){
-                                mostrarSnackbar("No hay pedidos aun.")
-                            }
+                        rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
+                        rvPedidoVerdad.adapter?.notifyDataSetChanged()
+                        if (lista_pedidos.size == 0){
+                            mostrarSnackbar("No hay pedidos aun.")
                         }
                     }
+
                 }
             })
     }
@@ -169,7 +181,7 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_pedido, parent, false))
+        val vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_pedido, parent, false))
         return vh
     }
 
@@ -204,6 +216,11 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     }
 }
 
+
+@Parcelize
+class Pedidos: ArrayList<Pedido>(), Parcelable
+
+@Parcelize
 data class Pedido(
     var id: String ="",
     var clienteId: String = "",
@@ -214,4 +231,4 @@ data class Pedido(
     var nombrePlato: String ="",
     var precioPlato:String="",
     var tipo:String=""
-)
+): Parcelable
