@@ -1,9 +1,12 @@
 package com.example.appempleado
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -54,6 +57,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         btnAltaPlato.setOnClickListener{ cargarPlato() }
 
 
+
         var list_of_items = arrayOf("Vegano", "Vegetariano", "Carnico")
         spinner!!.setOnItemSelectedListener(this)
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
@@ -76,6 +80,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         startActivityForResult(intent, REQUEST_CODE)
     }
 
+    @SuppressLint("ResourceType")
     private fun cargarPlato(){
         if (imageUrl != null) { /*TODO: checkear los demas atributos tamnbien, no solo la imagen! */
             pbAltaPlato.visibility = View.VISIBLE
@@ -101,7 +106,11 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
                         var body = txtNombre.text.toString() + " vuelve a estar disponible. Pedilo ahora!"
                         var titulo = "No te lo pierdas!"
                         var topico = txtNombre.text.toString().replace(" ", "_")
-                        agregarNotificacion(body,titulo,topico)
+
+                        val icon: ImageView? = null
+                        icon?.setImageResource(R.drawable.ic_restaurant_black_24dp)
+
+                        agregarNotificacion(body,titulo,topico, icon)
 
                         pbAltaPlato.visibility = View.INVISIBLE
                         Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
@@ -115,13 +124,14 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
 
 
 
-    fun agregarNotificacion(body:String, titulo:String, topico:String) {
+    fun agregarNotificacion(body:String, titulo:String, topico:String, icon: ImageView?) {
         val apiService =   ServiceBuilder.buildService(RestApi::class.java)
         val peticion = Peticion(  to = "/topics/"+topico,
                                    notification = Notification(body=body,
                                                                title = titulo,
                                                                sound = "default",
-                                                               color="#ff4455"))
+                                                               color="#ff4455",
+                                                                icon = icon))
         var call = apiService.addNotificacion(peticion)
         call.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -143,7 +153,8 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         var body: String?,
         var title: String?,
         var sound: String?,
-        var color: String?
+        var color: String?,
+        var icon: ImageView?
     )
 
     data class Peticion (
