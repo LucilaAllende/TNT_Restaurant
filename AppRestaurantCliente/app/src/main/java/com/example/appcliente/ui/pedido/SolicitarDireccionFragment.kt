@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 
 import com.example.appcliente.R
 import com.google.firebase.auth.FirebaseAuth
@@ -62,8 +63,15 @@ class SolicitarDireccionFragment : Fragment() {
 
 
     private fun asignarRetiroEnBuffetAPedido() {
-        //TODO Aca hay que asignarle al pedido, la direccion en buffet
-        //TODO Borrar pedido o sacar pedido del Pedido, solo tiene que quedar en el historial.
+
+        val options = navOptions {
+            anim {
+                enter = R.anim.slide_in_right
+                exit = R.anim.slide_out_left
+                popEnter = R.anim.slide_in_left
+                popExit = R.anim.slide_out_right
+            }
+        }
 
         for (plato in this.listaPedido!!){
 
@@ -88,6 +96,7 @@ class SolicitarDireccionFragment : Fragment() {
         }
 
         Toast.makeText(context, "Ya puede retirar su pedido",Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.nav_home, null, options)
     }
 
     private fun mostrarDomicilioUsuario() {
@@ -99,12 +108,16 @@ class SolicitarDireccionFragment : Fragment() {
 
     private fun tomarUbicacionUsuario() {
         //Aca hay que tomar la ubicacion del usuario
-        findNavController().navigate(R.id.nav_ubicacion_usuario, null, null)
+        val bundle = Bundle()
+        bundle.putParcelableArrayList("pedidos", pedidos as java.util.ArrayList<out Parcelable>?)
+        findNavController().navigate(R.id.nav_ubicacion_usuario, bundle, null)
     }
 
 
     private fun tomarUbicacionCampusUsuario() {
-        findNavController().navigate(R.id.nav_ubicacion_campus_usuario, null, null)
+        val bundle = Bundle()
+        bundle.putParcelableArrayList("pedidos", pedidos as java.util.ArrayList<out Parcelable>?)
+        findNavController().navigate(R.id.nav_ubicacion_campus_usuario, bundle, null)
     }
 
 }

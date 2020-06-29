@@ -25,6 +25,7 @@ import kotlin.collections.ArrayList
 class DireccionFragment : Fragment() {
 
     var vista: View? = null
+
     var txtCalle: TextView? = null
     var txtNumeroCalle: TextView? = null
     var txtNumeroDpto: TextView? = null
@@ -102,8 +103,8 @@ class DireccionFragment : Fragment() {
     }
 
     private fun mostrarDireccionUsuario() {
-        val usuario_id = FirebaseAuth.getInstance().currentUser?.uid
-        FirebaseDatabase.getInstance().reference.child("Usuarios/"+usuario_id)
+        val usuarioId = FirebaseAuth.getInstance().currentUser?.uid
+        FirebaseDatabase.getInstance().reference.child("Usuarios/$usuarioId")
             .addValueEventListener(object :
                 ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -115,11 +116,11 @@ class DireccionFragment : Fragment() {
                     val usuarioDB = p0.getValue(Usuario::class.java)
                     //la variable usuarioDB ya tiene los datos del usuario
                     if (usuarioDB != null) {
-                        txtCalle?.text = "Calle: "+usuarioDB.calle_vivienda
-                        txtNumeroCalle?.text = "N° Calle: "+usuarioDB.numero_calle
-                        txtLocalidad?.text = "Localidad: "+usuarioDB.ciudad
-                        txtNumeroPiso?.text = "N° piso: " +usuarioDB.numero_piso
-                        txtNumeroDpto?.text = "N° dpto: "+usuarioDB.numero_departamento
+                        txtCalle?.text = """Calle: ${usuarioDB.calle_vivienda}"""
+                        txtNumeroCalle?.text = """N° Calle: ${usuarioDB.numero_calle}"""
+                        txtLocalidad?.text = """Localidad: ${usuarioDB.ciudad}"""
+                        txtNumeroPiso?.text = """N° piso: ${usuarioDB.numero_piso}"""
+                        txtNumeroDpto?.text = """N° dpto: ${usuarioDB.numero_departamento}"""
                     }
                 }
             })
