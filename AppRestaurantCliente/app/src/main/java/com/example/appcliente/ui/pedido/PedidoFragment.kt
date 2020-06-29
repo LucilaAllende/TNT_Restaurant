@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,7 @@ class PedidoFragment : Fragment() {
     private lateinit var galleryViewModel: PedidoViewModel
     var vista: View? = null
     var listaPedidos: ArrayList<Pedido> = ArrayList()
+    var fab: FloatingActionButton? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,11 +53,10 @@ class PedidoFragment : Fragment() {
             ViewModelProviders.of(this).get(PedidoViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
 
-        val fab: View? = vista?.findViewById(R.id.fab)
+        fab= vista?.findViewById(R.id.fab)
 
-        if (listaPedidos!=null) {
+        fab?.visibility = View.INVISIBLE
 
-        }
         fab?.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList("pedidos", listaPedidos)
@@ -105,6 +106,7 @@ class PedidoFragment : Fragment() {
                         pedido.id = p0.key.toString()
                         listaPedidos.add(pedido)
                         if (rvPedidoVerdad != null){
+                            fab?.visibility = View.VISIBLE
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
                     }
@@ -122,6 +124,7 @@ class PedidoFragment : Fragment() {
                         pedido.id = p0.key.toString()
                         listaPedidos.add(pedido)
                         if (rvPedidoVerdad != null){
+                            fab?.visibility = View.VISIBLE
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
                     }
@@ -129,6 +132,7 @@ class PedidoFragment : Fragment() {
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
+
                         mostrarSnackbar("No hay pedidos aun.")
                     }
                 }
@@ -141,6 +145,7 @@ class PedidoFragment : Fragment() {
                     if (rvPedidoVerdad != null){
                         rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
                         rvPedidoVerdad.adapter?.notifyDataSetChanged()
+                        fab?.visibility = View.INVISIBLE
                         if (listaPedidos.size == 0){
                             mostrarSnackbar("No hay pedidos aun.")
                         }
