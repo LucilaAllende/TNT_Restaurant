@@ -1,6 +1,5 @@
 package com.example.appcliente.ui.home.menudia
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -119,7 +118,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
                                             "tipo" to "md")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)
-                    mostrarSnackbar("Pedido Agregado!")
+                    mostrarSnackbar("Plato agregado a Pedido!")
 
                 } else {
                     mostrarSnackbar("Usuario no logueado")

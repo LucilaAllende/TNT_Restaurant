@@ -92,7 +92,7 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
                         "tipo" to "mm")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)
-                    mostrarSnackbar("Pedido Agregado!")
+                    mostrarSnackbar("Plato agregado a Pedido!")
 
                 } else {
                     mostrarSnackbar("Usuario no logueado")

@@ -87,7 +87,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
                         "tipo" to "ms")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)
-                    mostrarSnackbar("Pedido Agregado!")
+                    mostrarSnackbar("Plato agregado a Pedido!")
 
                 } else {
                     mostrarSnackbar("Usuario no logueado")

@@ -36,7 +36,7 @@
     <string name="ver_ingredientes">Ingredientes</string>
     <string name="menu_pedido">Mi pedido</string>
     <string name="enviar_pedido">Enviar Pedido</string>
-    <string name="enviar_domicilio">Enviar a mi domicilio</string>
+    <string name="enviar_domicilio">Estoy en mi domicilio</string>
     <string name="ingresar_ubicacion">Ingresar mi ubicacion</string>
     <string name="txt_calle">Calle</string>
     <string name="txtNumero">N° Calle</string>
@@ -60,7 +60,7 @@
     <string name="id_plato_ms">id_plato_ms</string>
     <string name="id_plato_pedido">id_plato_pedido</string>
     <string name="eliminar_pedido">Eliminar Plato</string>
-    <string name="envio_al_campus">Envio al campus</string>
+    <string name="envio_al_campus">Estoy en el campus</string>
     <string name="direccion_tomada_de_usuario">direccion tomada de usuario</string>
     <string name="iniciar_sesion">Iniciar Sesion</string>
     <string name="registrarse">Registrarse</string>
