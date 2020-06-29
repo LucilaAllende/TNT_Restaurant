@@ -67,4 +67,8 @@
     <string name="enviar_pedido_ti">Enviar Pedido</string>
     <string name="su_direcion_ti">Su dirección</string>
     <string name="su_ubicacion_ti">Su ubicación</string>
+    <string name="numero_de_aula">numero de aula</string>
+    <string name="numero_de_oficina">numero de oficina</string>
+    <string name="confirmar">Confirmar</string>
+
 </resources>
