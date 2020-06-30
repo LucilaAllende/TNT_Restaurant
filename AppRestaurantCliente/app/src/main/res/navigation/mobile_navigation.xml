@@ -178,7 +178,7 @@
     <fragment
         android:id="@+id/nav_ubicacion_campus_usuario"
         android:name="com.example.appcliente.ui.pedido.UbicacionCampusFragment"
-        android:label="@string/su_ubicacion_ti"
+        android:label="@string/su_ubicacion_campus_ti"
         tools:layout="@layout/fragment_ubicacion_campus" />
 
 

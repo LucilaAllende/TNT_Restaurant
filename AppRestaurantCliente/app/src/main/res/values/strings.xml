@@ -37,7 +37,7 @@
     <string name="menu_pedido">Mi pedido</string>
     <string name="enviar_pedido">Enviar Pedido</string>
     <string name="enviar_domicilio">Estoy en mi domicilio</string>
-    <string name="ingresar_ubicacion">Ingresar mi ubicacion</string>
+    <string name="ingresar_ubicacion">Estoy fuera del campus</string>
     <string name="txt_calle">Calle</string>
     <string name="txtNumero">N° Calle</string>
     <string name="txt_retirar">Retirar en Buffet</string>
@@ -67,8 +67,9 @@
     <string name="enviar_pedido_ti">Enviar Pedido</string>
     <string name="su_direcion_ti">Su dirección</string>
     <string name="su_ubicacion_ti">Su ubicación</string>
-    <string name="numero_de_aula">numero de aula</string>
-    <string name="numero_de_oficina">numero de oficina</string>
+    <string name="su_ubicacion_campus_ti">Su ubicación en el campus</string>
+    <string name="numero_de_aula">¿En que aula se encuentra?</string>
+    <string name="numero_de_oficina">¿En que oficina se encuentra?</string>
     <string name="confirmar">Confirmar</string>
     <string name="donde_se_encuentra">¿Donde se encuentra?</string>
 
