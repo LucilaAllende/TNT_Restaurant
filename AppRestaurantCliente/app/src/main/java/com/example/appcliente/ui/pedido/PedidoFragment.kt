@@ -54,9 +54,7 @@ class PedidoFragment : Fragment() {
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
 
         fab= vista?.findViewById(R.id.fab)
-
         fab?.visibility = View.INVISIBLE
-
         fab?.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList("pedidos", listaPedidos)
@@ -73,6 +71,7 @@ class PedidoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         verificarPedidos()
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -86,6 +85,25 @@ class PedidoFragment : Fragment() {
         rvPedidoVerdad.adapter = PedidoAdapter(listaPedidos)
     }
 
+    private fun deboAgregarPedido(p: Pedido):Boolean{
+        var encontrado = true
+
+        for (c in listaPedidos) {
+            if (c.id == p.id &&
+                c.clienteId == p.clienteId &&
+                c.direccionEnvio == p.direccionEnvio &&
+                c.estado == p.estado &&
+                c.platoId == p.platoId &&
+                c.timestamp == p.timestamp &&
+                c.nombrePlato == p.nombrePlato &&
+                c.precioPlato == p.precioPlato &&
+                c.tipo == p.tipo) {
+                encontrado = false
+            }
+        }
+        return encontrado
+
+    }
     private fun verificarPedidos(){
         FirebaseDatabase.getInstance().reference.child("Pedido")
             .orderByChild("clienteId")
@@ -101,6 +119,7 @@ class PedidoFragment : Fragment() {
                 }
 
                 override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                    /*
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
@@ -115,29 +134,33 @@ class PedidoFragment : Fragment() {
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
                         mostrarSnackbar("No hay pedidos aun.")
-                    }
+                    }*/
+                    println("cambiANDOOOO!!!")
                 }
 
                 override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
-                        listaPedidos.add(pedido)
-                        if (rvPedidoVerdad != null){
-                            fab?.visibility = View.VISIBLE
-                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        fab?.visibility = View.VISIBLE
+                        if (deboAgregarPedido(pedido)){
+                            listaPedidos.add(pedido)
+                            if (rvPedidoVerdad != null){
+                                rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                            }
                         }
+
                     }
                     else{
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
-
                         mostrarSnackbar("No hay pedidos aun.")
                     }
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot) {
+                    fab?.visibility = View.VISIBLE
                     val pedido = p0.getValue(Pedido::class.java)!!
                     pedido.id = p0.key.toString()
                     val pos = listaPedidos.indexOf(pedido)
@@ -145,9 +168,9 @@ class PedidoFragment : Fragment() {
                     if (rvPedidoVerdad != null){
                         rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
                         rvPedidoVerdad.adapter?.notifyDataSetChanged()
-                        fab?.visibility = View.INVISIBLE
                         if (listaPedidos.size == 0){
                             mostrarSnackbar("No hay pedidos aun.")
+                            fab?.visibility = View.INVISIBLE
                         }
                     }
 
