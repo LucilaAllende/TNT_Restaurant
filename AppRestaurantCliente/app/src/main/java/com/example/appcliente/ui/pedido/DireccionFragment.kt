@@ -72,6 +72,12 @@ class DireccionFragment : Fragment() {
             }
         }
 
+        val localidad = txtLocalidad?.text.toString()
+        val calle = txtCalle?.text.toString()
+        val numCalle = txtNumeroCalle?.text.toString()
+        val numPiso = txtNumeroPiso?.text.toString()
+        val numDpto = txtNumeroDpto?.text.toString()
+
         for (plato in this.listaPedido!!) {
 
             val database = FirebaseDatabase.getInstance()
@@ -85,7 +91,7 @@ class DireccionFragment : Fragment() {
                 "platoId" to plato.id,
                 "nombrePlato" to plato.nombrePlato,
                 "precioPlato" to plato.precioPlato,
-                "direccionEnvio" to "Eviar a direccion del usuario",
+                "direccionEnvio" to "Localidad$localidad,Calle$calle,NumCalle$numCalle,NumDpto$numDpto,NumPiso$numPiso",
                 "estado" to plato.estado, // [en preparación | en camino | entregado]
                 "tipo" to plato.tipo
             )

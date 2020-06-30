@@ -1,6 +1,6 @@
 package com.example.appcliente.ui.home.menusemanal
+
 import android.graphics.Color
-import com.example.appcliente.R
 import android.net.Uri
 import android.os.Build
 import android.view.LayoutInflater
@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.appcliente.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_item_ms.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import kotlin.collections.ArrayList
 
 class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listener: (Vianda) -> Unit) :
     RecyclerView.Adapter<AdapterMenuSemanal.ViewHolder>(){

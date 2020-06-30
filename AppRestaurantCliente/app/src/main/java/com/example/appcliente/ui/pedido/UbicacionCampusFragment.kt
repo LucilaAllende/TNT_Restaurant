@@ -1,11 +1,13 @@
 package com.example.appcliente.ui.pedido
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -26,6 +28,9 @@ class UbicacionCampusFragment : Fragment() {
     private var btnConfirmar: Button? = null
     private var listaPedido: List<Pedido>? = null
 
+    private var txtOficina: EditText? = null
+    private var txtAula: EditText? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +42,10 @@ class UbicacionCampusFragment : Fragment() {
         listaPedido = (pedidos as? ArrayList<*>)?.filterIsInstance<Pedido>()
 
         btnConfirmar = vista?.findViewById(R.id.btnConfirmarUbicacionCampus)
+
+        txtAula = vista?.findViewById(R.id.editNumeroAula)
+        txtOficina = vista?.findViewById(R.id.editNumeroOficina)
+
         btnConfirmar?.setOnClickListener { asignarUbicacionCampusAPedido() }
 
         return vista
@@ -53,34 +62,44 @@ class UbicacionCampusFragment : Fragment() {
             }
         }
 
-        for (plato in this.listaPedido!!) {
 
-            val database = FirebaseDatabase.getInstance()
-            val user = FirebaseAuth.getInstance().currentUser
-            val date = Calendar.getInstance().time
-            val formatter = java.text.SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
-            val formatedDate = formatter.format(date)
-            val pedidoHistorial = mapOf(
-                "timestamp" to formatedDate.toString(),
-                "clienteId" to user?.uid,
-                "platoId" to plato.id,
-                "nombrePlato" to plato.nombrePlato,
-                "precioPlato" to plato.precioPlato,
-                "direccionEnvio" to "Eviar a ubicacion del usuario",
-                "estado" to plato.estado, // [en preparación | en camino | entregado]
-                "tipo" to plato.tipo
-            )
+        val aula = txtAula?.text.toString()
+        val oficina = txtOficina?.text.toString()
 
-            val historialReference: DatabaseReference = database.reference.child("Historial").push()
+        if (!TextUtils.isEmpty(aula) || !TextUtils.isEmpty(oficina)){
+            for (plato in this.listaPedido!!) {
 
-            historialReference.setValue(pedidoHistorial)
+                val database = FirebaseDatabase.getInstance()
+                val user = FirebaseAuth.getInstance().currentUser
+                val date = Calendar.getInstance().time
+                val formatter = java.text.SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
+                val formatedDate = formatter.format(date)
+                val pedidoHistorial = mapOf(
+                    "timestamp" to formatedDate.toString(),
+                    "clienteId" to user?.uid,
+                    "platoId" to plato.id,
+                    "nombrePlato" to plato.nombrePlato,
+                    "precioPlato" to plato.precioPlato,
+                    "direccionEnvio" to "Aula:$aula,Oficina: $oficina",
+                    "estado" to plato.estado, // [en preparación | en camino | entregado]
+                    "tipo" to plato.tipo
+                )
 
-            database.reference.child("Pedido/" + plato.id).removeValue()
+                val historialReference: DatabaseReference = database.reference.child("Historial").push()
+
+                historialReference.setValue(pedidoHistorial)
+
+                database.reference.child("Pedido/" + plato.id).removeValue()
+            }
+
+            Toast.makeText(context, "Su pedido llegara pronto :)", Toast.LENGTH_LONG).show()
+
+            findNavController().navigate(R.id.nav_home, null, options)
+        }
+        else{
+            Toast.makeText(context, "Debe ingresar un aula u oficina", Toast.LENGTH_LONG).show()
         }
 
-        Toast.makeText(context, "Su pedido llegara pronto :)", Toast.LENGTH_LONG).show()
-
-        findNavController().navigate(R.id.nav_home, null, options)
     }
 
 
