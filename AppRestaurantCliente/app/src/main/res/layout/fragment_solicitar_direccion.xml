@@ -2,53 +2,101 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_fondo"
+    app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+    app:layout_constraintHorizontal_bias="0.5"
     tools:context=".ui.pedido.SolicitarDireccionFragment">
 
-    <Button
-        android:id="@+id/btnEnviarDomicilio"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enviar_domicilio"
-        app:layout_constraintBottom_toTopOf="@+id/btnIngresarUbicacion"
+        android:text="@string/donde_se_encuentra"
+        android:textColor="@color/window_background"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnIngresarUbicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ingresar_ubicacion"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        app:cardBackgroundColor="@color/color_fondo"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRetirarBuffet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviarDomicilio" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnIngresarUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_rendondo"
+                android:text="@string/ingresar_ubicacion"
+                android:textColor="@color/window_background"
+                app:layout_constraintBottom_toTopOf="@+id/btnEnviarDomicilio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEnvioCampus" />
+
+            <Button
+                android:id="@+id/btnEnvioCampus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_rendondo"
+                android:text="@string/envio_al_campus"
+                android:textColor="@color/window_background"
+                app:layout_constraintBottom_toTopOf="@+id/btnIngresarUbicacion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnEnviarDomicilio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_rendondo"
+                android:text="@string/enviar_domicilio"
+                android:textColor="@color/window_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnIngresarUbicacion" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnRetirarBuffet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/boton_rendondo"
         android:text="@string/txt_retirar"
-        app:layout_constraintBottom_toTopOf="@+id/btnEnvioCampus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresarUbicacion" />
-
-    <Button
-        android:id="@+id/btnEnvioCampus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/envio_al_campus"
+        android:textColor="@color/window_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRetirarBuffet" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
