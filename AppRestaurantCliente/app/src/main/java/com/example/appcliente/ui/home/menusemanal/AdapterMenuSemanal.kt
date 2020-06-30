@@ -1,6 +1,6 @@
 package com.example.appcliente.ui.home.menusemanal
-
 import android.graphics.Color
+import com.example.appcliente.R
 import android.net.Uri
 import android.os.Build
 import android.view.LayoutInflater
@@ -15,19 +15,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.appcliente.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_item_ms.view.*
 import java.text.SimpleDateFormat
-import java.time.Duration
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listener: (Vianda) -> Unit) :
     RecyclerView.Adapter<AdapterMenuSemanal.ViewHolder>(){
@@ -56,13 +51,15 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             title.text = "Pedilo antes del " + fecha[0] +"/"+fecha[1]
 
             try{
-                var formatter = DateTimeFormatter.ofPattern("d/M/yyyy")
-                var date1 = LocalDate.parse(data.dia, formatter)
-                var date2 = LocalDate.now()
-                var resta = Duration.between(date2.atStartOfDay(), date1.atStartOfDay()).toDays()
+                val date1 = Calendar.getInstance().time
+                val formatter = SimpleDateFormat.getDateInstance() //or use getDateInstance()
+                val hoy = formatter.format(date1)
+                val fmt = SimpleDateFormat("d/M/yyyy")
+                val date2 = fmt.parse(data.dia)
+                val diff: Long = date2.getTime() - date1.getTime()
+                val resta = (diff / (1000 * 60 * 60 * 24)).toInt()
 
-
-                if (2 >= resta){
+                if (1 >= resta){
                     btnAgregarPedido.visibility = View.GONE
                     btnVer.visibility = View.GONE
                     title.text = "No Disponible"
