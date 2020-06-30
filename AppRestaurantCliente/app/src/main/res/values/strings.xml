@@ -70,5 +70,6 @@
     <string name="numero_de_aula">numero de aula</string>
     <string name="numero_de_oficina">numero de oficina</string>
     <string name="confirmar">Confirmar</string>
+    <string name="donde_se_encuentra">¿Donde se encuentra?</string>
 
 </resources>
