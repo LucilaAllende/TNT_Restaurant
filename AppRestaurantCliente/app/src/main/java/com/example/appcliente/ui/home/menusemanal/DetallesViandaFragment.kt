@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.appcliente.R
+import com.google.android.material.tabs.TabLayout
+
 //import androidx.navigation.fragment.navArgs
 
 /**
@@ -29,6 +31,9 @@ class DetallesViandaFragment : Fragment() {
 
         textNombre.text = arguments?.getString("nombre")
         textIngredientes.text = arguments?.getString("ingredientes")
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi!!.visibility = View.GONE
 
         return vista
     }

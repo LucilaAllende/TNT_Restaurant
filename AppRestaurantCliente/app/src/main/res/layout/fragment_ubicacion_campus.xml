@@ -38,6 +38,8 @@
         android:id="@+id/btnConfirmarUbicacionCampus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/window_background"
+        android:background="@drawable/boton_rendondo"
         android:text="@string/confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
