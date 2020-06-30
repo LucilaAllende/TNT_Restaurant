@@ -25,7 +25,15 @@ class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
+        var mDatabase = FirebaseDatabase.getInstance().getReference();
+        if (mDatabase == null) {
+            val database = FirebaseDatabase.getInstance()
+            database.setPersistenceEnabled(true)
+        }
+
+
+
         setContentView(R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)

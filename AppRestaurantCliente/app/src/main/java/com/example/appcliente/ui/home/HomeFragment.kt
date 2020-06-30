@@ -1,5 +1,6 @@
 package com.example.appcliente.ui.home
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Build
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toolbar
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.appcliente.R
@@ -27,7 +30,7 @@ open class HomeFragment : Fragment() {
     private var viewPager: ViewPager? = null
 
     private var rotacion :Int ?=0
-
+    var callback: OnBackPressedCallback? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -90,4 +93,32 @@ open class HomeFragment : Fragment() {
         }
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        callback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+                val builder = AlertDialog.Builder(context)
+                builder.setMessage("Seguro queres salir?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si") { dialog, id ->
+                        //ActivityCompat.finishAffinity(requireActivity())
+                        getActivity()?.finish();
+                    }
+                    .setNegativeButton("No") { dialog, id ->
+                        dialog.dismiss()
+                    }
+                val alert = builder.create()
+                alert.show()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(),callback!!)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        callback!!.remove()
+    }
 }
