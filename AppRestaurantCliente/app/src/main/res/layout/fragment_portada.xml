@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/portada2">
+        android:background="@drawable/portada_cliente">
 
         <Button
             android:id="@+id/btnLogin"
