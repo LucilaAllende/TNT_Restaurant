@@ -28,7 +28,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private var tipoPlato: String = "vegano" /*Esto indica vegano, carnico o vegetariano*/
 
 class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
     val REQUEST_CODE = 123
@@ -40,6 +39,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
     private lateinit var pbAltaPlato: ProgressBar
+    private var tipoPlato: String = "Vegano" /*Esto indica vegano, carnico o vegetariano*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,7 +110,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
                         val icon: ImageView? = null
                         icon?.setImageResource(R.drawable.ic_restaurant_black_24dp)
 
-                        agregarNotificacion(body,titulo,topico, icon)
+                        agregarNotificacion(body,titulo,topico)
 
                         pbAltaPlato.visibility = View.INVISIBLE
                         Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
@@ -121,17 +121,23 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
     }
 
 
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+            tipoPlato = "Vegano"
+        }
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            tipoPlato = parent!!.getItemAtPosition(position).toString()
+        }
 
 
 
-    fun agregarNotificacion(body:String, titulo:String, topico:String, icon: ImageView?) {
+    fun agregarNotificacion(body:String, titulo:String, topico:String) {
         val apiService =   ServiceBuilder.buildService(RestApi::class.java)
         val peticion = Peticion(  to = "/topics/"+topico,
                                    notification = Notification(body=body,
                                                                title = titulo,
                                                                sound = "default",
-                                                               color="#ff4455",
-                                                                icon = icon))
+                                                               color="#ff4455"))
         var call = apiService.addNotificacion(peticion)
         call.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -153,8 +159,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         var body: String?,
         var title: String?,
         var sound: String?,
-        var color: String?,
-        var icon: ImageView?
+        var color: String?
     )
 
     data class Peticion (
@@ -182,18 +187,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        println("error capo")
-        tipoPlato = "Vegano"
-    }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        println("entrenaodddddddd!!!!!!")
-        tipoPlato = parent!!.getItemAtPosition(position).toString()
-        println(".................")
-        println(tipoPlato)
-        println(".................")
-    }
 
 }
 

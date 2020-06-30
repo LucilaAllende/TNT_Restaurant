@@ -70,7 +70,7 @@
             android:layout_width="301dp"
             android:layout_height="65dp"
             android:ems="10"
-            android:hint="Descripcion del plato"
+            android:hint="Ingredientes"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
