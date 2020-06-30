@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_item_ms.view.*
 import java.text.SimpleDateFormat
 import java.time.Duration
-import java.time.LocalDate
+//import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -54,7 +54,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
 
             val fecha: List<String> = data.dia.split("/")
             title.text = "Pedilo antes del " + fecha[0] +"/"+fecha[1]
-
+            /*
             try{
                 var formatter = DateTimeFormatter.ofPattern("d/M/yyyy")
                 var date1 = LocalDate.parse(data.dia, formatter)
@@ -71,7 +71,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             }
             catch (e: Exception) {
                 println("error")
-            }
+            }*/
         }
 
         override fun onClick(v: View?) {
