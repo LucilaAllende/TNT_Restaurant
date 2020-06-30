@@ -1,6 +1,8 @@
 package com.example.appcliente.ui.home.menusemanal
 
+import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +22,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_item_ms.view.*
 import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,6 +36,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         //recibimos lo datos que se agregan dentro de nuestra vista
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bindItems (data: Vianda){
 
             //variables para nuestras vistas
@@ -36,16 +44,34 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             val name: TextView = itemView.findViewById(R.id.txtNombreVianda)
             val image: ImageView = itemView.findViewById(R.id.imagenS)
             val btnAgregarPedido = itemView.button_agregar_pedido
+            val btnVer: Button = itemView.findViewById(R.id.button_ver_ingredientes_vianda)
             val precio: TextView = itemView.findViewById(R.id.txtPrecioVianda)
 
-            title.text = data.dia
             name.text = data.nombre
             precio.text = data.precio
-
             Glide.with(itemView.context).load(Uri.parse(data.imagenUrl)).into(image)
-
             btnAgregarPedido.setOnClickListener{ agregarPedido()}
 
+            val fecha: List<String> = data.dia.split("/")
+            title.text = "Pedilo antes del " + fecha[0] +"/"+fecha[1]
+
+            try{
+                var formatter = DateTimeFormatter.ofPattern("d/M/yyyy")
+                var date1 = LocalDate.parse(data.dia, formatter)
+                var date2 = LocalDate.now()
+                var resta = Duration.between(date2.atStartOfDay(), date1.atStartOfDay()).toDays()
+
+
+                if (2 >= resta){
+                    btnAgregarPedido.visibility = View.GONE
+                    btnVer.visibility = View.GONE
+                    title.text = "No Disponible"
+                    title.setTextColor(Color.parseColor("#23456"))
+                }
+            }
+            catch (e: Exception) {
+                println("error")
+            }
         }
 
         override fun onClick(v: View?) {
@@ -118,10 +144,14 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
         return list.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(list[position])
         val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_ingredientes_vianda)
         btnVer.setOnClickListener { listener(list[position]) }
+
+        val btnPedirPlato: Button = holder.itemView.button_agregar_pedido
+
     }
 }
 

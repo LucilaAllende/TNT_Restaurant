@@ -45,34 +45,9 @@ class FragmentInicio : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            findNavController().navigate(R.id.action_fragmentInicio2_to_nav_home,null,options)
+            findNavController().navigate(R.id.action_fragmentInicio2_to_nav_home,null)
         } else {
             findNavController().navigate(R.id.action_fragmentInicio2_to_fragmentPortada,null,options)
         }
     }
 }
-
-/*
-
-        //FirebaseAuth.getInstance().signOut()
-
-
-dbReference = FirebaseDatabase.getInstance().getReference()
-        val user = FirebaseAuth.getInstance().currentUser
-        dbReference.child("Usuarios").child(user!!.uid.toString()).addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                println("hubo un errro")
-            }
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
-                val usuario = dataSnapshot.getValue(Usuario::class.java)
-                view.textViewUser.text = "Bienvenido "+ usuario?.nombre.toString()
-            }
-        })
-
-        data class Usuario(
-    var nombre: String? = "",
-    var apellido: String = "",
-    var email: String = ""
-)
- */
