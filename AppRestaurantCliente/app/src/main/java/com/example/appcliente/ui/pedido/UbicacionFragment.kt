@@ -103,7 +103,7 @@ class UbicacionFragment : Fragment() {
                     "platoId" to plato.id,
                     "nombrePlato" to plato.nombrePlato,
                     "precioPlato" to plato.precioPlato,
-                    "direccionEnvio" to "Eviar a ubicacion del usuario",
+                    "direccionEnvio" to "Localidad$localidad,Calle$calle,NumCalle$numCalle,NumPiso$numPiso,NumDpto$numDpto,Calle1$calle1,Calle2$calle2",
                     "estado" to plato.estado, // [en preparación | en camino | entregado]
                     "tipo" to plato.tipo
                 )
