@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
 
+        <!--ESTE ES EL ICONO DE LA NOTIFICACIONv-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_add_alert_black_24dp" />
+
+        <!--ESTE ES EL COLOR DEL BORDE DE LA NOTIFICACIONv-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/color_carnico_transparente" />
+
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -22,9 +34,9 @@
         <service
             android:name=".ui.notificaciones.NotificacionFirebaseService"
             android:exported="false"
-            android:icon="@drawable/ic_add_alert_black_24dp"
-            android:logo="@drawable/ic_add_alert_black_24dp"
-            android:roundIcon="@drawable/ic_add_alert_black_24dp">
+            android:icon="@drawable/ic_notificacion"
+            android:logo="@drawable/ic_notificacion"
+            android:roundIcon="@drawable/ic_notificacion">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
