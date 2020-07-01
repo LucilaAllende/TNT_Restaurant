@@ -13,7 +13,7 @@
         <!--ESTE ES EL ICONO DE LA NOTIFICACIONv-->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_add_alert_black_24dp" />
+            android:resource="@drawable/ic_restaurant_black_24dp" />
 
         <!--ESTE ES EL COLOR DEL BORDE DE LA NOTIFICACIONv-->
         <meta-data
