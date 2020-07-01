@@ -26,13 +26,17 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var mDatabase = FirebaseDatabase.getInstance().getReference();
-        if (mDatabase == null) {
+        try{
             val database = FirebaseDatabase.getInstance()
             database.setPersistenceEnabled(true)
+            val pedido = database.getReference("Pedido")
+            pedido.keepSynced(true)
+            val historial = database.getReference("Historial")
+            historial.keepSynced(true)
         }
-
-
+        catch (e: Exception){
+            println("error")
+        }
 
         setContentView(R.layout.activity_main)
 

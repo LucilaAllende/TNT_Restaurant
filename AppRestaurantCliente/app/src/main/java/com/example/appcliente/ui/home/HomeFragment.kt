@@ -21,6 +21,7 @@ import com.example.appcliente.ui.home.menumate.MenuMateFragment
 import com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.database.FirebaseDatabase
 
 open class HomeFragment : Fragment() {
 
