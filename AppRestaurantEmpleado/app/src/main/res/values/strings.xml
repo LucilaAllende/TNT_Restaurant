@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AppEmpleado</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_cargar_menues">Cargar Menues</string>
+    <string name="btn_ver_pedidos">Listado de Pedidos</string>
     <string-array name="tipo_plato_array">
         <item>Vegano</item>
         <item>Vegetariano</item>
@@ -11,4 +13,8 @@
         <item>Dulce</item>
         <item>Agridulce</item>
     </string-array>
+
+    <string name="id_plato_md">id_plato_mm</string>
+    <string name="descripcionPortada">Imagen de categoria</string>
+    <string name="ver_ingredientes">Ingredientes</string>
 </resources>

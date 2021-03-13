@@ -4,25 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/fragmentPortada">
-
-    <fragment
-        android:id="@+id/fragmentHome"
-        android:name="com.example.appempleado.FragmentHome"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentPortada"
-            app:destination="@id/fragmentPortada" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentLogin"
-        android:name="com.example.appempleado.FragmentLogin"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_fragmentLogin_to_fragmentHome"
-            app:destination="@id/fragmentHome" />
-    </fragment>
     <fragment
         android:id="@+id/fragmentPortada"
         android:name="com.example.appempleado.FragmentPortada"
@@ -47,4 +28,62 @@
             android:id="@+id/action_fragmentSignin_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.appempleado.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.appempleado.FragmentHome"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentCargarMenu"
+            app:destination="@id/fragmentCargarMenu" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentListaPedidos"
+            app:destination="@id/fragmentListaPedidos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCargarMenu"
+        android:name="com.example.appempleado.FragmentCargarMenu"
+        android:label="fragment_cargar_menu"
+        tools:layout="@layout/fragment_cargar_menu" >
+        <action
+            android:id="@+id/action_fragmentCargarMenu_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentListaPedidos"
+        android:name="com.example.appempleado.ListaPedidosFragment"
+        android:label="fragment_lista_pedidos"
+        tools:layout="@layout/fragment_lista_pedidos" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_lista_pedidos"
+        android:name="com.example.appempleado.ListaPedidosFragment"
+        android:label="Lista de Pedidos"
+        tools:layout="@layout/fragment_lista_pedidos">
+        <action
+            android:id="@+id/action_nav_lista_pedidos_to_nav_detalle_pedido"
+            app:destination="@id/nav_detalle_pedido"
+            app:popUpTo="@id/fragmentHome" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detalle_pedido"
+        android:name="com.example.appempleado.DetallePedidoFragment"
+        android:label="Ingredientes"
+        tools:layout="@layout/fragment_detalle_pedido">
+        <argument android:name="nombre" />
+        <argument android:name="ingredientes" />
+    </fragment>
+
 </navigation>
