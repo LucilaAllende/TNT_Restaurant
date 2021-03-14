@@ -114,7 +114,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
                                             "nombrePlato" to itemView.txtNombrePlato.text.toString(),
                                             "precioPlato" to itemView.txtPrecioPlato.text.toString(),
                                             "direccionEnvio" to "aca va la direccion del cliente",
-                                            "estado" to "en preparacion", // [en preparación | en camino | entregado]
+                                            "estado" to "PENDIENTE", // [en preparación | en camino | entregado]
                                             "tipo" to "md")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)

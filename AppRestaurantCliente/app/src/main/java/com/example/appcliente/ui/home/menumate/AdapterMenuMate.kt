@@ -88,7 +88,7 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
                         "nombrePlato" to itemView.txtNombreDesayuno.text.toString(),
                         "precioPlato" to itemView.txtPrecio.text.toString(),
                         "direccionEnvio" to "aca va la direccion del cliente",
-                        "estado" to "en preparacion", // [en preparación | en camino | entregado]
+                        "estado" to "PENDIENTE", // [en preparación | en camino | entregado]
                         "tipo" to "mm")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)

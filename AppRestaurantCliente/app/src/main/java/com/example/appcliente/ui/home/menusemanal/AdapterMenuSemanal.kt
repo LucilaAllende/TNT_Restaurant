@@ -107,7 +107,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
                         "nombrePlato" to itemView.txtNombreVianda.text.toString(),
                         "precioPlato" to itemView.txtPrecioVianda.text.toString(),
                         "direccionEnvio" to "aca va la direccion del cliente",
-                        "estado" to "en preparacion", // [en preparación | en camino | entregado]
+                        "estado" to "PENDIENTE", // [en preparación | en camino | entregado]
                         "tipo" to "ms")
                     val pedidoReference: DatabaseReference = database.reference.child("Pedido").push()
                     pedidoReference.setValue(pedido)

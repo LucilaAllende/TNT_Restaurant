@@ -61,23 +61,26 @@ class ListaPedidosFragment : Fragment() {
 
 
     private fun deboAgregarPedido(p: Pedido):Boolean{
-        var encontrado = true
-
-        for (c in lista_pedidos) {
-            if (c.id == p.id &&
-                c.clienteId == p.clienteId &&
-                c.direccionEnvio == p.direccionEnvio &&
-                c.estado == p.estado &&
-                c.platoId == p.platoId &&
-                c.timestamp == p.timestamp &&
-                c.nombrePlato == p.nombrePlato &&
-                c.precioPlato == p.precioPlato &&
-                c.tipo == p.tipo && p.estado == "PENDIENTE") {
-                encontrado = false
+        var agregar = true
+        if (p.estado == "PEDIDO ENVIADO"){
+            agregar = false
+        }
+        else{
+            for (c in lista_pedidos) {
+                if (c.id == p.id &&
+                    c.clienteId == p.clienteId &&
+                    c.direccionEnvio == p.direccionEnvio &&
+                    c.estado == p.estado &&
+                    c.platoId == p.platoId &&
+                    c.timestamp == p.timestamp &&
+                    c.nombrePlato == p.nombrePlato &&
+                    c.precioPlato == p.precioPlato &&
+                    c.tipo == p.tipo ) {
+                    agregar = false
+                }
             }
         }
-        return encontrado
-
+        return agregar
     }
 
     private fun verificarPedidos() {
