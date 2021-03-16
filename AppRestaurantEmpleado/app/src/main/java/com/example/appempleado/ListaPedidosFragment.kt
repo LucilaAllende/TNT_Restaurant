@@ -1,8 +1,12 @@
 package com.example.appempleado
 
+import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,12 +43,7 @@ class ListaPedidosFragment : Fragment() {
             ViewModelProvider(this).get(ListaPedidosViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_lista_pedidos, container, false)
         verificarPedidos()
-
-
-
-
         return vista
-
     }
 
 
@@ -85,8 +84,6 @@ class ListaPedidosFragment : Fragment() {
 
     private fun verificarPedidos() {
         FirebaseDatabase.getInstance().reference.child("Pedido")
-            .orderByChild("clienteId")
-            .equalTo(FirebaseAuth.getInstance().currentUser?.uid)
             .addChildEventListener(object : ChildEventListener {
 
                 override fun onCancelled(p0: DatabaseError) {
@@ -219,7 +216,7 @@ class SwipeController : ItemTouchHelper.Callback() {
                 }
                 l?.set(p0.adapterPosition, pedido!!)
             }
-            r?.itemAnimator?.changeDuration = 0
+            //r?.itemAnimator?.changeDuration = 0
             //var vh = p0 as ViewHolderCustom
             //vh.marcarPedidoPendiente(p0)
              //r?.adapter?.notifyItemChanged(p0.getAdapterPosition())
@@ -228,6 +225,7 @@ class SwipeController : ItemTouchHelper.Callback() {
             //println(p0.adapterPosition)
 
             r?.adapter?.notifyItemChanged(p0.getAdapterPosition())
+
         }
     }
 
@@ -294,11 +292,11 @@ class SwipeController : ItemTouchHelper.Callback() {
          */
 
         var newDx:Float = dX;
-        if (newDx >= 200f) {
+        if (newDx >= 150f) {
             newDx = 200f
         }
 
-        if (newDx <= -200f) {
+        if (newDx <= -150f) {
             newDx = -200f
         }
 

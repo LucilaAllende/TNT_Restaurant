@@ -7,8 +7,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPedido"
-        android:layout_width="357dp"
-        android:layout_height="474dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scrollbars="vertical"
         tools:ignore="MissingConstraints"
         tools:layout_conversion_absoluteHeight="474dp"
