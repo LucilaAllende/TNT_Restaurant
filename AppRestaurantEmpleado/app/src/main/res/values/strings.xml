@@ -19,4 +19,5 @@
     <string name="ver_ingredientes">Ingredientes</string>
     <string name="btn_ver_estadisticas">Estadisticas</string>
     <string name="buffet_de_juan">Buffet de Juan</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
 </resources>

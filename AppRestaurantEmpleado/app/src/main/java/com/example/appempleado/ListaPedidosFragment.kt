@@ -7,11 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,9 +42,21 @@ class ListaPedidosFragment : Fragment() {
             ViewModelProvider(this).get(ListaPedidosViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_lista_pedidos, container, false)
         verificarPedidos()
+        setHasOptionsMenu(true)
         return vista
     }
 
+    override fun onCreateOptionsMenu(menu: android.view.Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        FirebaseAuth.getInstance().signOut()
+        findNavController().navigate(R.id.action_fragmentListaPedidos_to_fragmentPortada,null)
+        return true
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

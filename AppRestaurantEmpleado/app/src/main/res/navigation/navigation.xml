@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentListaPedidos"
             app:destination="@id/fragmentListaPedidos" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentPortada"
+            app:destination="@id/fragmentPortada" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCargarMenu"
@@ -57,12 +60,21 @@
         <action
             android:id="@+id/action_fragmentCargarMenu_to_fragmentHome"
             app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentCargarMenu_to_fragmentPortada"
+            app:destination="@id/fragmentPortada" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListaPedidos"
         android:name="com.example.appempleado.ListaPedidosFragment"
         android:label="fragment_lista_pedidos"
         tools:layout="@layout/fragment_lista_pedidos" >
+        <action
+            android:id="@+id/action_fragmentListaPedidos_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+        <action
+            android:id="@+id/action_fragmentListaPedidos_to_fragmentPortada"
+            app:destination="@id/fragmentPortada" />
     </fragment>
 
     <fragment

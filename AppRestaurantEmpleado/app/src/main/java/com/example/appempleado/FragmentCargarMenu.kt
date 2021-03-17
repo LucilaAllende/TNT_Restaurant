@@ -42,7 +42,7 @@ class FragmentCargarMenu : Fragment() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return super.onContextItemSelected(item)
-        Toast.makeText(context, "Saliendo ", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Saliendo ", Toast.LENGTH_SHORT).show()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,13 +58,13 @@ class FragmentCargarMenu : Fragment() {
 
     override fun onCreateOptionsMenu(menu: android.view.Menu, inflater:MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         FirebaseAuth.getInstance().signOut()
-        findNavController().navigate(R.id.action_fragmentCargarMenu_to_fragmentHome,null)
+        findNavController().navigate(R.id.action_fragmentCargarMenu_to_fragmentPortada,null)
         return true
     }
 
