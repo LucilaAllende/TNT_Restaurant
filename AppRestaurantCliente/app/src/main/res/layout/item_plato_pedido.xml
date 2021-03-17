@@ -84,4 +84,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txt_estado_pedido"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="116dp" />
+
 </androidx.cardview.widget.CardView>

@@ -203,8 +203,7 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val vh = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_pedido, parent, false))
-        return vh
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_plato_pedido, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -218,6 +217,7 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val txtPrecio = view.cardViewPedido.txtPrecioPedido
     val color = view.bannerColor
     val platoId = view.textViewPlatoIdPedido
+    val txtEstado = view.txt_estado_pedido
     val btnEliminar = view.btnEliminarPedido
 
     fun bind(p: Pedido) {
@@ -234,6 +234,7 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         txtNombre.text = p.nombrePlato
         txtPrecio.text = p.precioPlato
         platoId.text = p.platoId
+        txtEstado.text = p.estado
         btnEliminar.setOnClickListener{eliminarPedido(p.id)}
     }
 }

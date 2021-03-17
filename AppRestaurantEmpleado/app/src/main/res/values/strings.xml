@@ -17,4 +17,6 @@
     <string name="id_plato_md">id_plato_mm</string>
     <string name="descripcionPortada">Imagen de categoria</string>
     <string name="ver_ingredientes">Ingredientes</string>
+    <string name="btn_ver_estadisticas">Estadisticas</string>
+    <string name="buffet_de_juan">Buffet de Juan</string>
 </resources>

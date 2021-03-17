@@ -3,14 +3,38 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <!--
+        <!-- ESTE ERA EL QUE ESTABA EN UN PRINICPIO
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        -->
+
         <item name="colorPrimary">#803030</item>
-        <item name="colorPrimaryDark">#303F9F</item> //This Line
+        <item name="colorPrimaryDark">#303F9F</item>
         <item name="colorAccent">#FF4081</item>
+        -->
+        <!-- ESTE ES EL DEL AZUL CLARO
+        <item name="colorPrimary">#455A64</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="android:popupBackground">#263238</item>
+        <item name="android:textColorPrimary">#1565C0</item>
+        <item name="android:actionMenuTextColor">#455A64</item>
+        <item name="android:textColorSecondary">#263238</item>
+        <item name="android:editTextColor">#000000</item>
+        <item name="android:textColorAlertDialogListItem">#455A64</item>
+        <item name="android:fontFamily">roboto, sans-serif-condensed</item> -->
+<!--
+        <item name="android:actionBarStyle">@style/ActionBarLight</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item> -->
+
+        <item name="colorPrimary">#455A64</item>
+        <item name="colorPrimaryDark">#263238</item>
+        <item name="android:popupBackground">#263238</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:actionMenuTextColor">#455A64</item>
+        <item name="android:textColorSecondary">#263238</item>
+        <item name="android:editTextColor">#FFFFFF</item>
+        <item name="android:textColorAlertDialogListItem">#455A64</item>
+        <item name="android:fontFamily">roboto, sans-serif-condensed</item>
     </style>
 
 </resources>
