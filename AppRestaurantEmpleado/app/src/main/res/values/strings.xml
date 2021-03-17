@@ -20,4 +20,7 @@
     <string name="btn_ver_estadisticas">Estadisticas</string>
     <string name="buffet_de_juan">Buffet de Juan</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="username_email">Username (email)</string>
+    <string name="login_password">password</string>
+    <string name="texto_btn_login">Login</string>
 </resources>

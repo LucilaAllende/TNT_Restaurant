@@ -32,8 +32,10 @@
         <item name="android:textColorPrimary">#000000</item>
         <item name="android:actionMenuTextColor">#455A64</item>
         <item name="android:textColorSecondary">#263238</item>
-        <item name="android:editTextColor">#FFFFFF</item>
+        <item name="android:editTextColor">#000000</item>
         <item name="android:textColorAlertDialogListItem">#455A64</item>
+        <item name="colorAccent">#455A64</item>
+
         <!--<item name="android:fontFamily">roboto, sans-serif-condensed</item> TODO: Lucila comente esta linea para que vuelva a funcionar todo-->
     </style>
 
