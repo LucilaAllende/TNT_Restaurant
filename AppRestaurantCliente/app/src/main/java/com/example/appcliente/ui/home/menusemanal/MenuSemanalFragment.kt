@@ -18,9 +18,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
-/**
- * A simple [Fragment] subclass.
- */
 class MenuSemanalFragment : Fragment() {
 
     var vista: View? = null

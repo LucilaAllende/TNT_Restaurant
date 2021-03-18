@@ -19,11 +19,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
 
-/**
- * A simple [Fragment] subclass.
- */
-
-
 class MenuMateFragment : Fragment() {
     var recyclerView: RecyclerView? = null
     var vista: View? = null

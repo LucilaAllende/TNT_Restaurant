@@ -31,6 +31,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.example.appcliente.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_nav_home2"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment
         android:id="@+id/fragmentInicio"
         android:name="com.example.appcliente.FragmentInicio"
         android:label="fragment_inicio"
@@ -43,15 +53,6 @@
             app:destination="@id/nav_home" />
     </fragment>
 
-    <fragment
-        android:id="@+id/fragmentLogin"
-        android:name="com.example.appcliente.FragmentLogin"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_fragmentLogin_to_nav_home2"
-            app:destination="@id/nav_home" />
-    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -183,15 +184,16 @@
 
 
     <fragment
-        android:id="@+id/nav_cuenta"
-        android:name="com.example.appcliente.ui.cuenta.CuentaFragment"
-        android:label="@string/menu_cuenta"
-        tools:layout="@layout/fragment_cuenta" />
+        android:id="@+id/nav_seguimiento"
+        android:name="com.example.appcliente.ui.seguimiento.SeguimientoFragment"
+        android:label="@string/seguimiento_pedido"
+        tools:layout="@layout/fragment_seguimiento" />
 
     <fragment
         android:id="@+id/nav_historial"
         android:name="com.example.appcliente.ui.historial.HistorialFragment"
         android:label="@string/menu_historial"
         tools:layout="@layout/fragment_historial" />
+
 
 </navigation>

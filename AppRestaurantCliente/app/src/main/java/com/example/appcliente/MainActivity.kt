@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(){
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_cuenta, R.id.nav_pedido, R.id.nav_historial), drawerLayout)
+                R.id.nav_home, R.id.nav_seguimiento, R.id.nav_pedido, R.id.nav_historial), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity(){
 
     override fun onBackPressed() {
         if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.drawerLayout.closeDrawer(GravityCompat.START);
+            this.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed();
+            super.onBackPressed()
         }
         //finish()
     }

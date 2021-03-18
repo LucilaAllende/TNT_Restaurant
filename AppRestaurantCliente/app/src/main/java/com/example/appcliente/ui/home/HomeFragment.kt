@@ -2,7 +2,6 @@ package com.example.appcliente.ui.home
 
 import android.app.AlertDialog
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toolbar
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.appcliente.R
@@ -21,8 +19,8 @@ import com.example.appcliente.ui.home.menumate.MenuMateFragment
 import com.example.appcliente.ui.home.menusemanal.MenuSemanalFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.database.FirebaseDatabase
 
+@Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
 open class HomeFragment : Fragment() {
 
     var vista: View? = null
@@ -31,7 +29,7 @@ open class HomeFragment : Fragment() {
     private var viewPager: ViewPager? = null
 
     private var rotacion :Int ?=0
-    var callback: OnBackPressedCallback? = null
+    private var callback: OnBackPressedCallback? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
@@ -75,7 +73,7 @@ open class HomeFragment : Fragment() {
         } else {
             rotacion = 1
         }
-        return vista;
+        return vista
     }
 
     private fun llenarViewPager(viewPager: ViewPager) {
@@ -106,9 +104,9 @@ open class HomeFragment : Fragment() {
                     .setCancelable(false)
                     .setPositiveButton("Si") { dialog, id ->
                         //ActivityCompat.finishAffinity(requireActivity())
-                        getActivity()?.finish();
+                        activity?.finish()
                     }
-                    .setNegativeButton("No") { dialog, id ->
+                    .setNegativeButton("No") { dialog, _ ->
                         dialog.dismiss()
                     }
                 val alert = builder.create()

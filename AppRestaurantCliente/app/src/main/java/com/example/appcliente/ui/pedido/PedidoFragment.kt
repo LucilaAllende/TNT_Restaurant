@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -50,7 +50,7 @@ class PedidoFragment : Fragment() {
             }
         }
         galleryViewModel =
-            ViewModelProviders.of(this).get(PedidoViewModel::class.java)
+            ViewModelProvider(this).get(PedidoViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_pedido, container, false)
 
         fab= vista?.findViewById(R.id.fab)

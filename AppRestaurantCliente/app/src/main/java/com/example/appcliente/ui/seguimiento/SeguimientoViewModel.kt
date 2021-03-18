@@ -1,10 +1,10 @@
-package com.example.appcliente.ui.cuenta
+package com.example.appcliente.ui.seguimiento
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CuentaViewModel : ViewModel() {
+class SeguimientoViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Mi cuenta"

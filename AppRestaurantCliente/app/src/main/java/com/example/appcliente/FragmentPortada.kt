@@ -2,7 +2,6 @@ package com.example.appcliente
 
 import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentPortadaBinding
-import com.google.android.material.appbar.AppBarLayout
 
 
 class FragmentPortada : Fragment() {

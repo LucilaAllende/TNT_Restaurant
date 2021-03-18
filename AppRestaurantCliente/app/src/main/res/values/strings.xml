@@ -73,5 +73,7 @@
     <string name="confirmar">Confirmar</string>
     <string name="donde_se_encuentra">¿Donde se encuentra?</string>
     <string name="buffet_de_juan">Buffet de Juan</string>
+    <string name="txt_cerrar_sesion">Cerrar Sesión</string>
+    <string name="seguimiento_pedido">Seguimiento Pedido</string>
 
 </resources>

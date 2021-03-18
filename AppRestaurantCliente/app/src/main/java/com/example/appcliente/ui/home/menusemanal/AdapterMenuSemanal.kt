@@ -54,7 +54,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             try{
                 val date1 = Calendar.getInstance().time
                 val formatter = SimpleDateFormat.getDateInstance() //or use getDateInstance()
-                val hoy = formatter.format(date1)
+                //val hoy = formatter.format(date1)
                 val fmt = SimpleDateFormat("d/M/yyyy")
                 val date2 = fmt.parse(data.dia)
                 val diff: Long = date2.getTime() - date1.getTime()
@@ -148,7 +148,7 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
         val btnVer: Button = holder.itemView.findViewById(R.id.button_ver_ingredientes_vianda)
         btnVer.setOnClickListener { listener(list[position]) }
 
-        val btnPedirPlato: Button = holder.itemView.button_agregar_pedido
+        //val btnPedirPlato: Button = holder.itemView.button_agregar_pedido
 
     }
 }

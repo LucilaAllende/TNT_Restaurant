@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -32,7 +32,7 @@ class HistorialFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         slideshowViewModel =
-            ViewModelProviders.of(this).get(HistorialViewModel::class.java)
+            ViewModelProvider(this).get(HistorialViewModel::class.java)
         vista = inflater.inflate(R.layout.fragment_historial, container, false)
 
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)

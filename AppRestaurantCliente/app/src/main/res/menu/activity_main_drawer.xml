@@ -18,5 +18,10 @@
             android:id="@+id/nav_historial"
             android:icon="@drawable/ic_history_black_24dp"
             android:title="@string/menu_historial" />
+        <item
+            android:id="@+id/nav_seguimiento"
+            android:icon="@drawable/ic_youtube_searched_for_black_24dp"
+            android:title="@string/seguimiento_pedido" />
+
     </group>
 </menu>
