@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.appcliente.R
+import com.example.appcliente.ui.pedido.Pedido
 import com.google.android.material.tabs.TabLayout
 
 class SeguimientoFragment : Fragment() {
 
     private lateinit var galleryViewModel: SeguimientoViewModel
+    var vista: View? = null
+    var listaPedidos: ArrayList<Pedido> = ArrayList()
 
     override fun onCreateView(
             inflater: LayoutInflater,
