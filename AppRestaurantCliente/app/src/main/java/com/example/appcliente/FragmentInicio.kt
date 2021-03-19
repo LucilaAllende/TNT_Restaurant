@@ -1,9 +1,12 @@
 package com.example.appcliente
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -25,6 +28,7 @@ class FragmentInicio : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,9 +38,8 @@ class FragmentInicio : Fragment() {
         val view = binding.root
 
         //ESTE CODIGO UTILIZO PARA OCULTAR LA BARRA
-        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
-        appBar!!.setExpanded(false,false)
-        appBar.visibility = View.GONE
+        val tabs: View? = activity?.findViewById<View>(R.id.tabs)
+        tabs!!.visibility = View.GONE
 
         return view
     }
@@ -50,4 +53,5 @@ class FragmentInicio : Fragment() {
             findNavController().navigate(R.id.action_fragmentInicio2_to_fragmentPortada,null,options)
         }
     }
+
 }

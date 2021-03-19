@@ -37,9 +37,8 @@ class FragmentSinging : Fragment() {
         _binding = FragmentSingingBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
-        appBar!!.setExpanded(false,false)
-        appBar.visibility = View.GONE
+        val tabs: View? = activity?.findViewById<View>(R.id.tabs)
+        tabs!!.visibility = View.GONE
 
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()

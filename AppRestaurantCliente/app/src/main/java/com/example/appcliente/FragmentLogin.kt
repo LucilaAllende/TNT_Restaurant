@@ -38,9 +38,8 @@ class FragmentLogin : Fragment() {
         val view = binding.root
 
         //ESTE CODIGO UTILIZO PARA OCULTAR LA BARRA
-        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
-        appBar!!.setExpanded(false,false)
-        appBar.visibility = View.GONE
+        val tabs: View? = activity?.findViewById<View>(R.id.tabs)
+        tabs!!.visibility = View.GONE
 
         binding.btnLogin.setOnClickListener { login() }
         return view
