@@ -19,9 +19,6 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
 
-/**
- * A simple [Fragment] subclass.
- */
 class UbicacionCampusFragment : Fragment() {
 
     private var vista: View? = null
