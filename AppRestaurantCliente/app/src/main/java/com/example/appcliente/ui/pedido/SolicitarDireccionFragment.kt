@@ -95,7 +95,7 @@ class SolicitarDireccionFragment : Fragment() {
             database.reference.child("Pedido/"+plato.id).removeValue()
         }
 
-        Toast.makeText(context, "Ya puede retirar su pedido",Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Pedido realizado",Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.nav_home, null, options)
     }
 
