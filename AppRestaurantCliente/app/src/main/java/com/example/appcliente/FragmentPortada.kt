@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentPortadaBinding
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 
 
 class FragmentPortada : Fragment() {
@@ -49,10 +51,15 @@ class FragmentPortada : Fragment() {
         appBar!!.setExpanded(!hide, true)*/
 
 /*        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
-        appBar!!.visibility = View.GONE*/
+        appBar!!.visibility = View.GONE
 
-        val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
+                val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
         tolBar?.visibility = View.GONE
+        */
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi?.visibility = View.GONE
+
 
         binding.btnLogin.setOnClickListener { login() }
         binding.btnRegistrarse.setOnClickListener{ signin() }

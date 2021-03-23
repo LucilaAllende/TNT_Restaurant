@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentSingingBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -37,9 +38,13 @@ class FragmentSinging : Fragment() {
         _binding = FragmentSingingBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        /*val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
-        appBar.visibility = View.GONE
+        appBar.visibility = View.GONE*/
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi?.visibility = View.GONE
+
 
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()

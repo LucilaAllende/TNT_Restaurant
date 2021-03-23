@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentLoginBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -38,9 +39,13 @@ class FragmentLogin : Fragment() {
         val view = binding.root
 
         //ESTE CODIGO UTILIZO PARA OCULTAR LA BARRA
-        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        /*val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
-        appBar.visibility = View.GONE
+        appBar.visibility = View.GONE*/
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi?.visibility = View.GONE
+
 
         binding.btnLogin.setOnClickListener { login() }
         return view
