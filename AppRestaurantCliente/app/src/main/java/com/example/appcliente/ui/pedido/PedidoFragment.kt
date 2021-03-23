@@ -217,7 +217,6 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val txtPrecio = view.cardViewPedido.txtPrecioPedido
     val color = view.bannerColor
     val platoId = view.textViewPlatoIdPedido
-    val txtEstado = view.txt_estado_pedido
     val btnEliminar = view.btnEliminarPedido
 
     fun bind(p: Pedido) {
@@ -234,7 +233,6 @@ class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         txtNombre.text = p.nombrePlato
         txtPrecio.text = p.precioPlato
         platoId.text = p.platoId
-        txtEstado.text = p.estado
         btnEliminar.setOnClickListener{eliminarPedido(p.id)}
     }
 }

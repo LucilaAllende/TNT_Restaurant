@@ -77,7 +77,7 @@ open class HomeFragment : Fragment() {
     }
 
     private fun llenarViewPager(viewPager: ViewPager) {
-        val adapter = SeccionesAdapter(getChildFragmentManager())
+        val adapter = SeccionesAdapter(childFragmentManager)
         adapter.addFragment(MenuDiaFragment(), "Almuerzo")
         adapter.addFragment(MenuSemanalFragment(), "Viandas")
         adapter.addFragment(MenuMateFragment(), "Para el Mate")
@@ -102,7 +102,7 @@ open class HomeFragment : Fragment() {
                 val builder = AlertDialog.Builder(context)
                 builder.setMessage("Seguro queres salir?")
                     .setCancelable(false)
-                    .setPositiveButton("Si") { dialog, id ->
+                    .setPositiveButton("Si") { _, _ ->
                         //ActivityCompat.finishAffinity(requireActivity())
                         activity?.finish()
                     }
