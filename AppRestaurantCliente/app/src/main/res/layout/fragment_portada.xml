@@ -5,14 +5,12 @@
     android:id="@+id/fragment_portada"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentPortada"
-    tools:showIn="@layout/app_bar_main">
+    tools:context=".FragmentPortada">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/portada_cliente">
-
 
         <Button
             android:id="@+id/btnLogin"
@@ -39,8 +37,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.871" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
