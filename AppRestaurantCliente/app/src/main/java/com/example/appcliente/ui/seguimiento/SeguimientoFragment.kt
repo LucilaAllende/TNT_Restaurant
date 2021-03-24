@@ -95,26 +95,21 @@ class SeguimientoFragment : Fragment() {
                 }
 
                 override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                    /*
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
-                        pedido.id = p0.key.toString()
-                        listaPedidos.add(pedido)
-                        if (rvPedidoVerdad != null){
-                            fab?.visibility = View.VISIBLE
-                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        var p = listaPedidos.filter { it.id == p0.key.toString() }.first()
+                        p.estado = pedido.estado
+                        listaPedidos.set(listaPedidos.indexOf(p), p)
+                        if (rvSeguimientoPedido != null){
+                            rvSeguimientoPedido.adapter!!.notifyDataSetChanged()
                         }
                     }
                     else{
-                        if (rvPedidoVerdad != null){
-                            rvPedidoVerdad.adapter!!.notifyDataSetChanged()
+                        if (rvSeguimientoPedido != null){
+                            rvSeguimientoPedido.adapter!!.notifyDataSetChanged()
                         }
                         mostrarSnackbar("No hay pedidos aun.")
                     }
-                    TODO: ESTO HAY QUE MODIFICAR PARA QUE SE REFLEJE EL CAMBIO DE ESTADO
-                     */
-
-                    println("cambiANDOOOO en SEGUIMIETNO!!!")
                 }
 
                 override fun onChildAdded(p0: DataSnapshot, p1: String?) {

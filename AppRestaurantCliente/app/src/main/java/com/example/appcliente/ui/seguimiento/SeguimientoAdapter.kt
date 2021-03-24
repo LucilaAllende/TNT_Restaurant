@@ -18,6 +18,6 @@ class SeguimientoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapte
 
 
     override fun onBindViewHolder(holder: SeguimientoViewHolder, position: Int) {
-        holder.bind(resultado.get(position))
+        holder.bind(resultado.get(position), resultado.size)
     }
 }

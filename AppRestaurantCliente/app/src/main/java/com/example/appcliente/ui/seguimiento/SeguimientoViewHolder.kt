@@ -1,37 +1,57 @@
 package com.example.appcliente.ui.seguimiento
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Parcelable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appcliente.ui.TrackActivity
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.content_item_seguimiento.view.*
-import kotlinx.android.synthetic.main.item_plato_pedido.view.*
+
 
 class SeguimientoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val txtNombre= view.cardView.txtNombrePlato
     val platoId = view.cardView.txtIdPlatoSeguimiento
-    val txtEstado = view.cardView.txtEstado
+    val contexto = this.itemView.context
+    val card = view.cardView
+    var color = view.cardView.bannerColor
 
-    fun bind(p: com.example.appcliente.ui.pedido.Pedido) {
-        /*
-        if(p.tipo == "md"){ //menuDia
-            color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
+    fun bind(p: com.example.appcliente.ui.pedido.Pedido, size: Int) {
+        var orderStatus = "0"
+
+        if(p.estado == "EN PREPARACION"){
+            orderStatus = "1"
         }
-        else if(p.tipo == "mm"){ //menuMate
-            color.setBackgroundColor(Color.parseColor("#73C3223A"))
+        else if(p.estado == "PEDIDO ENVIADO"){
+            orderStatus = "2"
+        }
+
+        if(p.estado == "EN PREPARACION"){
+            color.setBackgroundColor(Color.parseColor("#F7CB73"))
+        }
+        else if(p.estado == "PEDIDO ENVIADO"){
+            color.setBackgroundColor(Color.parseColor("#D9512C"))
         }
         else{
-            color.setBackgroundColor(Color.parseColor("#730C184E"))
+            color.setBackgroundColor(Color.parseColor("#077E8C")) //pendiente
         }
 
-         */
+
         txtNombre.text = p.nombrePlato
         platoId.text = p.platoId
-        txtEstado.text = p.estado
+        card.setOnClickListener{
+            var intent = Intent(contexto, TrackActivity::class.java)
+            intent.putExtra("orderStatus",orderStatus)
+            intent.putExtra("pedidoIdSeguimiento",p.id)
+            intent.putExtra("horaPedidoSeguimiento",p.timestamp)
+            intent.putExtra("cantPedidosSeguimiento",size.toString())
+            contexto.startActivity(intent)
+        }
     }
-}
 
+
+}
 
 @Parcelize
 class Pedidos: ArrayList<Pedido>(), Parcelable

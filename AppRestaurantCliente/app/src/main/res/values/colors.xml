@@ -27,4 +27,11 @@
     <color name="color_vegano_transparente">#730C184E</color>
     <color name="color_carnico_transparente">#73C3223A</color>
 
+    <!-- COLORES PARA SEGUIMIENTO -->
+    <color name="colorPrimary">#0288D1</color>
+    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorText">#000111</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 </resources>

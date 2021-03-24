@@ -9,18 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-
-        <!--ESTE ES EL ICONO DE LA NOTIFICACIONv-->
+        <activity android:name=".ui.TrackActivity"></activity>
+        <!-- ESTE ES EL ICONO DE LA NOTIFICACIONv -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_restaurant_black_24dp" />
-
-        <!--ESTE ES EL COLOR DEL BORDE DE LA NOTIFICACIONv-->
+            android:resource="@drawable/ic_restaurant_black_24dp" /> <!-- ESTE ES EL COLOR DEL BORDE DE LA NOTIFICACIONv -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/color_carnico_transparente" />
-
-
 
         <activity
             android:name=".MainActivity"
@@ -28,9 +24,11 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".ui.notificaciones.NotificacionFirebaseService"
             android:exported="false"
@@ -41,6 +39,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
