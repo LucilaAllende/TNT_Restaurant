@@ -28,8 +28,8 @@
         android:layout_gravity="end|bottom"
         android:contentDescription="@string/enviar_pedido"
         android:text="@string/enviar_pedido"
-        android:background="@color/accentColor"
-        android:src="@drawable/icons8entransito96"
+        android:background="@color/primaryColor"
+        android:src="@drawable/camion_blanco"
          />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
