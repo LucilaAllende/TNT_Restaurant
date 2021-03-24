@@ -17,7 +17,6 @@ app:cardElevation="3dp">
         android:id="@+id/txtIdPlatoSeguimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:visibility="invisible" />
 
     <TextView
@@ -40,19 +39,27 @@ app:cardElevation="3dp">
 
     <TextView
         android:id="@+id/txtNombrePlato"
-        android:layout_width="247dp"
-        android:layout_height="71dp"
+        android:layout_width="226dp"
+        android:layout_height="32dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:layout_marginBottom="92dp" />
+
+    <TextView
+        android:id="@+id/textViewHora"
+        android:layout_width="227dp"
+        android:layout_height="41dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="83dp"
+        android:layout_marginRight="83dp"
+        android:layout_marginBottom="44dp"/>
 
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.example.appcliente.ui.seguimiento
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Parcelable
@@ -14,9 +15,11 @@ class SeguimientoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val txtNombre= view.cardView.txtNombrePlato
     val platoId = view.cardView.txtIdPlatoSeguimiento
     val contexto = this.itemView.context
+    var hora = view.textViewHora
     val card = view.cardView
     var color = view.cardView.bannerColor
 
+    @SuppressLint("SetTextI18n")
     fun bind(p: com.example.appcliente.ui.pedido.Pedido, size: Int) {
         var orderStatus = "0"
 
@@ -37,7 +40,7 @@ class SeguimientoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
             color.setBackgroundColor(Color.parseColor("#077E8C")) //pendiente
         }
 
-
+        hora.text = "Pedido el " + p.timestamp
         txtNombre.text = p.nombrePlato
         platoId.text = p.platoId
         card.setOnClickListener{

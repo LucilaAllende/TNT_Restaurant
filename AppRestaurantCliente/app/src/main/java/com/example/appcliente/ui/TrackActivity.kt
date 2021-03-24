@@ -1,10 +1,19 @@
 package com.example.appcliente.ui
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
 import com.example.appcliente.R
 import com.example.appcliente.ui.pedido.Pedido
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +22,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_track.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import com.example.appcliente.ui.TrackActivity as TrackActivity1
 
 
 class TrackActivity : AppCompatActivity() {
@@ -34,6 +45,8 @@ class TrackActivity : AppCompatActivity() {
 
     lateinit var pedidoIdSeguimiento : String
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("ResourceAsColor", "CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track)
@@ -61,7 +74,25 @@ class TrackActivity : AppCompatActivity() {
         horaPedido!!.text = extra[1]
         cantPedidos = findViewById(R.id.textViewNumeroOrdenSeguimiento)
         //cantPedidos!!.text = "#"+ intent.getStringExtra("cantPedidosSeguimiento")
-        setTitle("Detalle del Pedido")
+        title = "Detalle del Pedido"
+        //appBar.setBackgroundColor(R.color.primaryColor)
+        //toolbar.setBackgroundColor(R.color.primaryColor)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                FirebaseAuth.getInstance().signOut()
+                findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentInicio)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
