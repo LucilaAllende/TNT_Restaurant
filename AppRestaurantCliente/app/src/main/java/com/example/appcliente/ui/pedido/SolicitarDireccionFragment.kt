@@ -88,11 +88,11 @@ class SolicitarDireccionFragment : Fragment() {
                 "direccionEnvio" to "Retira en Buffet",
                 "estado" to plato.estado, // [en preparación | en camino | entregado]
                 "tipo" to plato.tipo)
-            val historialReference: DatabaseReference = database.reference.child("Historial").push()
+            val historialReference: DatabaseReference = database.reference.child("Pedido").push()
 
             historialReference.setValue(pedidoHistorial)
 
-            database.reference.child("Pedido/"+plato.id).removeValue()
+            database.reference.child("PedidoEnCurso/"+plato.id).removeValue()
         }
 
         Toast.makeText(context, "Pedido realizado",Toast.LENGTH_LONG).show()

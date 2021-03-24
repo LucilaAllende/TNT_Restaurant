@@ -105,7 +105,7 @@ class PedidoFragment : Fragment() {
 
     }
     private fun verificarPedidos(){
-        FirebaseDatabase.getInstance().reference.child("Pedido")
+        FirebaseDatabase.getInstance().reference.child("PedidoEnCurso")
             .orderByChild("clienteId")
             .equalTo(FirebaseAuth.getInstance().currentUser?.uid)
             .addChildEventListener(object: ChildEventListener {
@@ -192,7 +192,7 @@ class PedidoFragment : Fragment() {
 }
 
 private fun eliminarPedido(idPedido: String){
-    FirebaseDatabase.getInstance().reference.child("Pedido/"+idPedido).removeValue()
+    FirebaseDatabase.getInstance().reference.child("PedidoEnCurso/"+idPedido).removeValue()
 }
 
 

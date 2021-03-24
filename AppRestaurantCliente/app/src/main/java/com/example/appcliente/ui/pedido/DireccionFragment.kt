@@ -96,11 +96,11 @@ class DireccionFragment : Fragment() {
                 "tipo" to plato.tipo
             )
 
-            val historialReference: DatabaseReference = database.reference.child("Historial").push()
+            val historialReference: DatabaseReference = database.reference.child("Pedido").push()
 
             historialReference.setValue(pedidoHistorial)
 
-            database.reference.child("Pedido/" + plato.id).removeValue()
+            database.reference.child("PedidoEnCurso/" + plato.id).removeValue()
         }
 
         Toast.makeText(context, "Su pedido llegara pronto :)", Toast.LENGTH_LONG).show()
