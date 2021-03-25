@@ -1,23 +1,29 @@
 package com.example.appcliente.ui.seguimiento
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Parcelable
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.ui.TrackActivity
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.content_item_seguimiento.view.*
+import kotlin.collections.ArrayList
 
 
 class SeguimientoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val txtNombre= view.cardView.txtNombrePlato
-    val platoId = view.cardView.txtIdPlatoSeguimiento
-    val contexto = this.itemView.context
-    var hora = view.textViewHora
-    val card = view.cardView
-    var color = view.cardView.bannerColor
+    private val txtNombre: TextView = view.cardView.txtNombrePlato
+    private val platoId: TextView = view.cardView.txtIdPlatoSeguimiento
+    private val contexto: Context = this.itemView.context
+    private var hora: TextView = view.textViewHora
+    private val card: CardView = view.cardView
+    private var color: TextView = view.cardView.bannerColor
+    private var btn_recibido = view.cardView?.btnEliminarSeguimiento
 
     @SuppressLint("SetTextI18n")
     fun bind(p: com.example.appcliente.ui.pedido.Pedido, size: Int) {
@@ -44,16 +50,17 @@ class SeguimientoViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         txtNombre.text = p.nombrePlato
         platoId.text = p.platoId
         card.setOnClickListener{
-            var intent = Intent(contexto, TrackActivity::class.java)
+            val intent = Intent(contexto, TrackActivity::class.java)
             intent.putExtra("orderStatus",orderStatus)
             intent.putExtra("pedidoIdSeguimiento",p.id)
             intent.putExtra("horaPedidoSeguimiento",p.timestamp)
             intent.putExtra("cantPedidosSeguimiento",size.toString())
             contexto.startActivity(intent)
         }
+
+        btn_recibido?.setOnClickListener { Toast.makeText(contexto, "Hola", Toast.LENGTH_LONG).show() }
+
     }
-
-
 }
 
 @Parcelize

@@ -8,25 +8,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.appcliente.R
 import com.example.appcliente.ui.pedido.Pedido
-import com.example.appcliente.ui.pedido.ViewHolder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_pedido.*
 import kotlinx.android.synthetic.main.fragment_seguimiento.*
+import kotlin.collections.ArrayList
 
 class SeguimientoFragment : Fragment() {
 
     private lateinit var galleryViewModel: SeguimientoViewModel
     var vista: View? = null
     var listaPedidos: ArrayList<Pedido> = ArrayList()
+
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -41,8 +39,6 @@ class SeguimientoFragment : Fragment() {
         tabsi!!.visibility = View.GONE
         return vista
     }
-
-
 
     override fun onStart() {
         super.onStart()
@@ -97,7 +93,7 @@ class SeguimientoFragment : Fragment() {
                 override fun onChildChanged(p0: DataSnapshot, p1: String?) {
                     if(p0.childrenCount > 0){
                         val pedido = p0.getValue(Pedido::class.java)!!
-                        var p = listaPedidos.filter { it.id == p0.key.toString() }.first()
+                        val p = listaPedidos.filter { it.id == p0.key.toString() }.first()
                         p.estado = pedido.estado
                         listaPedidos.set(listaPedidos.indexOf(p), p)
                         if (rvSeguimientoPedido != null){
@@ -159,9 +155,7 @@ class SeguimientoFragment : Fragment() {
                 mensaje, Snackbar.LENGTH_LONG
             )
         }
-        if (snackBar != null) {
-            snackBar.show()
-        }
+        snackBar?.show()
     }
 }
 
