@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.databinding.FragmentInicioBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -37,6 +39,12 @@ class FragmentInicio : Fragment() {
         val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
         appBar!!.setExpanded(false,false)
         appBar.visibility = View.GONE
+
+        /*val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
+        tolBar?.visibility = View.GONE*/
+
+        val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
+        tabsi?.visibility = View.GONE
 
         return view
     }

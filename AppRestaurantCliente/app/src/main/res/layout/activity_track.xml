@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.TrackActivity"
-    android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+    android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+    android:id="@+id/activity_track">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

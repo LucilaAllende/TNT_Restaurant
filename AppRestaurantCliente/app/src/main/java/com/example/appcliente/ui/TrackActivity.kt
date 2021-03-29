@@ -1,6 +1,7 @@
 package com.example.appcliente.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -11,9 +12,9 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
+import com.example.appcliente.FragmentPortada
+import com.example.appcliente.MainActivity
 import com.example.appcliente.R
 import com.example.appcliente.ui.pedido.Pedido
 import com.google.firebase.auth.FirebaseAuth
@@ -22,9 +23,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_track.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import com.example.appcliente.ui.TrackActivity as TrackActivity1
 
+const val EXTRA_MESSAGE = "com.example.appcliente.MESSAGE"
 
 class TrackActivity : AppCompatActivity() {
     var view_order_placed: View? = null
@@ -89,12 +89,19 @@ class TrackActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_logout -> {
                 FirebaseAuth.getInstance().signOut()
-                findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentInicio)
+                /* TODO Como navegar de una actividad a un fragmento
+                val fragmento: Fragment = FragmentPortada()
+                supportFragmentManager.beginTransaction().replace(R.id.activity_track, fragmento)
+                    .commit()*/
+                val message = 1
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra(EXTRA_MESSAGE, message)
+                }
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     private fun getOrderStatus(orderStatus: String) {
         println("REFRESANDOOs")
@@ -194,7 +201,7 @@ class TrackActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().reference.child("Pedido")
             .orderByChild("clienteId")
             .equalTo(FirebaseAuth.getInstance().currentUser?.uid)
-            .addChildEventListener(object: ChildEventListener {
+            .addChildEventListener(object : ChildEventListener {
 
                 override fun onCancelled(p0: DatabaseError) {
                     println("cancelado")
@@ -213,15 +220,14 @@ class TrackActivity : AppCompatActivity() {
                 }
 
                 override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                    if(p0.childrenCount > 0){
-                        if (pedidoIdSeguimiento == p0.key.toString()){
+                    if (p0.childrenCount > 0) {
+                        if (pedidoIdSeguimiento == p0.key.toString()) {
                             val p = p0.getValue(Pedido::class.java)!!
                             var orderStatus = "0"
 
-                            if(p.estado == "EN PREPARACION"){ //menuDia
+                            if (p.estado == "EN PREPARACION") { //menuDia
                                 orderStatus = "1"
-                            }
-                            else if(p.estado == "PEDIDO ENVIADO"){ //menuMate
+                            } else if (p.estado == "PEDIDO ENVIADO") { //menuMate
                                 orderStatus = "2"
                             }
                             getOrderStatus(orderStatus)

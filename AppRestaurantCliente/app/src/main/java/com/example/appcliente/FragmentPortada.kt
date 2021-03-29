@@ -57,6 +57,12 @@ class FragmentPortada : Fragment() {
         tolBar?.visibility = View.GONE
         */
 
+        val appBar: AppBarLayout? = activity?.findViewById<View>(R.id.appBar) as? AppBarLayout
+        appBar!!.visibility = View.GONE
+
+        val tolBar: Toolbar? = activity?.findViewById<View>(R.id.toolbar) as? Toolbar
+        tolBar?.visibility = View.GONE
+
         val tabsi = activity?.findViewById<TabLayout>(R.id.tabs)
         tabsi?.visibility = View.GONE
 

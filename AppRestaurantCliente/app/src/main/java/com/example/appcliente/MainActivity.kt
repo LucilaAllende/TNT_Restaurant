@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.appcliente.ui.EXTRA_MESSAGE
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity(){
                 R.id.nav_home, R.id.nav_seguimiento, R.id.nav_pedido, R.id.nav_historial), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val message = (intent?.getStringExtra(EXTRA_MESSAGE))?.toInt()
+        if (message == 1){
+            findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentInicio)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
