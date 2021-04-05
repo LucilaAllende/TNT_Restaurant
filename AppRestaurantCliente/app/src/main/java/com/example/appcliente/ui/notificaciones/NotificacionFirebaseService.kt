@@ -1,12 +1,5 @@
 package com.example.appcliente.ui.notificaciones
 
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.job.JobScheduler
-import android.content.Context
-import android.content.Intent
-import androidx.core.app.NotificationCompat
-import com.example.appcliente.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

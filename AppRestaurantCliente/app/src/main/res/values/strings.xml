@@ -75,5 +75,6 @@
     <string name="buffet_de_juan">Buffet de Juan</string>
     <string name="txt_cerrar_sesion">Cerrar Sesión</string>
     <string name="seguimiento_pedido">Seguimiento Pedido</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
