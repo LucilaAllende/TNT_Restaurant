@@ -64,7 +64,7 @@
         <!-- ESTE ES EL COLOR DEL BORDE DE LA NOTIFICACIONv -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/color_carnico_transparente" />
+            android:resource="@color/colorAccent" />
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.
          (See the file "res/values/google_maps_api.xml").
