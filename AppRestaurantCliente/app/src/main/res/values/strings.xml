@@ -76,5 +76,6 @@
     <string name="txt_cerrar_sesion">Cerrar Sesión</string>
     <string name="seguimiento_pedido">Seguimiento Pedido</string>
     <string name="title_activity_maps">Map</string>
+    <string name="ver_menues">Ver Menues</string>
 
 </resources>
