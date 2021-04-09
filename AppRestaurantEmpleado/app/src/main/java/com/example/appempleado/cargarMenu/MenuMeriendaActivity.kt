@@ -1,4 +1,4 @@
-package com.example.appempleado
+package com.example.appempleado.cargarMenu
 
 import android.app.Activity
 import android.content.Intent
@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.example.appempleado.R
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.synthetic.main.activity_menu_del_dia.*
 import kotlinx.android.synthetic.main.activity_menu_merienda.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -122,12 +122,13 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     //notificaciones
     fun agregarNotificacion(body:String, titulo:String, topico:String) {
-        val apiService =   ServiceBuilder.buildService(RestApi::class.java)
+        val apiService = ServiceBuilder.buildService(RestApi::class.java)
         val peticion = Peticion(  to = "/topics/"+topico,
             notification = Notification(body=body,
                 title = titulo,
                 sound = "default",
-                color="#ff4455"))
+                color="#ff4455")
+        )
         var call = apiService.addNotificacion(peticion)
         call.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -154,7 +155,7 @@ class MenuMeriendaActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     data class Peticion (
         var to:String="",
-        @SerializedName("notification") var notification:Notification
+        @SerializedName("notification") var notification: Notification
     )
     //TODO: esta clave dejarla en un archivo no harcodeada aca!
     interface RestApi {

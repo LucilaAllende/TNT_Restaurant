@@ -1,4 +1,4 @@
-package com.example.appempleado
+package com.example.appempleado.cargarMenu
 
 import android.content.Context
 import android.content.Intent
@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.example.appempleado.R
 import com.example.appempleado.databinding.FragmentCargarMenuBinding
 import com.google.firebase.auth.FirebaseAuth
 

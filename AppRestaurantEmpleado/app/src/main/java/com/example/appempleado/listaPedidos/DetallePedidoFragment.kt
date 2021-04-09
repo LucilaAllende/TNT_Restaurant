@@ -1,10 +1,11 @@
-package com.example.appempleado
+package com.example.appempleado.listaPedidos
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.appempleado.R
 
 /**
  * A simple [Fragment] subclass.

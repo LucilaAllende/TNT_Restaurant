@@ -1,13 +1,13 @@
-package com.example.appempleado
+package com.example.appempleado.listaPedidos
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appempleado.R
 import kotlinx.android.synthetic.main.content_item_m.view.*
 import java.util.*
 

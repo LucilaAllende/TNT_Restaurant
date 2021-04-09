@@ -1,35 +1,32 @@
-package com.example.appempleado
+package com.example.appempleado.cargarMenu
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DownloadManager
-import android.content.Context
+import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.Icon
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import com.example.appempleado.R
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.synthetic.main.activity_menu_del_dia.*
 import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.*
 
+class MenuSemanalActivity : AppCompatActivity() {
 
-class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
     val REQUEST_CODE = 123
     private var imageUrl: Uri? = null
     private lateinit var btnImagenPlato: View
@@ -38,31 +35,45 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
     private lateinit var txtNombre: TextView
     private lateinit var txtDescripcion: TextView
     private lateinit var txtPrecio: TextView
+    private lateinit var txtFecha: TextView
     private lateinit var pbAltaPlato: ProgressBar
-    private var tipoPlato: String = "Vegano" /*Esto indica vegano, carnico o vegetariano*/
-
+    private lateinit var picker: DatePickerDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_del_dia)
-        setTitle("Menu del Dia")
-        btnImagenPlato =  this.findViewById<View>(R.id.btnImagenPlato)
-        btnAltaPlato =  this.findViewById<View>(R.id.btnAltaPlato)
-        imgPlato = this.findViewById(R.id.imgPlato)
-        txtNombre = this.findViewById(R.id.txtNombre)
-        txtDescripcion  = this.findViewById(R.id.txtDescripcion)
-        txtPrecio = this.findViewById(R.id.txtPrecio)
-        pbAltaPlato = this.findViewById(R.id.pbAltaPlato)
+        setContentView(R.layout.activity_menu_semanal)
+        setTitle("Menu Semanal")
+        btnImagenPlato =  this.findViewById<View>(R.id.btnImagenPlatoSemanal)
+        btnAltaPlato =  this.findViewById<View>(R.id.btnAltaPlatoSemanal)
+        imgPlato = this.findViewById(R.id.imgPlatoSemanal)
+        txtNombre = this.findViewById(R.id.txtNombreSemanal)
+        txtDescripcion  = this.findViewById(R.id.txtDescripcionSemanal)
+        txtPrecio = this.findViewById(R.id.txtPrecioSemanal)
+        txtFecha = this.findViewById(R.id.txtFechaSemanal)
+        pbAltaPlato = this.findViewById(R.id.pbAltaPlatoSemanal)
         btnImagenPlato.setOnClickListener { altaImagenPlato() }
         btnAltaPlato.setOnClickListener{ cargarPlato() }
 
-
-
-        var list_of_items = arrayOf("Vegano", "Vegetariano", "Carnico")
-        spinner!!.setOnItemSelectedListener(this)
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner!!.setAdapter(aa)
+        txtFecha.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                val cldr: Calendar = Calendar.getInstance()
+                val day: Int = cldr.get(Calendar.DAY_OF_MONTH)
+                val month: Int = cldr.get(Calendar.MONTH)
+                val year: Int = cldr.get(Calendar.YEAR)
+                picker = DatePickerDialog(
+                    this@MenuSemanalActivity,
+                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                        txtFecha.setText(
+                            dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                        )
+                    },
+                    year,
+                    month,
+                    day
+                )
+                picker.show()
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,9 +91,8 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
         startActivityForResult(intent, REQUEST_CODE)
     }
 
-    @SuppressLint("ResourceType")
     private fun cargarPlato(){
-        if (imageUrl != null) { /*TODO: checkear los demas atributos tamnbien, no solo la imagen! */
+        if (imageUrl != null) {
             pbAltaPlato.visibility = View.VISIBLE
             val databaseStorage = FirebaseStorage.getInstance()
             val imgReference = databaseStorage.reference.child("images/${imageUrl?.lastPathSegment}")
@@ -92,52 +102,40 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
                 Toast.makeText(this, "Error al cargar imagen", Toast.LENGTH_LONG).show()
             }.addOnSuccessListener {
                     taskSnapshot ->
-                    val downloadUrl: Task<Uri> = imgReference.downloadUrl
-                    downloadUrl.addOnSuccessListener { uri ->
-                        val database = FirebaseDatabase.getInstance()
-                        val plato = mapOf("nombre" to txtNombre.text.toString(),
-                                            "ingredientes" to txtDescripcion.text.toString(),
-                                            "imagenUrl" to uri.toString(),
-                                            "precio" to txtPrecio.text.toString(),
-                                            "categoria" to tipoPlato)
-                        val platoReference: DatabaseReference = database.reference.child("platoDia").push()
-                        platoReference.setValue(plato)
+                val downloadUrl: Task<Uri> = imgReference.downloadUrl
+                downloadUrl.addOnSuccessListener { uri ->
+                    val database = FirebaseDatabase.getInstance()
+                    val plato = mapOf("nombre" to txtNombre.text.toString(),
+                        "ingredientes" to txtDescripcion.text.toString(),
+                        "imagenUrl" to uri.toString(),
+                        "precio" to txtPrecio.text.toString(),
+                        "dia" to txtFecha.text.toString())
+                    val platoReference: DatabaseReference = database.reference.child("vianda").push()
+                    platoReference.setValue(plato)
 
-                        var body = txtNombre.text.toString() + " vuelve a estar disponible. Pedilo ahora!"
-                        var titulo = "No te lo pierdas!"
-                        var topico = txtNombre.text.toString().replace(" ", "_")
+                    var body = txtNombre.text.toString() + " vuelve a estar disponible. Pedilo ahora!"
+                    var titulo = "No te lo pierdas!"
+                    var topico = txtNombre.text.toString().replace(" ", "_")
+                    agregarNotificacion(body,titulo,topico)
 
-                        val icon: ImageView? = null
-                        icon?.setImageResource(R.drawable.ic_restaurant_black_24dp)
-
-                        agregarNotificacion(body,titulo,topico)
-
-                        pbAltaPlato.visibility = View.INVISIBLE
-                        Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
-                        this.finish()
-                    }
+                    pbAltaPlato.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Plato Cargado!", Toast.LENGTH_LONG).show()
+                    this.finish()
+                }
             }
         }
     }
 
 
-        override fun onNothingSelected(parent: AdapterView<*>?) {
-            tipoPlato = "Vegano"
-        }
-
-        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            tipoPlato = parent!!.getItemAtPosition(position).toString()
-        }
-
-
-
+    //notificaciones
     fun agregarNotificacion(body:String, titulo:String, topico:String) {
-        val apiService =   ServiceBuilder.buildService(RestApi::class.java)
+        val apiService = ServiceBuilder.buildService(RestApi::class.java)
         val peticion = Peticion(  to = "/topics/"+topico,
-                                   notification = Notification(body=body,
-                                                               title = titulo,
-                                                               sound = "default",
-                                                               color="#ff4455"))
+            notification = Notification(body=body,
+                title = titulo,
+                sound = "default",
+                color="#ff4455")
+        )
         var call = apiService.addNotificacion(peticion)
         call.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -164,7 +162,7 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
 
     data class Peticion (
         var to:String="",
-        @SerializedName("notification") var notification:Notification
+        @SerializedName("notification") var notification: Notification
     )
     //TODO: esta clave dejarla en un archivo no harcodeada aca!
     interface RestApi {
@@ -186,12 +184,4 @@ class MenuDelDiaActivity : AppCompatActivity(),AdapterView.OnItemSelectedListene
             return retrofit.create(service)
         }
     }
-
-
-
 }
-
-
-
-
-

@@ -63,8 +63,13 @@ class FragmentHome : Fragment() {
         val view = binding.root
         binding.btnCargarMenues.setOnClickListener { irCargarMenues() }
         binding.btnVerPedidos.setOnClickListener { irVerPedidos() }
+        binding.btnVerEstadisticas.setOnClickListener { irVerEstadisticas() }
         setHasOptionsMenu(true)
         return view
+    }
+
+    private fun irVerEstadisticas() {
+        findNavController().navigate(R.id.action_fragmentHome_to_fragmentEstadisticas,null, options)
     }
 
     private fun irVerPedidos() {

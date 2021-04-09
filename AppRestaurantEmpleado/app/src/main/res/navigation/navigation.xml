@@ -49,12 +49,15 @@
             android:id="@+id/action_fragmentHome_to_fragmentListaPedidos"
             app:destination="@id/fragmentListaPedidos" />
         <action
+            android:id="@+id/action_fragmentHome_to_fragmentEstadisticas"
+            app:destination="@id/fragmentEstadisticas" />
+        <action
             android:id="@+id/action_fragmentHome_to_fragmentPortada"
             app:destination="@id/fragmentPortada" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCargarMenu"
-        android:name="com.example.appempleado.FragmentCargarMenu"
+        android:name="com.example.appempleado.cargarMenu.FragmentCargarMenu"
         android:label="fragment_cargar_menu"
         tools:layout="@layout/fragment_cargar_menu" >
         <action
@@ -66,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentListaPedidos"
-        android:name="com.example.appempleado.ListaPedidosFragment"
+        android:name="com.example.appempleado.listaPedidos.ListaPedidosFragment"
         android:label="fragment_lista_pedidos"
         tools:layout="@layout/fragment_lista_pedidos" >
         <action
@@ -75,27 +78,27 @@
         <action
             android:id="@+id/action_fragmentListaPedidos_to_fragmentPortada"
             app:destination="@id/fragmentPortada" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_lista_pedidos"
-        android:name="com.example.appempleado.ListaPedidosFragment"
-        android:label="Lista de Pedidos"
-        tools:layout="@layout/fragment_lista_pedidos">
         <action
-            android:id="@+id/action_nav_lista_pedidos_to_nav_detalle_pedido"
-            app:destination="@id/nav_detalle_pedido"
+            android:id="@+id/action_fragmentListaPedidos_to_fragmentDetallePedido"
+            app:destination="@id/fragmentDetallePedido"
             app:popUpTo="@id/fragmentHome" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/nav_detalle_pedido"
-        android:name="com.example.appempleado.DetallePedidoFragment"
+        android:id="@+id/fragmentDetallePedido"
+        android:name="com.example.appempleado.listaPedidos.DetallePedidoFragment"
         android:label="Ingredientes"
         tools:layout="@layout/fragment_detalle_pedido">
         <argument android:name="nombre" />
         <argument android:name="ingredientes" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentEstadisticas"
+        android:name="com.example.appempleado.verEstadisticas.EstadisticasFragment"
+        android:label="Estadisticass"
+        tools:layout="@layout/fragment_estadisticas">
     </fragment>
 
 </navigation>

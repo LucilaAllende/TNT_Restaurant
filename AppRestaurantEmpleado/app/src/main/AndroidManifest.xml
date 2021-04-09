@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuMeriendaActivity"></activity>
-        <activity android:name=".MenuSemanalActivity" />
+        <activity android:name=".cargarMenu.MenuMeriendaActivity"></activity>
+        <activity android:name=".cargarMenu.MenuSemanalActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuDelDiaActivity" />
+        <activity android:name=".cargarMenu.MenuDelDiaActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
