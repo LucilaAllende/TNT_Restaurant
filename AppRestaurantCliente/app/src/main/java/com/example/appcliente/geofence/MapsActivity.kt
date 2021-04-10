@@ -97,7 +97,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLon
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        val buffetJuanUbicacion = LatLng(-43.2435, -65.2995) //Mirador Cementerio
+        val buffetJuanUbicacion = LatLng(-43.299803, -65.502773) //Mirador Cementerio
 
         mMap = googleMap
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(buffetJuanUbicacion, 16f))

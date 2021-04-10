@@ -88,7 +88,7 @@ class DireccionFragment : Fragment() {
             val pedidoHistorial = mapOf(
                 "timestamp" to formatedDate.toString(),
                 "clienteId" to user?.uid,
-                "platoId" to plato.id,
+                "platoId" to plato.platoId,
                 "nombrePlato" to plato.nombrePlato,
                 "precioPlato" to plato.precioPlato,
                 "direccionEnvio" to "Localidad$localidad,Calle$calle,NumCalle$numCalle,NumDpto$numDpto,NumPiso$numPiso",

@@ -102,7 +102,7 @@ class AdapterMenuDia(private var list: ArrayList<PlatoDia>, private val listener
         private fun agregarPedido(){
             try {
                 val user = FirebaseAuth.getInstance().currentUser
-                if (user != null) {
+                if (user != null) { 
                     val database = FirebaseDatabase.getInstance()
 
                     val date = Calendar.getInstance().time

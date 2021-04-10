@@ -73,7 +73,7 @@ class SolicitarDireccionFragment : Fragment() {
             }
         }
 
-        for (plato in this.listaPedido!!){
+        for (pedido in this.listaPedido!!){
 
             val database = FirebaseDatabase.getInstance()
             val user = FirebaseAuth.getInstance().currentUser
@@ -82,17 +82,17 @@ class SolicitarDireccionFragment : Fragment() {
             val formatedDate = formatter.format(date)
             val pedidoHistorial = mapOf("timestamp" to formatedDate.toString(),
                 "clienteId" to user?.uid,
-                "platoId" to plato.id,
-                "nombrePlato" to plato.nombrePlato,
-                "precioPlato" to plato.precioPlato,
+                "platoId" to pedido.platoId,
+                "nombrePlato" to pedido.nombrePlato,
+                "precioPlato" to pedido.precioPlato,
                 "direccionEnvio" to "Retira en Buffet",
-                "estado" to plato.estado, // [en preparación | en camino | entregado]
-                "tipo" to plato.tipo)
+                "estado" to pedido.estado, // [en preparación | en camino | entregado]
+                "tipo" to pedido.tipo)
             val historialReference: DatabaseReference = database.reference.child("Pedido").push()
 
             historialReference.setValue(pedidoHistorial)
 
-            database.reference.child("PedidoEnCurso/"+plato.id).removeValue()
+            database.reference.child("PedidoEnCurso/"+pedido.id).removeValue()
         }
 
         Toast.makeText(context, "Pedido realizado",Toast.LENGTH_LONG).show()

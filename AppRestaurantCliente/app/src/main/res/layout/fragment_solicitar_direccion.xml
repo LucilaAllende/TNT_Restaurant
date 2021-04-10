@@ -13,21 +13,22 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="154dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
         android:text="@string/donde_se_encuentra"
         android:textColor="@color/color_light"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165" />
 
     <Button
         android:id="@+id/btnIngresarUbicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="52dp"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
         android:layout_marginTop="35dp"
@@ -41,47 +42,48 @@
 
     <Button
         android:id="@+id/btnEnvioCampus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="54dp"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/boton_rendondo_transparente"
         android:text="@string/envio_al_campus"
         android:textColor="@color/window_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnEnviarDomicilio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="193dp"
+        android:layout_height="51dp"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/boton_rendondo_transparente"
         android:text="@string/enviar_domicilio"
         android:textColor="@color/window_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIngresarUbicacion" />
 
     <Button
         android:id="@+id/btnRetirarBuffet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="201dp"
+        android:layout_height="51dp"
         android:background="@drawable/boton_rendondo_transparente"
         android:text="@string/txt_retirar"
         android:textColor="@color/window_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviarDomicilio" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarDomicilio"
+        app:layout_constraintVertical_bias="0.151" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

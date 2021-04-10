@@ -42,7 +42,9 @@ class AdapterMenuSemanal(private var list: ArrayList<Vianda>, private val listen
             val btnAgregarPedido = itemView.button_agregar_pedido
             val btnVer: Button = itemView.findViewById(R.id.button_ver_ingredientes_vianda)
             val precio: TextView = itemView.findViewById(R.id.txtPrecioVianda)
+            var idplato: TextView = itemView.textViewIdPlatoMS
 
+            idplato.text = data.id
             name.text = data.nombre
             precio.text = data.precio
             Glide.with(itemView.context).load(Uri.parse(data.imagenUrl)).into(image)

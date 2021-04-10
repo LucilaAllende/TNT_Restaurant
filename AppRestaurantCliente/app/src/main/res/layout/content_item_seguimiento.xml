@@ -61,17 +61,23 @@ app:cardElevation="3dp">
         android:layout_marginRight="83dp"
         android:layout_marginBottom="44dp"/>
 
-    <Button
-        android:id="@+id/btnEliminarSeguimiento"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+    <ImageView
+        android:id="@+id/imageViewSeguimientoPlato"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="83dp"
+        android:layout_marginStart="246dp"
+        android:layout_marginLeft="246dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginBottom="10dp"
-        tools:text="Recibido" />
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
 
 </RelativeLayout>
 </androidx.cardview.widget.CardView>
