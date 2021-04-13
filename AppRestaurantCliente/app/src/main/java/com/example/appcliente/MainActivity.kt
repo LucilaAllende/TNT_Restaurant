@@ -1,7 +1,9 @@
 package com.example.appcliente
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,20 +16,32 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.appcliente.geofence.MapsActivity
 import com.example.appcliente.ui.EXTRA_MESSAGE
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() { //, OnMapReadyCallback
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var drawerLayout:DrawerLayout
 
+    var lonPublica = 0.0
+
+    private val TAG = "MainActivity"
+
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d(TAG, "onCreateAcPr: ESTOY CREANDO MAIN ACTIVITY")
 
         try{
             val database = FirebaseDatabase.getInstance()
@@ -43,6 +57,9 @@ class MainActivity : AppCompatActivity(){
 
         setContentView(R.layout.activity_main)
 
+        //val mapFragment = supportFragmentManager.findFragmentById(R.id.fragmentoMapa) as SupportMapFragment
+        //mapFragment.getMapAsync(this)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -57,11 +74,22 @@ class MainActivity : AppCompatActivity(){
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val message = (intent?.getStringExtra(EXTRA_MESSAGE))?.toInt()
+        //val intent2 = Intent(this, MapsActivity::class.java)
+        //startActivity(intent2)
+
+        val message = (intent.getStringExtra(EXTRA_MESSAGE))?.toInt()
         if (message == 1){
             findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentInicio)
         }
     }
+
+    /*override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(0.0, 0.0))
+                .title("Marker")
+        )
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)

@@ -8,127 +8,13 @@
     android:background="@color/window_background"
     tools:context=".ui.pedido.UbicacionFragment">
 
-    <TextView
-        android:id="@+id/txtTituloUbicacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_ingrese_ubicacion"
-        android:textColor="@color/window_background"
-        app:layout_constraintBottom_toTopOf="@+id/editCalle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editCalle"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txt_calle"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editCiudad"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTituloUbicacion" />
-
-    <EditText
-        android:id="@+id/editNumCalle"
-        android:layout_width="140dp"
-        android:layout_height="71dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txtNumero"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/editPiso"
-        app:layout_constraintEnd_toStartOf="@+id/editCiudad"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCalle" />
-
-    <EditText
-        android:id="@+id/editCiudad"
-        android:layout_width="200dp"
-        android:layout_height="73dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txt_ciudad"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editDpto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editNumCalle"
-        app:layout_constraintTop_toBottomOf="@+id/editCalle" />
-
-
-    <EditText
-        android:id="@+id/editPiso"
-        android:layout_width="140dp"
-        android:layout_height="73dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/n_piso"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/txtCalles"
-        app:layout_constraintEnd_toStartOf="@+id/editDpto"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNumCalle" />
-
-    <EditText
-        android:id="@+id/editDpto"
-        android:layout_width="200dp"
-        android:layout_height="73dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/n_departamento"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/txtCalles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editPiso"
-        app:layout_constraintTop_toBottomOf="@+id/editCiudad" />
-
-    <TextView
-        android:id="@+id/txtCalles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_calles_medio"
-        app:layout_constraintBottom_toTopOf="@+id/editCalle2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDpto" />
-
-    <EditText
-        android:id="@+id/editCalle2"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txt_calle"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editCalle1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCalles" />
-
-    <EditText
-        android:id="@+id/editCalle1"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/txt_calle"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/btnConfirmarUbicacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCalle2" />
+    <fragment
+        android:id="@+id/fragmentoDentroUbicacion"
+        android:name="com.example.appcliente.ui.pedido.MapaUbicacionFragment"
+        android:layout_width="407dp"
+        android:layout_height="586dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnConfirmarUbicacion"
@@ -139,7 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCalle1"
         android:textColor="@color/window_background"
         android:background="@drawable/boton_rendondo"/>
 

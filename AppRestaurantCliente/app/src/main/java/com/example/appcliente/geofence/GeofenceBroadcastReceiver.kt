@@ -31,27 +31,27 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
         val transitionType = geofencingEvent.geofenceTransition
 
         when (transitionType) {
-            Geofence.GEOFENCE_TRANSITION_ENTER -> {
+            /*Geofence.GEOFENCE_TRANSITION_ENTER -> {
                 notificationHelper.sendHighPriorityNotification(
                     "Buffet de Juan",
                     "GEOFENCE_TRANSITION_ENTER",
                     MapsActivity::class.java
                 )
-            }
+            }*/
             Geofence.GEOFENCE_TRANSITION_DWELL -> {
                 notificationHelper.sendHighPriorityNotification(
                     "Buffet de Juan",
-                    "GEOFENCE_TRANSITION_DWELL",
+                    "¡Eché un vistazo a los platos de nuestro menú!",
                     MapsActivity::class.java
                 )
             }
-            Geofence.GEOFENCE_TRANSITION_EXIT -> {
+            /*Geofence.GEOFENCE_TRANSITION_EXIT -> {
                 notificationHelper.sendHighPriorityNotification(
                     "Buffet de Juan",
                     "GEOFENCE_TRANSITION_EXIT",
                     MapsActivity::class.java
                 )
-            }
+            }*/
         }
     }
 }

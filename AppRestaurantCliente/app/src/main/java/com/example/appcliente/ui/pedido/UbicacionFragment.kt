@@ -2,23 +2,22 @@ package com.example.appcliente.ui.pedido
 
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-
 import com.example.appcliente.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 /**
  * A simple [Fragment] subclass.
@@ -39,6 +38,18 @@ class UbicacionFragment : Fragment() {
     private var txtCalle1: EditText? = null
     private var txtCalle2: EditText? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val data = this.arguments
+        println("DATA UBI $data")
+        if (data != null) {
+            val int1 = data.getInt("int1")
+            val string2 = data.getString("String2")
+            println("-------------------")
+            println("Holis onCreate $int1 $string2")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,23 +57,45 @@ class UbicacionFragment : Fragment() {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_ubicacion, container, false)
 
+        //(activity?.supportFragmentManager?.findFragmentById(R.id.fragmentoMapa) as SupportMapFragment?)?.getMapAsync(this)
+
+        //val mapFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentoMapa) as SupportMapFragment?
+        //mapFragment?.getMapAsync(this)
+
         val pedidos =  arguments?.get("pedidos")
         listaPedido = (pedidos as? ArrayList<*>)?.filterIsInstance<Pedido>()
 
 
-        txtLocalidad = vista?.findViewById(R.id.editCiudad)
+        /*txtLocalidad = vista?.findViewById(R.id.editCiudad)
         txtCalle = vista?.findViewById(R.id.editCalle)
         txtNumCalle = vista?.findViewById(R.id.editNumCalle)
         txtPiso = vista?.findViewById(R.id.editPiso)
         txtDpto = vista?.findViewById(R.id.editDpto)
         txtCalle1 = vista?.findViewById(R.id.editCalle1)
-        txtCalle2 = vista?.findViewById(R.id.editCalle2)
+        txtCalle2 = vista?.findViewById(R.id.editCalle2)*/
 
 
         btnConfirmar = vista?.findViewById(R.id.btnConfirmarUbicacion)
-        btnConfirmar?.setOnClickListener { asignarUbicacionAPedido() }
+        btnConfirmar?.setOnClickListener { asignarUbicacionAPedido1() }
+
 
         return vista
+    }
+
+    private fun asignarUbicacionAPedido1() {
+
+        val mapa = MapaUbicacionFragment()
+        val lati = mapa.get_latitud()
+        println("LATI $lati")
+
+        val data = this.arguments
+        if (data != null) {
+            val int1 = data.getInt("int1")
+            val string2 = data.getString("String2")
+            println("-------------------")
+            println("Holis View $int1 $string2")
+        }
+
     }
 
     private fun asignarUbicacionAPedido() {

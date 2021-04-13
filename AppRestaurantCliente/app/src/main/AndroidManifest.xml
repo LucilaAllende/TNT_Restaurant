@@ -37,6 +37,7 @@
             android:name=".geofence.MapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme">
+
         </activity>
 
         <activity
