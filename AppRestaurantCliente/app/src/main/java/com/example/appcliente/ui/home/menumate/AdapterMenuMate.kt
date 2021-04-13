@@ -37,7 +37,9 @@ class AdapterMenuMate(private var list: ArrayList<MenuMate>, private val listene
             val image: ImageView = itemView.findViewById(R.id.imagenM)
             val btnPedido: Button = itemView.findViewById(R.id.button_agregar_pedido)
             val precio: TextView = itemView.findViewById(R.id.txtPrecio)
+            val idPlato: TextView = itemView.txtIdPlatoMM
 
+            idPlato.text = data.id
             title.text = data.sabor
             name.text = data.nombre
             precio.text = data.precio
