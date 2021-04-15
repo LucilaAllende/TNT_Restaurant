@@ -36,6 +36,11 @@ class DireccionFragment : Fragment() {
 
     private var listaPedido: List<Pedido>? = null
 
+    lateinit var calleF: String
+    lateinit var numCalleF: String
+    lateinit var numDptoF: String
+    lateinit var numPisoF: String
+    lateinit var localidadF: String
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -91,7 +96,7 @@ class DireccionFragment : Fragment() {
                 "platoId" to plato.platoId,
                 "nombrePlato" to plato.nombrePlato,
                 "precioPlato" to plato.precioPlato,
-                "direccionEnvio" to "Localidad$localidad,Calle$calle,NumCalle$numCalle,NumDpto$numDpto,NumPiso$numPiso",
+                "direccionEnvio" to "$calleF $numCalleF, $localidadF, Piso:$numPisoF, Dpto:$numDptoF",
                 "estado" to plato.estado, // [en preparación | en camino | entregado]
                 "tipo" to plato.tipo
             )
@@ -127,6 +132,12 @@ class DireccionFragment : Fragment() {
                         txtLocalidad?.text = """Localidad: ${usuarioDB.ciudad}"""
                         txtNumeroPiso?.text = """N° piso: ${usuarioDB.numero_piso}"""
                         txtNumeroDpto?.text = """N° dpto: ${usuarioDB.numero_departamento}"""
+
+                        localidadF = usuarioDB.ciudad
+                        calleF = usuarioDB.calle_vivienda
+                        numCalleF = usuarioDB.numero_calle
+                        numDptoF = usuarioDB.numero_departamento
+                        numPisoF = usuarioDB.numero_piso
                     }
                 }
             })

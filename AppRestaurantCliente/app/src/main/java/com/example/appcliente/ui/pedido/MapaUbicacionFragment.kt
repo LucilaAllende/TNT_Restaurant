@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.appcliente.R
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationServices
@@ -20,6 +22,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -32,11 +39,15 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
 
     private lateinit var mMap: GoogleMap
     private var googleApiClient: GoogleApiClient? = null
-
+    private lateinit var database: DatabaseReference
+    var vista: View? = null
 
     //Para guardar la Longitud y la Latitud
     var longitude = 0.0
     var latitude = 0.0
+
+    var lat1 = ""
+    var long2 = ""
 
     var ubi: String? = null
 
@@ -46,7 +57,13 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
         savedInstanceState: Bundle?
     ): View? {
         val rootView = super.onCreateView(inflater, container, savedInstanceState)
+
         getMapAsync(this)
+
+        val ola = rootView?.findViewById<View>(R.id.btnConfirmarUbicacion)
+        ola?.setOnClickListener {
+            Toast.makeText(context, "Siiiiii :)", Toast.LENGTH_LONG).show()
+        println("BOTON")}
 
         googleApiClient = GoogleApiClient.Builder(this.context as Activity)
             .addConnectionCallbacks(this)
@@ -99,18 +116,31 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
             //Obtenemos la Longitut/Latitud
             longitude = location.longitude
             latitude = location.latitude
-            println("LATITUD $longitude $latitude")
+
+            lat1 = latitude.toString()
+            long2 = longitude.toString()
+
             moveMap()
         }
 
-        val nuevo_fragmento = UbicacionFragment()
-        val data = Bundle()
-        data.putInt("int1", 1)
-        data.putString("String2", "Foo")
-        println("-------")
-        println("TRATANDO DE MANDAR")
-        println(" DATA $data")
-        nuevo_fragmento.arguments = data
+        val database = FirebaseDatabase.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
+        val formatedDate = formatter.format(date)
+
+        val ltlg = mapOf(
+            "clienteId" to user?.uid,
+            "latitudd" to lat1 ,
+            "longitudd" to long2,
+            "timestamp" to formatedDate.toString()
+        )
+
+        val ltlgReference: DatabaseReference =
+            database.reference.child("ltlg").push()
+
+        ltlgReference.setValue(ltlg)
+
     }
 
 
@@ -132,7 +162,6 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
         )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
-        //Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun onRequestPermissionsResult(
@@ -171,8 +200,4 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
         super.onStop()
     }
 
-    fun get_latitud(): Double {
-
-        return latitude
-    }
 }

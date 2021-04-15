@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="129dp">
+        android:layout_height="170dp">
 
         <TextView
             android:id="@+id/textViewPlatoIdPedido"
@@ -39,40 +39,52 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewHora"
-            android:layout_width="227dp"
-            android:layout_height="41dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="83dp"
-            android:layout_marginRight="83dp"
-            android:layout_marginBottom="44dp"
-            android:text="TextView" />
-
-        <TextView
             android:id="@+id/txtNombreViandaPedido"
-            android:layout_width="226dp"
-            android:layout_height="32dp"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="84dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginRight="84dp"
-            android:layout_marginBottom="92dp" />
+            android:layout_marginBottom="110dp" />
+
+        <TextView
+            android:id="@+id/textViewHora"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="83dp"
+            android:layout_marginBottom="90dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewDireccion"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="83dp"
+            android:layout_marginBottom="39dp"
+            android:text="TextView" />
 
         <TextView
             android:id="@+id/textViewEstado"
             android:layout_width="224dp"
-            android:layout_height="39dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="85dp"
             android:layout_marginRight="85dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="5dp"
             android:text="TextView"
             android:textSize="14sp"
             android:textStyle="bold" />

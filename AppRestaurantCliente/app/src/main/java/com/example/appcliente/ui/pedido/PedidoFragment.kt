@@ -149,7 +149,6 @@ class PedidoFragment : Fragment() {
                                 rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                             }
                         }
-
                     }
                     else{
                         if (rvPedidoVerdad != null){
@@ -185,9 +184,7 @@ class PedidoFragment : Fragment() {
                 mensaje, Snackbar.LENGTH_LONG
             )
         }
-        if (snackBar != null) {
-            snackBar.show()
-        }
+        snackBar?.show()
     }
 }
 

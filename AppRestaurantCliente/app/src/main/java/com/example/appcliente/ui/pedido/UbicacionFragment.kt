@@ -1,20 +1,19 @@
 package com.example.appcliente.ui.pedido
 
 import android.os.Bundle
-import android.text.TextUtils
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.example.appcliente.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlinx.android.parcel.Parcelize
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,26 +28,8 @@ class UbicacionFragment : Fragment() {
     private var btnConfirmar: Button? = null
     private var listaPedido: List<Pedido>? = null
 
-
-    private var txtLocalidad: EditText? = null
-    private var txtCalle: EditText? = null
-    private var txtNumCalle: EditText? = null
-    private var txtPiso: EditText? = null
-    private var txtDpto: EditText? = null
-    private var txtCalle1: EditText? = null
-    private var txtCalle2: EditText? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val data = this.arguments
-        println("DATA UBI $data")
-        if (data != null) {
-            val int1 = data.getInt("int1")
-            val string2 = data.getString("String2")
-            println("-------------------")
-            println("Holis onCreate $int1 $string2")
-        }
-    }
+    var longitude = ""
+    var latitude = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,26 +38,12 @@ class UbicacionFragment : Fragment() {
         // Inflate the layout for this fragment
         vista= inflater.inflate(R.layout.fragment_ubicacion, container, false)
 
-        //(activity?.supportFragmentManager?.findFragmentById(R.id.fragmentoMapa) as SupportMapFragment?)?.getMapAsync(this)
-
-        //val mapFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentoMapa) as SupportMapFragment?
-        //mapFragment?.getMapAsync(this)
-
         val pedidos =  arguments?.get("pedidos")
         listaPedido = (pedidos as? ArrayList<*>)?.filterIsInstance<Pedido>()
 
-
-        /*txtLocalidad = vista?.findViewById(R.id.editCiudad)
-        txtCalle = vista?.findViewById(R.id.editCalle)
-        txtNumCalle = vista?.findViewById(R.id.editNumCalle)
-        txtPiso = vista?.findViewById(R.id.editPiso)
-        txtDpto = vista?.findViewById(R.id.editDpto)
-        txtCalle1 = vista?.findViewById(R.id.editCalle1)
-        txtCalle2 = vista?.findViewById(R.id.editCalle2)*/
-
-
+        asignarUbicacionAPedido1()
         btnConfirmar = vista?.findViewById(R.id.btnConfirmarUbicacion)
-        btnConfirmar?.setOnClickListener { asignarUbicacionAPedido1() }
+        btnConfirmar?.setOnClickListener { asignarUbicacionAPedido(latitude,longitude) }
 
 
         return vista
@@ -84,21 +51,44 @@ class UbicacionFragment : Fragment() {
 
     private fun asignarUbicacionAPedido1() {
 
-        val mapa = MapaUbicacionFragment()
-        val lati = mapa.get_latitud()
-        println("LATI $lati")
+        FirebaseDatabase.getInstance().reference.child("ltlg")
+            .orderByChild("clienteId")
+            .equalTo(FirebaseAuth.getInstance().currentUser?.uid)
+            .addChildEventListener(object: ChildEventListener {
 
-        val data = this.arguments
-        if (data != null) {
-            val int1 = data.getInt("int1")
-            val string2 = data.getString("String2")
-            println("-------------------")
-            println("Holis View $int1 $string2")
-        }
+                override fun onCancelled(p0: DatabaseError) {
+                    println("cancelado")
+                }
+
+                override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                    println("movido")
+                }
+
+                override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                    println("cambiANDOOOO!!!")
+                }
+
+                override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                    if(p0.childrenCount > 0){
+                        val ltlg = p0.getValue(Ltlg::class.java)!!
+                        ltlg.id = p0.key.toString()
+
+                        latitude = ltlg.latitudd
+                        longitude = ltlg.longitudd
+
+                    }
+                }
+
+                override fun onChildRemoved(p0: DataSnapshot) {
+                    println("Eliminando!!!")
+
+                }
+            })
 
     }
 
-    private fun asignarUbicacionAPedido() {
+    private fun asignarUbicacionAPedido(lati: String,longi: String) {
+
         val options = navOptions {
             anim {
                 enter = R.anim.slide_in_right
@@ -108,54 +98,46 @@ class UbicacionFragment : Fragment() {
             }
         }
 
-        val localidad = txtLocalidad?.text.toString()
-        val calle = txtCalle?.text.toString()
-        val numCalle = txtNumCalle?.text.toString()
-        val numPiso = txtPiso?.text.toString()
-        val numDpto = txtDpto?.text.toString()
-        val calle1 = txtCalle1?.text.toString()
-        val calle2 = txtCalle2?.text.toString()
+        for (plato in this.listaPedido!!) {
 
-        if (!TextUtils.isEmpty(localidad) &&
-            !TextUtils.isEmpty(calle) &&
-            !TextUtils.isEmpty(numCalle) &&
-            !TextUtils.isEmpty(calle1) &&
-            !TextUtils.isEmpty(calle2) ||
-            !TextUtils.isEmpty(numPiso) ||
-            !TextUtils.isEmpty(numDpto) ) {
-            for (plato in this.listaPedido!!) {
+            val database = FirebaseDatabase.getInstance()
+            val user = FirebaseAuth.getInstance().currentUser
+            val date = Calendar.getInstance().time
+            val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
+            val formatedDate = formatter.format(date)
+            val pedidoHistorial = mapOf(
+                "timestamp" to formatedDate.toString(),
+                "clienteId" to user?.uid,
+                "platoId" to plato.platoId,
+                "nombrePlato" to plato.nombrePlato,
+                "precioPlato" to plato.precioPlato,
+                "direccionEnvio" to "Latitud $lati Longitud $longi",
+                "estado" to plato.estado, // [en preparación | en camino | entregado]
+                "tipo" to plato.tipo
+            )
 
-                val database = FirebaseDatabase.getInstance()
-                val user = FirebaseAuth.getInstance().currentUser
-                val date = Calendar.getInstance().time
-                val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
-                val formatedDate = formatter.format(date)
-                val pedidoHistorial = mapOf(
-                    "timestamp" to formatedDate.toString(),
-                    "clienteId" to user?.uid,
-                    "platoId" to plato.platoId,
-                    "nombrePlato" to plato.nombrePlato,
-                    "precioPlato" to plato.precioPlato,
-                    "direccionEnvio" to "Localidad$localidad,Calle$calle,NumCalle$numCalle,NumPiso$numPiso,NumDpto$numDpto,Calle1$calle1,Calle2$calle2",
-                    "estado" to plato.estado, // [en preparación | en camino | entregado]
-                    "tipo" to plato.tipo
-                )
+            val historialReference: DatabaseReference =
+                database.reference.child("Pedido").push()
 
-                val historialReference: DatabaseReference =
-                    database.reference.child("Pedido").push()
+            historialReference.setValue(pedidoHistorial)
 
-                historialReference.setValue(pedidoHistorial)
-
-                database.reference.child("PedidoEnCurso/" + plato.id).removeValue()
-            }
-
-            Toast.makeText(context, "Su pedido llegara pronto :)", Toast.LENGTH_LONG).show()
-
-            findNavController().navigate(R.id.nav_home, null, options)
+            database.reference.child("PedidoEnCurso/" + plato.id).removeValue()
         }
-        else{
-            Toast.makeText(context, "Debe ingresar una ubicacion", Toast.LENGTH_LONG).show()
-        }
+
+        val database = FirebaseDatabase.getInstance()
+        database.reference.child("ltlg").removeValue()
+
+        Toast.makeText(context, "Su pedido llegara pronto :)", Toast.LENGTH_LONG).show()
+
+        findNavController().navigate(R.id.nav_home, null, options)
     }
-
 }
+
+@Parcelize
+data class Ltlg(
+    var id: String ="",
+    var latitudd: String = "",
+    var clienteId: String = "",
+    var longitudd:String = "",
+    var timestamp:String = ""
+): Parcelable

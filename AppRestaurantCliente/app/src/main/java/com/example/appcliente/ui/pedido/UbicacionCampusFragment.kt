@@ -77,7 +77,7 @@ class UbicacionCampusFragment : Fragment() {
                     "platoId" to plato.platoId,
                     "nombrePlato" to plato.nombrePlato,
                     "precioPlato" to plato.precioPlato,
-                    "direccionEnvio" to "Aula:$aula,Oficina: $oficina",
+                    "direccionEnvio" to "Aula $aula Oficina $oficina",
                     "estado" to plato.estado, // [en preparación | en camino | entregado]
                     "tipo" to plato.tipo
                 )
@@ -93,11 +93,9 @@ class UbicacionCampusFragment : Fragment() {
 
             findNavController().navigate(R.id.nav_home, null, options)
         }
-        else{
+        else {
             Toast.makeText(context, "Debe ingresar un aula u oficina", Toast.LENGTH_LONG).show()
         }
 
     }
-
-
 }

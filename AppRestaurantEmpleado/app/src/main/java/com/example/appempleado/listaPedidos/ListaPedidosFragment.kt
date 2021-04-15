@@ -1,7 +1,10 @@
 package com.example.appempleado.listaPedidos
 
+import android.annotation.SuppressLint
 import android.graphics.*
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -20,7 +23,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.content_item_m.view.*
 import kotlinx.android.synthetic.main.fragment_lista_pedidos.*
-
+import java.util.*
+import kotlin.collections.ArrayList
 
 var r : RecyclerView? = null
 var l : ArrayList<Pedido>? = null
@@ -43,7 +47,7 @@ class ListaPedidosFragment : Fragment() {
         return vista
     }
 
-    override fun onCreateOptionsMenu(menu: android.view.Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu, menu)
     }
@@ -141,7 +145,6 @@ class ListaPedidosFragment : Fragment() {
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot) {
-                    //fab?.visibility = View.VISIBLE
                     val pedido = p0.getValue(Pedido::class.java)!!
                     pedido.id = p0.key.toString()
                     val pos = lista_pedidos.indexOf(pedido)
@@ -151,29 +154,21 @@ class ListaPedidosFragment : Fragment() {
                         rvPedido.adapter?.notifyDataSetChanged()
                         if (lista_pedidos.size == 0) {
                             mostrarSnackbar("No hay pedidos aun.")
-                            //fab?.visibility = View.INVISIBLE
                         }
                     }
-
                 }
-
-
             })
     }
 
 
     fun mostrarSnackbar(mensaje: String){
-        val snackBar = activity?.findViewById<TabLayout>(R.id.tabs)?.let {
+        activity?.findViewById<TabLayout>(R.id.tabs)?.let {
             Snackbar.make(
                 it,
                 mensaje, Snackbar.LENGTH_LONG
             )
-        }
-        if (snackBar != null) {
-            snackBar.show()
-        }
+        }?.show()
     }
-
 }
 
 fun actualizarEstadoPedido(pedido: Pedido){
@@ -319,66 +314,110 @@ class PedidoAdapter(val resultado: ArrayList<Pedido>) : RecyclerView.Adapter<Vie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCustom {
-        val vh = ViewHolderCustom(
+        return ViewHolderCustom(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.content_item_m,
                 parent,
                 false
             )
         )
-        return vh
     }
 
     override fun onBindViewHolder(holder: ViewHolderCustom, position: Int) {
-        holder.bind(resultado.get(position))
+        holder.bind(resultado[position])
     }
-
 }
 
 
 class ViewHolderCustom(view: View) : RecyclerView.ViewHolder(view) {
 
     var txtNombre = view.cardView.txtNombreViandaPedido
-    //val txtPrecio = view.cardViewPedido.txtPrecioPedido
     val color = view.bannerColor
     val platoId = view.textViewPlatoIdPedido
     var hora = view.textViewHora
     var estado = view.textViewEstado
+    var direction = view.textViewDireccion
+
+    //val txtPrecio = view.cardViewPedido.txtPrecioPedido
     //val btnNotificar = view.btnVerPedido
     //val btnEliminarPedido = view.btnEliminarPedido
 
+    @SuppressLint("SetTextI18n")
     fun bind(p: Pedido) {
-        /*
-        if (p.tipo == "md") { //menuDia
-            color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
-        } else if (p.tipo == "mm") { //menuMate
-            color.setBackgroundColor(Color.parseColor("#73C3223A"))
-        } else {
-            color.setBackgroundColor(Color.parseColor("#730C184E"))
+
+        when (p.estado) {
+            "EN PREPARACION" -> {
+                color.setBackgroundColor(Color.parseColor("#F7CB73"))
+            }
+            "PEDIDO ENVIADO" -> {
+                color.setBackgroundColor(Color.parseColor("#D9512C"))
+            }
+            else -> {
+                color.setBackgroundColor(Color.parseColor("#077E8C")) //pendiente
+            }
         }
 
-         */
+        hora.text = "Hora: " + p.timestamp.takeLast(8).take(5)
+        estado.text = "Estado: "+p.estado
+        txtNombre.text = "Pedido: " +p.nombrePlato
+        platoId.text = p.platoId
 
-        if(p.estado == "EN PREPARACION"){
-            color.setBackgroundColor(Color.parseColor("#F7CB73"))
+        if (p.direccionEnvio.contains("Aula")){
+            println("ENTRE")
+            val partes = p.direccionEnvio.split(" ")
+            if (partes[1] == "") {
+                direction.text = "Envío a: Oficina ${partes[3]}"
+            }
+            else if(partes[3] == "") {
+                direction.text = "Envío a: Aula ${partes[1]}"
+            }
+            else {
+                direction.text = "Envío a: Aula ${partes[1]} - Oficina ${partes[3]}"
+            }
         }
-        else if(p.estado == "PEDIDO ENVIADO"){
-            color.setBackgroundColor(Color.parseColor("#D9512C"))
+        else if (p.direccionEnvio.contains("Longitud")){
+            val partes = p.direccionEnvio.split(" ")
+            val direccionObtenida = getCompleteAddressString(partes[1].toDouble(), partes[3].toDouble())
+
+            direction.text = "Envío a: $direccionObtenida"
+        }
+        else if (p.direccionEnvio.contains("Buffet")){
+            direction.text = p.direccionEnvio
         }
         else{
-            color.setBackgroundColor(Color.parseColor("#077E8C")) //pendiente
+            direction.text = "Envío a: ${p.direccionEnvio}"
         }
 
-        hora.text = "Hora pedido: " + p.timestamp.takeLast(8).take(5)
-        estado.text = "Estado: "+p.estado
-        txtNombre.text = "Nombre Pedido: " +p.nombrePlato
-        platoId.text = p.platoId
-       // btnNotificar.setOnClickListener {}
     }
 
     fun marcarPedidoPendiente(viewHolder: RecyclerView.ViewHolder){
         viewHolder.itemView.txtNombreViandaPedido.text = "PEDIDO PENDIENTE CAPO!!!"
     }
+
+    fun getCompleteAddressString(
+        LATITUDE: Double,
+        LONGITUDE: Double
+    ): String? {
+        var strAdd = ""
+
+        val geocoder = Geocoder(itemView.context, Locale.getDefault())
+        try {
+            val addresses: List<Address> = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1)
+            val returnedAddress: Address = addresses[0]
+            val strReturnedAddress = StringBuilder("")
+            for (i in 0..returnedAddress.maxAddressLineIndex) {
+                strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n")
+            }
+            strAdd = strReturnedAddress.toString()
+            println("My Current loction address")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            println("My Current loction address Canont get Address!")
+        }
+        return strAdd
+    }
+
+
 
 }
 //---------------------------------------------------------------------------
