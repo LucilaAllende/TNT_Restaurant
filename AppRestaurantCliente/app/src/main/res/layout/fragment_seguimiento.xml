@@ -8,13 +8,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSeguimientoPedido"
-        android:layout_width="357dp"
-        android:layout_height="474dp"
+        android:layout_width="358dp"
+        android:layout_height="650dp"
         android:scrollbars="vertical"
         tools:ignore="MissingConstraints"
         tools:layout_conversion_absoluteHeight="474dp"
         tools:layout_conversion_absoluteWidth="357dp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="87dp" />
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="49dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,10 +68,11 @@ class TrackActivity : AppCompatActivity() {
         val orderStatus = intent.getStringExtra("orderStatus")
         pedidoIdSeguimiento = intent.getStringExtra("pedidoIdSeguimiento")
         val h = intent.getStringExtra("horaPedidoSeguimiento")
-        var extra = h.split(" ")
+        val extra = h.split(" ")
         verificarPedidos()
         getOrderStatus(orderStatus)
-        horaPedido!!.text = extra[1]
+        println("DEVOLVER $extra")
+        horaPedido!!.text = extra[3]
         cantPedidos = findViewById(R.id.textViewNumeroOrdenSeguimiento)
         //cantPedidos!!.text = "#"+ intent.getStringExtra("cantPedidosSeguimiento")
         title = "Detalle del Pedido"

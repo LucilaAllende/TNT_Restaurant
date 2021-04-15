@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
-        android:layout_marginLeft="75dp"
+        android:layout_marginLeft="65dp"
         android:text="@string/donde_se_encuentra"
         android:textColor="@color/color_light"
         android:textSize="24sp"
@@ -81,9 +81,9 @@
         android:textColor="@color/window_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.614"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEnviarDomicilio"
-        app:layout_constraintVertical_bias="0.151" />
+        app:layout_constraintVertical_bias="0.187" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

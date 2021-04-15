@@ -116,7 +116,7 @@ class SeguimientoFragment : Fragment() {
                         if (rvSeguimientoPedido != null){
                             rvSeguimientoPedido.adapter!!.notifyDataSetChanged()
                         }
-                        mostrarSnackbar("No hay pedidos aun.")
+                        mostrarSnackbar("No hay pedidos aún.")
                     }
                 }
 
@@ -137,7 +137,7 @@ class SeguimientoFragment : Fragment() {
                         if (rvSeguimientoPedido != null){
                             rvSeguimientoPedido.adapter!!.notifyDataSetChanged()
                         }
-                        mostrarSnackbar("No hay pedidos aun.")
+                        mostrarSnackbar("No hay pedidos aún.")
                     }
                 }
 
@@ -151,7 +151,7 @@ class SeguimientoFragment : Fragment() {
                         rvSeguimientoPedido.adapter?.notifyItemRemoved(pos)
                         rvSeguimientoPedido.adapter?.notifyDataSetChanged()
                         if (listaPedidos.size == 0){
-                            mostrarSnackbar("No hay pedidos aun.")
+                            mostrarSnackbar("No hay pedidos aún.")
                             fab?.visibility = View.INVISIBLE
                         }
                     }

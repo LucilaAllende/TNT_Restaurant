@@ -49,9 +49,6 @@
             android:id="@+id/action_fragmentHome_to_fragmentListaPedidos"
             app:destination="@id/fragmentListaPedidos" />
         <action
-            android:id="@+id/action_fragmentHome_to_fragmentEstadisticas"
-            app:destination="@id/fragmentEstadisticas" />
-        <action
             android:id="@+id/action_fragmentHome_to_fragmentPortada"
             app:destination="@id/fragmentPortada" />
     </fragment>
@@ -92,13 +89,6 @@
         tools:layout="@layout/fragment_detalle_pedido">
         <argument android:name="nombre" />
         <argument android:name="ingredientes" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentEstadisticas"
-        android:name="com.example.appempleado.verEstadisticas.EstadisticasFragment"
-        android:label="Estadisticass"
-        tools:layout="@layout/fragment_estadisticas">
     </fragment>
 
 </navigation>

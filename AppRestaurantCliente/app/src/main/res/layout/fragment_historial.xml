@@ -13,8 +13,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPedido"
-                    android:layout_width="357dp"
-                    android:layout_height="474dp"
+                    android:layout_width="366dp"
+                    android:layout_height="621dp"
                     android:scrollbars="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

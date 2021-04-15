@@ -23,7 +23,6 @@ class HistorialFragment : Fragment() {
 
     private lateinit var slideshowViewModel: HistorialViewModel
     var vista: View? = null
-    private var viewPager: ViewPager? = null
     var lista_pedidos: ArrayList<Pedido> = ArrayList()
 
     override fun onCreateView(
@@ -93,7 +92,7 @@ class HistorialFragment : Fragment() {
                         if (rvPedido != null) {
                             rvPedido.adapter!!.notifyDataSetChanged()
                         }
-                        mostrarSnackbar("No hay pedidos aun.")
+                        mostrarSnackbar("No hay pedidos aún.")
                     }
                 }
 
@@ -108,7 +107,7 @@ class HistorialFragment : Fragment() {
                             rvPedido.adapter?.notifyItemRemoved(pos)
                             rvPedido.adapter?.notifyDataSetChanged()
                             if (lista_pedidos.size == 0) {
-                                mostrarSnackbar("No hay pedidos aun.")
+                                mostrarSnackbar("No hay pedidos aún.")
                             }
                         }
                     }
@@ -117,15 +116,12 @@ class HistorialFragment : Fragment() {
     }
 
     fun mostrarSnackbar(mensaje: String) {
-        val snackBar = activity?.findViewById<TabLayout>(R.id.tabs)?.let {
+        activity?.findViewById<TabLayout>(R.id.tabs)?.let {
             Snackbar.make(
                 it,
                 mensaje, Snackbar.LENGTH_LONG
             )
-        }
-        if (snackBar != null) {
-            snackBar.show()
-        }
+        }?.show()
     }
 
 

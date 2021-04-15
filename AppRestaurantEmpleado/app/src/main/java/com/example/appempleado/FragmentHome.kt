@@ -63,13 +63,8 @@ class FragmentHome : Fragment() {
         val view = binding.root
         binding.btnCargarMenues.setOnClickListener { irCargarMenues() }
         binding.btnVerPedidos.setOnClickListener { irVerPedidos() }
-        binding.btnVerEstadisticas.setOnClickListener { irVerEstadisticas() }
         setHasOptionsMenu(true)
         return view
-    }
-
-    private fun irVerEstadisticas() {
-        findNavController().navigate(R.id.action_fragmentHome_to_fragmentEstadisticas,null, options)
     }
 
     private fun irVerPedidos() {
@@ -81,7 +76,7 @@ class FragmentHome : Fragment() {
         findNavController().navigate(R.id.action_fragmentHome_to_fragmentCargarMenu,null, options)
     }
 
-    override fun onCreateOptionsMenu(menu: android.view.Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu, menu)
     }
@@ -92,7 +87,4 @@ class FragmentHome : Fragment() {
         findNavController().navigate(R.id.action_fragmentHome_to_fragmentPortada,null)
         return true
     }
-
-
-
 }

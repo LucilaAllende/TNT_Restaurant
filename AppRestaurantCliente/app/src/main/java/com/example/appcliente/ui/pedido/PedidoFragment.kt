@@ -154,7 +154,7 @@ class PedidoFragment : Fragment() {
                         if (rvPedidoVerdad != null){
                             rvPedidoVerdad.adapter!!.notifyDataSetChanged()
                         }
-                        mostrarSnackbar("No hay pedidos aun.")
+                        mostrarSnackbar("No hay pedidos aún.")
                     }
                 }
 
@@ -168,7 +168,7 @@ class PedidoFragment : Fragment() {
                         rvPedidoVerdad.adapter?.notifyItemRemoved(pos)
                         rvPedidoVerdad.adapter?.notifyDataSetChanged()
                         if (listaPedidos.size == 0){
-                            mostrarSnackbar("No hay pedidos aun.")
+                            mostrarSnackbar("No hay pedidos aún.")
                             fab?.visibility = View.INVISIBLE
                         }
                     }
