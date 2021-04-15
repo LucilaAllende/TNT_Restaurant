@@ -46,7 +46,7 @@ class MenuDiaFragment : Fragment() {
             recyclerView!!.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
         recyclerView?.adapter = AdapterMenuDia(menuDia){
-                item -> Toast.makeText(context, "Desde el fragment Menu dia",Toast.LENGTH_SHORT).show()
+                item -> //Toast.makeText(context, "Desde el fragment Menu dia",Toast.LENGTH_SHORT).show()
                 //val action = MenuDiaFragmentDirections.actionNavMenuDiaToNavDetallesDia("hola", "ingredientes")
 
                 val options = navOptions {

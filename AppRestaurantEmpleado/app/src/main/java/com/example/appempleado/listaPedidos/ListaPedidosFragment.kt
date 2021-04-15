@@ -128,7 +128,6 @@ class ListaPedidosFragment : Fragment() {
                     if (p0.childrenCount > 0) {
                         val pedido = p0.getValue(Pedido::class.java)!!
                         pedido.id = p0.key.toString()
-                        //fab?.visibility = View.VISIBLE
                         if (deboAgregarPedido(pedido)) {
                             lista_pedidos.add(pedido)
                             if (rvPedido != null) {

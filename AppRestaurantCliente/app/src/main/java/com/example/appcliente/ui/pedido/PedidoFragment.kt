@@ -172,7 +172,6 @@ class PedidoFragment : Fragment() {
                             fab?.visibility = View.INVISIBLE
                         }
                     }
-
                 }
             })
     }

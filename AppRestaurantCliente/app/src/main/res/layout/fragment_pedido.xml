@@ -11,8 +11,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPedidoVerdad"
-        android:layout_width="357dp"
-        android:layout_height="474dp"
+        android:layout_width="match_parent"
+        android:layout_height="646dp"
         android:scrollbars="vertical"
         tools:ignore="MissingConstraints"
         tools:layout_conversion_absoluteHeight="474dp"
@@ -24,12 +24,11 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_gravity="end|bottom"
-        android:contentDescription="@string/enviar_pedido"
-        android:text="@string/enviar_pedido"
+        android:layout_margin="16dp"
         android:background="@color/primaryColor"
+        android:contentDescription="@string/enviar_pedido"
         android:src="@drawable/camion_blanco"
-         />
+        android:text="@string/enviar_pedido" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

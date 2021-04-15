@@ -46,20 +46,20 @@ class MenuMateFragment : Fragment() {
         }
 
         recyclerView?.adapter= AdapterMenuMate(paraMate){
-                item -> Toast.makeText(context, "Desde el fragment Mate",Toast.LENGTH_SHORT).show()
-            //val action = MenuMateFragmentDirections.actionNavMenuMateToNavDetallesMate("hola")
+                item -> //Toast.makeText(context, "Desde el fragment Mate",Toast.LENGTH_SHORT).show()
+                //val action = MenuMateFragmentDirections.actionNavMenuMateToNavDetallesMate("hola")
 
-            val options = navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.slide_out_left
-                    popEnter = R.anim.slide_in_left
-                    popExit = R.anim.slide_out_right
+                val options = navOptions {
+                    anim {
+                        enter = R.anim.slide_in_right
+                        exit = R.anim.slide_out_left
+                        popEnter = R.anim.slide_in_left
+                        popExit = R.anim.slide_out_right
+                    }
                 }
-            }
 
-            val bundle = bundleOf("nombre" to item.nombre,"ingredientes" to item.ingredientes)
-            findNavController().navigate(R.id.nav_detalles_mate, bundle, options)
+                val bundle = bundleOf("nombre" to item.nombre,"ingredientes" to item.ingredientes)
+                findNavController().navigate(R.id.nav_detalles_mate, bundle, options)
         }
     }
 
