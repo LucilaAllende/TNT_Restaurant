@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#7692B4">
+        android:background="#B0BEC5">
 
         <EditText
             android:id="@+id/txtNombre"
@@ -84,6 +84,7 @@
             android:layout_width="259dp"
             android:layout_height="68dp"
             android:text="Registrarse"
+            style="@android:style/Widget.DeviceDefault.Button.Colored"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

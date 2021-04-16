@@ -75,20 +75,7 @@
         <action
             android:id="@+id/action_fragmentListaPedidos_to_fragmentPortada"
             app:destination="@id/fragmentPortada" />
-        <action
-            android:id="@+id/action_fragmentListaPedidos_to_fragmentDetallePedido"
-            app:destination="@id/fragmentDetallePedido"
-            app:popUpTo="@id/fragmentHome" />
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentDetallePedido"
-        android:name="com.example.appempleado.listaPedidos.DetallePedidoFragment"
-        android:label="Ingredientes"
-        tools:layout="@layout/fragment_detalle_pedido">
-        <argument android:name="nombre" />
-        <argument android:name="ingredientes" />
     </fragment>
 
 </navigation>
