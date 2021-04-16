@@ -1,5 +1,6 @@
 package com.example.appcliente.geofence
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -33,6 +34,7 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
         manager.createNotificationChannel(notificationChannel)
     }
 
+    @SuppressLint("ResourceAsColor")
     fun sendHighPriorityNotification(title: String?, body: String?, activityName: Class<*>?) {
         val intent = Intent(this, activityName)
         val pendingIntent =
@@ -41,6 +43,7 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
             NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_restaurant_black_24dp)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setColor(R.color.color_carnico)
                 .setStyle(
                     NotificationCompat.BigTextStyle().setSummaryText("summary")
                         .setBigContentTitle(title).bigText(body)
