@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSeguimientoPedido"
-        android:layout_width="358dp"
-        android:layout_height="650dp"
+        android:layout_width="353dp"
+        android:layout_height="624dp"
         android:scrollbars="vertical"
         tools:ignore="MissingConstraints"
         tools:layout_conversion_absoluteHeight="474dp"

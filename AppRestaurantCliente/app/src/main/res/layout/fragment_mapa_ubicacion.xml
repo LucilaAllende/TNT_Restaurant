@@ -11,21 +11,7 @@
         android:id="@+id/fragmentoMapa"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="655dp"
+        android:layout_height="match_parent"
         tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnConfirmarUbicacion2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/boton_rendondo"
-        android:text="BOO"
-        android:textColor="@color/window_background"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="667dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

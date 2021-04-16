@@ -12,8 +12,8 @@
     <fragment
         android:id="@+id/fragmentoDentroUbicacion"
         android:name="com.example.appcliente.ui.pedido.MapaUbicacionFragment"
-        android:layout_width="407dp"
-        android:layout_height="586dp"
+        android:layout_width="409dp"
+        android:layout_height="564dp"
         tools:ignore="MissingConstraints" />
 
     <Button

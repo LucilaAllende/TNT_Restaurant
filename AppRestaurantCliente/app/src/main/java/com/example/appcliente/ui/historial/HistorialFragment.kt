@@ -1,5 +1,6 @@
 package com.example.appcliente.ui.historial
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import com.example.appcliente.R
 import android.os.Bundle
@@ -160,6 +161,7 @@ class HistorialFragment : Fragment() {
         val btnNotificar = view.btnNotificarPedido
         //val btnEliminarPedido = view.btnEliminarPedido
 
+        @SuppressLint("SetTextI18n")
         fun bind(p: Pedido) {
             if (p.tipo == "md") { //menuDia
                 color.setBackgroundColor(Color.parseColor("#7333691E")) //menu dia
@@ -170,7 +172,7 @@ class HistorialFragment : Fragment() {
             }
 
             if (p.notificarme){
-                btnNotificar.text = "Eliminar Suscripcion"
+                btnNotificar.text = "Eliminar Suscripción"
                 btnNotificar.setTextColor(Color.parseColor("#ff0000"))
             }
             else{

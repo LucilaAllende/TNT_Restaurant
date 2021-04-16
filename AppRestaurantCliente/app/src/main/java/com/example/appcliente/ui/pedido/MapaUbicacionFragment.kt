@@ -39,7 +39,6 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
 
     private lateinit var mMap: GoogleMap
     private var googleApiClient: GoogleApiClient? = null
-    private lateinit var database: DatabaseReference
     var vista: View? = null
 
     //Para guardar la Longitud y la Latitud
@@ -59,11 +58,6 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
         val rootView = super.onCreateView(inflater, container, savedInstanceState)
 
         getMapAsync(this)
-
-        val ola = rootView?.findViewById<View>(R.id.btnConfirmarUbicacion)
-        ola?.setOnClickListener {
-            Toast.makeText(context, "Siiiiii :)", Toast.LENGTH_LONG).show()
-        println("BOTON")}
 
         googleApiClient = GoogleApiClient.Builder(this.context as Activity)
             .addConnectionCallbacks(this)
@@ -158,7 +152,7 @@ class MapaUbicacionFragment : SupportMapFragment(), OnMapReadyCallback, GoogleAp
             MarkerOptions()
                 .position(latLng) //Posicion
                 .draggable(true) //Para que se pueda mover
-                .title("Esta es tu ubicacion")
+                .title("Esta es tu ubicación")
         )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
