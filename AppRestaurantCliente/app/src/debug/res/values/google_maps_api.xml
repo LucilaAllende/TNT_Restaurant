@@ -22,13 +22,13 @@
     -->
 
     <!-- KEY LUCILA -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAdm92VWnnZgMhQuWpNofgWvyTJlrseP5Q</string>
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAdm92VWnnZgMhQuWpNofgWvyTJlrseP5Q</string>-->
 
     <!-- KEY MATIAS
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">  </string>
     -->
 
-    <!-- KEY ANELE
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">  </string>
-    -->
+    <!-- KEY ANELE-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCsbKKHR-RqrNMfVFM3Kk6UebvuU0h1nVo</string>
+
 </resources>

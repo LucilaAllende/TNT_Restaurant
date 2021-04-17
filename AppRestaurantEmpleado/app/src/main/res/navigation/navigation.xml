@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentPortada"
             app:destination="@id/fragmentPortada" />
+        <action
+            android:id="@+id/action_fragmentHome_to_eliminarPlatosFragment2"
+            app:destination="@id/eliminarPlatosFragment2" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCargarMenu"
@@ -90,5 +93,10 @@
         <argument android:name="nombre" />
         <argument android:name="ingredientes" />
     </fragment>
+    <fragment
+        android:id="@+id/eliminarPlatosFragment2"
+        android:name="com.example.appempleado.eliminarPlatos.EliminarPlatosFragment"
+        android:label="fragment_eliminar_platos"
+        tools:layout="@layout/fragment_eliminar_platos" />
 
 </navigation>

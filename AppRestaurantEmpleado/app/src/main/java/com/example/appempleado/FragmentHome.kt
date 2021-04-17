@@ -63,8 +63,13 @@ class FragmentHome : Fragment() {
         val view = binding.root
         binding.btnCargarMenues.setOnClickListener { irCargarMenues() }
         binding.btnVerPedidos.setOnClickListener { irVerPedidos() }
+        binding.btnEliminarPlatos.setOnClickListener{ irEliminarPlatos() }
         setHasOptionsMenu(true)
         return view
+    }
+
+    private fun irEliminarPlatos() {
+        findNavController().navigate(R.id.action_fragmentHome_to_eliminarPlatosFragment2,null, options)
     }
 
     private fun irVerPedidos() {
